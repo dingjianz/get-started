@@ -1,0 +1,6 @@
+ *{
+   color:#fff;
+ }
+ ::selection {
+   background-color: green;
+ }

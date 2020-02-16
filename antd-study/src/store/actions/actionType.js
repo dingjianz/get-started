@@ -1,0 +1,12 @@
+export default {
+  NOTICE_READ: 'NOTICE_READ', // 标记消息已读
+  START_NOTICE_POST: 'START_NOTICE_POST', // 开始获取消息列表
+  END_NOTICE_POST: 'END_NOTICE_POST', // 结束获取消息列表
+  FETCH_NOTICE_LIST: 'FETCH_NOTICE_LIST', // 获取消息列表
+
+  LOGIN_START: 'LOGIN_START', // 登陆开始
+  LOGIN_SUCCESS: 'LOGIN_SUCCESS', // 登陆成功
+  LOGIN_FAILED: 'LOGIN_FAILED', // 登陆失败
+
+  CHANGE_AVATAR: 'CHANGE_AVATAR', // 改变avatar
+}

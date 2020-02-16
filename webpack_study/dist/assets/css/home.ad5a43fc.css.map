@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///./src/css/home.scss"],"names":[],"mappings":"AAAA;AACA;AACA,kBAAkB;;AAElB;AACA,gBAAgB;;AAEhB;AACA,cAAc","file":"assets/css//home.ad5a43fc.css","sourcesContent":["* {\n  color: red;\n  font-size: 20px; }\n\n.box {\n  color: yellow; }\n\n.son {\n  color: blue; }\n"],"sourceRoot":""}

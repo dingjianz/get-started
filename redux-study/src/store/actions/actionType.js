@@ -1,0 +1,4 @@
+export default {
+  CART_AMOUNT_INCREMENT: 'CART_AMOUNT_INCREMENT', // 增加amout
+  CART_AMOUNT_DECREMENT: 'CART_AMOUNT_DECREMENT' // 减少amount
+}
