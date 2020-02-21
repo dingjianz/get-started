@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+  <title>hahahahah</title>
+</head>
+
+<body>
+  <h1 id='search'>语音识别查电影</h1>
+  <script type="text/JavaScript" src="https://res2.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+  <script src="https://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
+
+  <script type='text/javascript'>
+    /* 
+    1.绑定域名
+      -在接口测试页面上填写js安全域名
+    2.引入js文件 
+      -http://res.wx.qq.com/open/js/jweixin-1.6.0.js
+    3.通过config接口注入权限验证配置
+  */
+    wx.config({
+      debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+      appId: 'wx92089efa72c32563', // 必填，公众号的唯一标识
+      timestamp: '<%= timestamp %>', // 必填，生成签名的时间戳
+      nonceStr: '<%= noncestr %>', // 必填，生成签名的随机串
+      signature: '<%= signature %>', // 必填，签名
+      jsApiList: ['onMenuShareQQ', 'onMenuShareQZone', 'startRecord', 'stopRecord', 'translateVoice',
+        'onMenuShareAppMessage', 'onMenuShareTimeline', 'updateAppMessageShareData', 'updateTimelineShareData'
+      ] // 必填，需要使用的JS接口列表
+    })
+
+    wx.ready(function () {
+      /* 
+        config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后。
+        config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。
+        对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+      */
+
+      wx.checkJsApi({
+        jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline', 'updateAppMessageShareData',
+          'updateTimelineShareData'
+        ], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+        success: function (res) {
+          // 以键值对的形式返回，可用的api值true，不可用为false
+          // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
+        }
+      })
+      const shareData = {
+        title: '来自丁健的分享', //标题
+        desc: "这是我制作的相册，快来帮我点赞吧", //描述
+        imgUrl: 'https://goss.veer.com/creative/vcg/veer/1600water/veer-345027559.jpg', //自定义图片
+        link: 'http://jft5cj.natappfree.cc/search', //分享的链接
+        type: 'link',
+        success: function () {
+          console.log('分享成功')
+        },
+        fail: function () {
+          console.log('分享失败')
+        }
+      }
+      wx.onMenuShareAppMessage(shareData)
+      wx.onMenuShareTimeline(shareData)
+      // wx.updateAppMessageShareData(shareData)
+      // wx.updateTimelineShareData(shareData)
+
+    })
+
+
+    wx.error(function (err) {
+      // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+      console.log('报错了~~' + err)
+    })
+  </script>
+</body>
+
+</html>

@@ -4,7 +4,8 @@
 
 // 引入xml2js，将xml数据转化成js对象
 const { parseString } = require('xml2js')
-
+const { writeFile, readFile } = require('fs')
+const path = require('path')
 
 module.exports = {
   getUserDataAsync(req) {
@@ -22,7 +23,7 @@ module.exports = {
     })
   },
 
-  parseXMLAsync(xmlData) {
+  parseXMLAsync(xmlData) { // 解析xml数据
     return new Promise((resolve, reject) => {
       parseString(xmlData, {trim: true}, (err, data) => {
         if (!err) {
@@ -47,5 +48,35 @@ module.exports = {
       }
     }
     return message
+  },
+
+  writeFileAsync(data, fileName) { // 保存文件
+    return new Promise((resolve, reject) => {
+      // 将对象转换成json字符串
+      writeFile(path.resolve(__dirname, '../static/' ,fileName), JSON.stringify(data), err => {
+        if (!err) {
+          console.log(`${fileName}保存成功~ `)
+          resolve()
+        } else {
+          console.log(`${fileName}保存失败：` + err)
+          reject(`${fileName}保存失败：` + err)
+        }
+      })
+    })
+  },
+  
+  readeFileAsync(fileName) { // 读取文件
+    return new Promise((resolve, reject) => {
+      readFile(path.resolve(__dirname, '../static/' ,fileName), (err, data) => {
+        if (!err) {
+          console.log(`${fileName}读取成功~`)
+          resolve(JSON.parse(data))
+        } else {
+          console.log(`${fileName}读取失败：` + err)
+          reject(`${fileName}读取失败：` + err)
+        }
+      })
+    })
   }
+
 }
