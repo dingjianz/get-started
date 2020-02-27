@@ -223,17 +223,17 @@ class Wechat {
   }
 }
 
-// 模拟测试
+// 模拟测试,如果需要新建菜单，打开闭包，运行wechatApi.js
 /*
- 
-*/
 (async () => {
   const w = new Wechat()
-  const result_1 = await w.deleteMenu()
+  const result_1 = await w.deleteMenu() // 先删除才能创建
   console.log({result_1})
   const result_2 = await w.createMenu(menuConfig)
   console.log(result_2)
   const result_3 = await w.fetchTicket()
   console.log(result_3)
 })()
+*/
+
 module.exports = Wechat

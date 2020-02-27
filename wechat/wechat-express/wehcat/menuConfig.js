@@ -1,3 +1,5 @@
+// 引入congig模块
+const  { url } = require('../config')
 module.exports = {
   "button": [{
       "name": "发送位置",
@@ -9,7 +11,7 @@ module.exports = {
       "sub_button": [{
           "type": "view",
           "name": "搜索",
-          "url": "http://jft5cj.natappfree.cc/search"
+          "url": `${url}/search`
         },
         {
           "type": "click",

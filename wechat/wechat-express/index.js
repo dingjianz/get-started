@@ -45,11 +45,15 @@ app.get('/search', async (req, res) => {
     noncestr,
     timestamp
   })
+  console.log({
+    arr,
+    signature
+  })
 })
 
 // 接受处理所有消息
 app.use(auth())
 // 监听端口号
-app.listen(80, () => {
+app.listen(3000, () => {
   console.log('服务器启动成功了')
 })

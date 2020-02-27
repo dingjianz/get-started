@@ -8,10 +8,10 @@
 </head>
 
 <body>
-  <h1 id='search'>语音识别查电影</h1>
+  <h1 id='search'>我是测试页面</h1>
+  <!-- <img src="http://i1.fuimg.com/708703/2922d5f785e4a550.jpg" alt=""> -->
   <script type="text/JavaScript" src="https://res2.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
   <script src="https://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
-
   <script type='text/javascript'>
     /* 
     1.绑定域名
@@ -21,7 +21,7 @@
     3.通过config接口注入权限验证配置
   */
     wx.config({
-      debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+      debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
       appId: 'wx92089efa72c32563', // 必填，公众号的唯一标识
       timestamp: '<%= timestamp %>', // 必填，生成签名的时间戳
       nonceStr: '<%= noncestr %>', // 必填，生成签名的随机串
@@ -48,10 +48,10 @@
         }
       })
       const shareData = {
-        title: '来自丁健的分享', //标题
-        desc: "这是我制作的相册，快来帮我点赞吧", //描述
+        title: '来自jianding9的分享', //标题
+        desc: "这是我制作的测试页面，快来帮我点赞吧", //描述
         imgUrl: 'https://goss.veer.com/creative/vcg/veer/1600water/veer-345027559.jpg', //自定义图片
-        link: 'http://jft5cj.natappfree.cc/search', //分享的链接
+        link: 'http://pcwb2d.natappfree.cc/search', //分享的链接
         type: 'link',
         success: function () {
           console.log('分享成功')
