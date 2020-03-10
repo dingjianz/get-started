@@ -3,5 +3,5 @@ module.exports = {
   token: 'jianding9',
   appID: 'wx92089efa72c32563',
   appsecret: 'cee5dd3bcd7a6f262ed638138cffd7c5',
-  url: 'http://pcwb2d.natappfree.cc'
+  url: 'http://4w34q3.natappfree.cc'
 }
