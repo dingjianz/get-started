@@ -1,0 +1,4 @@
+var testMsg = 'hello word'
+module.exports = {
+  msg: testMsg
+}

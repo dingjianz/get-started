@@ -1,0 +1,9 @@
+<view class="tabs-container">
+  <view class="tabs-header">
+    <text class="tab-item {{item.isActive?'active' : ''}}" wx:for="{{tabList}}" wx:for-item="item" wx:for-index="index" wx:key="{{id}}" bindtap="handleClick" data-active-num="{{index}}">{{item.name}}</text>
+  </view>
+  <view class="tabs-content">
+    <slot name="footer"></slot>
+    <slot name="header"></slot>
+  </view>
+</view>

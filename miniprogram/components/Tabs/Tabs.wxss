@@ -1,0 +1,14 @@
+.tabs-container .tabs-header {
+  display: flex;
+  border-bottom: 1rpx solid #ccc;
+}
+.tabs-container .tabs-header .tab-item {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+}
+.tabs-container .tabs-header .tab-item.active {
+  color: #FF4500;
+  border-bottom: 1rpx solid #FF4500;
+}

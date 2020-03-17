@@ -1,0 +1,4 @@
+<tabs tabList="{{tabList}}">
+  <text slot="header">header</text>
+  <text slot="footer">footer</text>
+  </tabs>

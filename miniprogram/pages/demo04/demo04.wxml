@@ -1,0 +1,9 @@
+<radio-group bindchange="handleChange">
+  <radio value="male" color="red">男</radio>
+  <radio value="female" color="red">女</radio>
+</radio-group>
+<text>您选择的是：{{gender}}</text>
+
+<wxs module="dj" src="../../utils/util.wxs"></wxs>
+<text>{{dj.msg}}</text>
+  

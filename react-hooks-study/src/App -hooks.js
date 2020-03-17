@@ -14,7 +14,7 @@ export default function App() {
   return (
     <div>
       <p>当前count值是：{count}</p>
-      <button onClick={() => setCount(count - 1)}>-</button>
+      <button onClick={() => setCount(x => x - 1)}>-</button>
       <span>{count}</span>
       <button onClick={() => setCount(count + 1)}>+</button>
       
