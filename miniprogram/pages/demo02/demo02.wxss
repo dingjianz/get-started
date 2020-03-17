@@ -1,0 +1,19 @@
+/* pages/demo02/demo02.wxss */
+@import "../../style/reset.wxss";
+.btn {
+  color:#fff;
+  background-color: green;
+}
+.hover-btn {
+  background-color: red;
+}
+
+swiper {
+  width: 100%;
+  height: calc(100vw * 352 / 1125);
+  /* swiper的宽度 * 原图的高度 / 原图的宽度 */
+}
+
+image {
+  width: 100%;
+}

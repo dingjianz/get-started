@@ -125,6 +125,6 @@ module.exports = {
 
 if (isDev) {
   module.exports.plugins = module.exports.plugins.concat([
-    // new CleanWebpackPlugin(),
+    new CleanWebpackPlugin(),
   ])
 }

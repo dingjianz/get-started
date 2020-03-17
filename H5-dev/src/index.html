@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset=UTF-8>
+  <meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+  <meta name=screen-orientation content=portrait>
+  <meta name=x5-orientation content=portrait>
+  <meta content=yes name=apple-mobile-web-app-capable>
+  <meta content=withe name=apple-mobile-web-app-status-bar-style>
+  <meta content="telephone=no" name=format-detection>
+  <meta content="email=no" name=format-detection>
+  <title>Document</title>
+  <script>
+    (function (doc, win) {
+      var docEl = doc.documentElement,
+        resizeEvt = 'onorientationchange' in window ? 'onorientationchange' : 'resize',
+        recalc = function () {
+          var clientWidth = docEl.clientWidth
+          if (!clientWidth) return
+          if (clientWidth >= 750) {
+            docEl.style.fontSize = '20px'
+          } else {
+            docEl.style.fontSize = 20 * (clientWidth / 750) + 'px'
+          }
+        };
+      if (!doc.addEventListener) return
+      win.addEventListener(resizeEvt, recalc, false)
+      doc.addEventListener('DOMContentLoaded', recalc, false)
+    })(document, window)
+  </script>
+</head>
+
+<body>
+  <h1>我是html页面</h1>
+  <div class="box"></div>
+</body>
+
+</html>

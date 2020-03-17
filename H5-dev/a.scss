@@ -1,0 +1,13 @@
+html {
+  h1 {
+    color: red;
+    font-size: 3rem;
+  }
+}
+.box {
+  width: 10rem;
+  height: 10rem;
+  background-color: pink;
+  display: flex;
+  transform: rotate(45deg);
+}

@@ -1,0 +1,15 @@
+<button>default</button>
+<button size="mini">mini</button>
+<button type="primary">primary</button>
+<button type="primary" loading>primary</button>
+<button type="primary" disabled>primary</button>
+<button type="warn">warn</button>
+<button type="warn" plain>warn plain</button>
+
+<button open-type="contact">contact</button>
+<button open-type="share">share</button>
+<button open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">getPhoneNumber</button>
+<button open-type="getUserInfo" bindgetuserinfo="getUserInfo">getUserInfo</button>
+<button open-type="launchApp">launchApp</button>
+<button open-type="openSetting">openSetting</button>
+<button open-type="feedback">feedback</button>

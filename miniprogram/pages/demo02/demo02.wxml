@@ -1,0 +1,29 @@
+<!--pages/demo02/demo02.wxml-->
+<view>
+  <text>pages/demo02/demo02.wxml</text>
+  <view class="btn" hover-class="hover-btn">点击我试试</view>
+  <text selectable="{{true}}" decode="{{false}}">
+    我是te   xt标    签包&nbsp;裹 的，
+    你长按我试试
+  </text>
+  <image mode="widthFix" lazy-load="{{true}}" src="https://ae01.alicdn.com/kf/Hfb7267ea1e4c4a7bbe0dcf976d272056L.jpg" alt="loading..." />
+
+  <swiper autoplay interval="2000" circular indicator-dots indicator-color="#0094ff" indicator-active-color="#ff0094">
+    <swiper-item>
+      <image lazy-load mode="widthFix" src="http://img.alicdn.com/imgextra/i3/113/O1CN01Y53r3s1ChnLQUvPJK_!!113-0-luban.jpg" />
+    </swiper-item>
+    <swiper-item>
+      <image lazy-load mode="widthFix" src="https://aecpm.alicdn.com/simba/img/TB1CWf9KpXXXXbuXpXXSutbFXXX.jpg_q50.jpg" />
+    </swiper-item>
+    <swiper-item>
+      <image lazy-load mode="widthFix" src="//gw.alicdn.com/imgextra/i3/197/O1CN014jtdQk1DKGc6CROWR_!!197-0-lubanu.jpg" />
+    </swiper-item>
+  </swiper>
+
+  <rich-text nodes="{{html}}">
+    
+  </rich-text>
+    
+</view>
+
+

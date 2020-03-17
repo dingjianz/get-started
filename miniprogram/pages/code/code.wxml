@@ -1,0 +1,4 @@
+<!--pages/code/code.wxml-->
+<view class="container">
+  <navigator url="/pages/demo/demo?id=456" open-type="navigate">跳转到demo</navigator>
+</view>

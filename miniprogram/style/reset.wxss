@@ -1,0 +1,7 @@
+view {
+  margin: 0;
+  padding: 0;
+}
+text {
+  color:red;
+}

@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/demo03/demo03",
+    "pages/demo02/demo02",
+    "pages/demo/demo",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/img/img",
+    "pages/code/code",
+    "pages/shop/shop"
+  ],
+  "window": {
+    "enablePullDownRefresh": true,
+    "backgroundColor": "yellow",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#0094ff",
+    "navigationBarTitleText": "丁健的应用",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "icon/_home.png",
+      "selectedIconPath": "icon/home.png"
+    }, {
+      "pagePath": "pages/img/img",
+      "text": "相册",
+      "iconPath": "icon/_img.png",
+      "selectedIconPath": "icon/img.png"
+    },
+    {
+      "pagePath": "pages/code/code",
+      "text": "code",
+      "iconPath": "icon/_code.png",
+      "selectedIconPath": "icon/code.png"
+    },
+    {
+      "pagePath": "pages/shop/shop",
+      "text": "商店",
+      "iconPath": "icon/_shop.png",
+      "selectedIconPath": "icon/shop.png"
+    }],
+    "position": "bottom",
+    "backgroundColor": "#4FC3F7",
+    "color": "#FFEA00",
+    "selectedColor": "#e57373"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
