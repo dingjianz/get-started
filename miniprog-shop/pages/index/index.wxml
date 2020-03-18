@@ -1,3 +1,15 @@
 <view class="pyg-index">
   <SearchInput></SearchInput>
+
+  <swiper indicator-dots autoplay circular interval="{{2000}}" class="swiper-wrap">
+    <swiper-item wx:for="{{swiperList}}" wx:for-item="item" wx:for-index="index" wx:key="goods_id" class="swiper-it">
+      <image src="{{item.image_src}}" mode="widthFix" class="slide-image" />
+    </swiper-item>
+  </swiper>
+
+  <view class="cate-wrap">
+    <navigator wx:for="{{cateList}}" wx:for-item="cateIt" wx:for-index="cateIndex" wx:key="name" class="img">
+      <image mode="widthFix" src="{{cateIt.image_src}}" />
+    </navigator>
+  </view>
 </view>

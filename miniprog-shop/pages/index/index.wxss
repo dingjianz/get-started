@@ -1,6 +1,17 @@
-.pyg-index {
-  /*
-    使用主题颜色
-    color: var(--themeColor);
-  */
+.pyg-index .swiper-wrap {
+  width: 750rpx;
+  height: 340rpx;
+}
+.pyg-index .swiper-wrap .swiper-it .slide-image {
+  width: 100%;
+}
+.pyg-index .cate-wrap {
+  display: flex;
+}
+.pyg-index .cate-wrap navigator {
+  flex: 1;
+  padding: 20rpx;
+}
+.pyg-index .cate-wrap navigator image {
+  width: 100%;
 }
