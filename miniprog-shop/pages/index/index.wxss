@@ -1,0 +1,6 @@
+.pyg-index {
+  /*
+    使用主题颜色
+    color: var(--themeColor);
+  */
+}

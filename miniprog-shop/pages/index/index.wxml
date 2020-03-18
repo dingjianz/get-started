@@ -1,0 +1,3 @@
+<view class="pyg-index">
+  <SearchInput></SearchInput>
+</view>

@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/category/category",
+    "pages/cart/cart",
+    "pages/my/my"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#eb4450",
+    "navigationBarTitleText": "丁健的小商铺",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "首页",
+      "iconPath": "icons/_home.png",
+      "selectedIconPath": "icons/home.png"
+    }, {
+      "pagePath": "pages/category/category",
+      "text": "分类",
+      "iconPath": "icons/_category.png",
+      "selectedIconPath": "icons/category.png"
+    }, {
+      "pagePath": "pages/cart/cart",
+      "text": "购物车",
+      "iconPath": "icons/_cart.png",
+      "selectedIconPath": "icons/cart.png"
+    }, {
+      "pagePath": "pages/my/my",
+      "text": "我的",
+      "iconPath": "icons/_my.png",
+      "selectedIconPath": "icons/my.png"
+    }],
+    "color": "#999",
+    "selectedColor": "#ff4643"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
