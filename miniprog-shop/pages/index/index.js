@@ -32,7 +32,6 @@ Page({
   getCategories() {
     request({url: `${app.globalData.baseUrl}/home/catitems`})
     .then(result => {
-      console.log(result)
       this.setData({
         cateList: result.data.message || []
       })
