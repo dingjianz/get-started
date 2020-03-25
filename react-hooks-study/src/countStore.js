@@ -4,7 +4,7 @@ const { Provider, Consumer: CounterConsumer } = createContext()
 class CounterProvider extends Component {
   constructor(props) {
     super(props)
-    this.state = { 
+    this.state = {
       count: 100
     }
   }
