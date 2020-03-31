@@ -38,6 +38,10 @@ const Profile = Loadable({
   loader: () => import('./Profile'),
   loading: Loading
 })
+const Test = Loadable({
+  loader: () => import('./Test'),
+  loading: Loading
+})
 
 export {
   Login,
@@ -48,7 +52,8 @@ export {
   NotFound,
   Notice,
   NoAuth,
-  Profile
+  Profile,
+  Test
 }
 
 
@@ -58,3 +63,4 @@ export {
 // export { default as ArticleEdit } from './Article/ArticleEdit'
 // export { default as Settings } from './Settings'
 // export { default as NotFound } from './NotFound'
+// export { default as Test } from './Test'
