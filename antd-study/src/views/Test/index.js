@@ -1,186 +1,160 @@
 import React, { Component } from 'react'
-import { Tree } from 'antd'
-const { TreeNode } = Tree
 import './index.scss'
 
-class Test extends Component {
+import { Tree, Icon } from 'antd'
+const { TreeNode } = Tree
 
+
+class Test extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      ulTop: [],
-      n: 0,
-      fatherDom: null,
-      dragIndex: 0,
-
-      list: [
-        {id: '1', name: 'AI大学', children: []},
+      gData: [
+        {key: '1', title: 'AI大学', children: []},
         {
-          id: '2',
-          name: '精选课程', 
+          key: '2',
+          title: '精选课程', 
           children: [
-            {id: '2-1', name: '机器翻译'},
-            {id: '2-2', name: '语音测评'},
-            {id: '2-3', name: 'AIUI'},
-            {id: '2-4', name: 'Python'},
-            {id: '2-5', name: '最新课程'}
+            {key: '2-1', title: '机器翻译'},
+            {key: '2-2', title: '语音测评'},
+            {key: '2-3', title: 'AIUI'},
+            {key: '2-4', title: 'Python'},
+            {key: '2-5', title: '最新课程'}
           ]
         },
         {
-          id: '3',
-          name: '个人中心',
+          key: '3',
+          title: '个人中心',
           children: [
-            {id: '3-1', name: '每日签到'},
-            {id: '3-2', name: '我的直播'}
+            {key: '3-1', title: '每日签到'},
+            {key: '3-2', title: '我的直播'}
           ]
         }
-      ]
+      ],
+      rightClickNodeTreeItem: {
+        pageX: "",
+        pageY: "",
+        id: "",
+        categoryName: ""
+      }
     }
   }
 
   componentDidMount () {
-    this.getUlTop()
   }
 
-  getUlTop = () => {
-    let ulsDom = [...document.getElementsByClassName('drag-ul')]
-    let ulTop = []
-    let newList = []
-    ulsDom.forEach((item, index) => {
-      newList = [...newList, this.state.list[Number(item.dataset.index)]]
-      ulTop.push(this.getElementToPageTop(item))
-    })
+  onDrop = info => {
+    const dropKey = info.node.props.eventKey
+    const dragKey = info.dragNode.props.eventKey
+    let fromNode = dragKey.split('-')
+    let toNode = dropKey.split('-')
+    const dropPos = info.node.props.pos.split('-');
+    const dropPosition = info.dropPosition - Number(dropPos[dropPos.length - 1])
     console.log({
-      newList
+      fromNode,
+      toNode,
+      dropPos,
+      dropPosition
     })
-    this.setState({ 
-      list: newList,
-      ulTop,
-      fatherDom: document.getElementsByClassName('ul-wrap')[0]
-    }, () => {
-      // console.log(this.children(this.state.fatherDom))
-      // console.log(this.state.ulTop)
-      console.log(this.state.list)
-    })
-  }
-  
-  getElementToPageTop = (el) => {
-    return el.offsetTop
-  }
-
-  selectActiveIndex = (arr, num) => { // 确定选中的tabs
-    for (let i = 0; i < arr.length; i++) {
-      if (arr[i] > num) {
-        return i - 1
-      }
+    let fLen = fromNode.length
+    let tLen = toNode.length
+    if (fLen===2&&tLen===2&&fromNode[0]!==toNode[0]) return false
+    if (fLen===1&&tLen===1&&dropPosition===1) return false
+    if (fLen!==tLen) return false
+    if (dropPosition === 0) return false
+    const loop = (data, key, callback) => {
+      data.forEach((item, index, arr) => {
+        if (item.key === key) {
+          return callback(item, index, arr)
+        }
+        if (item.children) {
+          return loop(item.children, key, callback);
+        }
+      })
     }
-  }
+    const data = [...this.state.gData]
+    let dragObj
+    loop(data, dragKey, (item, index, arr) => {
+      arr.splice(index, 1)
+      dragObj = item
+    });
 
-  dragstartHandler = (e, index) => {
-    this.setState({ dragIndex: index })
-    console.log("dragStart")
-    e.target.setAttribute('id', 'test1')
-    e.dataTransfer.setData("text/plain", e.target.id)
-  }
-  dragoverHandler = (ev) => {
-    ev.preventDefault()
-    let clientY = ev.clientY
-    const n = this.selectActiveIndex(this.state.ulTop, clientY)
-    console.log({
-      clientY,
-      ulTop: this.state.ulTop,
-      n
-    })
-    this.setState({ n })
-  }
-
-  dropHandler = (ev) => {
-    const { fatherDom, n, ulTop, dragIndex } = this.state
-    // console.log(this.children(fatherDom))
-    console.log("Drop")
-    ev.preventDefault()
-    let data = ev.dataTransfer.getData("text")
-    let nodes = document.getElementById(data)
-    if(!n && n !== 0) {
-      fatherDom.appendChild(nodes)
+    if (!info.dropToGap) {
+      loop(data, dropKey, item => {
+        item.children = item.children || []
+        item.children.push(dragObj)
+      })
+    } else if (
+      (info.node.props.children || []).length > 0 && info.node.props.expanded && dropPosition === 1
+    ) {
+      loop(data, dropKey, item => {
+        item.children = item.children || []
+        item.children.unshift(dragObj)
+      })
     } else {
-      console.log({
-        dragIndex
-      })
-      let flagIndex = n
-      if (dragIndex===0)  {
-        ++flagIndex
+      let ar
+      let i
+      loop(data, dropKey, (item, index, arr) => {
+        ar = arr
+        i = index
+      });
+      if (dropPosition === -1) {
+        ar.splice(i, 0, dragObj)
+      } else {
+        ar.splice(i + 1, 0, dragObj)
       }
-      console.log({
-        flagIndex
-      })
-      fatherDom.insertBefore(nodes, this.children(fatherDom)[flagIndex])
     }
-    nodes.removeAttribute('id')
-    ev.dataTransfer.clearData()
-    this.getUlTop()
-  }
 
-children = (node) => {
-    let tmp = node.childNodes
-    let arr = []
-    tmp.forEach(function (item) {
-      if (item.nodeType == 1) {
-        arr.push(item)
-      }
+    this.setState({
+      gData: data
     })
-    return arr
   }
 
   render() {
+    const loop = data =>
+      data.map(item => {
+        if (item.children) {
+          return (
+            <TreeNode 
+              key={item.key}
+              title={
+                <div>
+                  <span>{item.title}</span>
+                  <span>
+                    <Icon type="plus" />
+                    <Icon type="edit" />
+                    <Icon type="delete" />
+                  </span>
+                </div>
+              }
+            >
+              {loop(item.children)}
+            </TreeNode>
+          )
+        }
+        return <TreeNode
+          title={<div>
+            <span>{item.title}</span>
+            <span>
+              <Icon type="edit" />
+              <Icon type="delete" />
+            </span>
+          </div>}
+          key={item.key}  
+        />
+      })
     return (
-      <div>
-        <ul className="ul-wrap" onDrop={this.dropHandler} onDragOver={this.dragoverHandler}>
-          {
-            this.state.list.map((item, index) => {
-              return (<ul className="drag-ul" draggable="true" onDragStart={(e) => this.dragstartHandler(e, index)} key={index} data-index={index}>
-                <li id="li-1-1" onDragStart={this.drag} >{item.name}</li>
-                <ul>
-                  {
-                    item.children.map((it, m) => {
-                      return (
-                        <li key={`${index}-${m}`} data-index={`${index}-${m}`}>{it.name}</li>
-                      )
-                    })
-                  }
-                </ul>
-              </ul>)
-            })
-          }
-        </ul>
-      </div>
-    )
+      <Tree
+        className="draggable-tree"
+        draggable
+        defaultExpandAll
+        blockNode
+        onDrop={this.onDrop}
+      >
+        {loop(this.state.gData)}
+      </Tree>
+    );
   }
 }
 
 export default Test
-
-
-{/* 
-  <ul className="drag-ul" draggable="true" onDragStart={(e) => this.dragstartHandler(e, 0)}>
-            <li id="li-1-1" onDragStart={this.drag}>AI大学</li>
-            <ul id="ul-1-1" onDragStart={this.drag}></ul>
-          </ul>
-          <ul className="drag-ul"  draggable="true" onDragStart={(e) => this.dragstartHandler(e, 1)}>
-            <li id="li-2-1" onDragStart={this.drag}>精选课程</li>
-            <ul id="ul-2-1">
-              <li id="li-2-2" onDragStart={this.drag}>机器翻译</li>
-              <li id="li-2-3">语音测评</li>
-              <li id="li-2-4">AIUI</li>
-              <li id="li-2-5">Python</li>
-              <li id="li-2-6">最新课程</li>
-            </ul>
-          </ul>
-          <ul className="drag-ul" draggable="true" onDragStart={(e) => this.dragstartHandler(e, 2)}>
-            <li id="li-3-1">个人中心</li>
-            <ul id="ul-3-1">
-              <li id="li-3-1">每日签到</li>
-              <li id="li-3-2">我的直播</li>
-            </ul>
-          </ul>
-*/}
