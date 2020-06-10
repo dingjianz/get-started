@@ -5,6 +5,7 @@ import { ConfigProvider } from 'antd'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import App from './App'
 import './index.less'
+import './assets/scss/common.scss'
 
 import { mainRouter } from './routes'
 import store from './store'

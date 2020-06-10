@@ -32,9 +32,9 @@ class ArticleEdit extends Component {
   }
 
   hasErrors = (fieldsError) => {
-    console.log({fieldsError})
+    console.log({ fieldsError })
     return Object.keys(fieldsError).some(field => {
-      console.log({field})
+      console.log({ field })
       return fieldsError[field]
     })
   }

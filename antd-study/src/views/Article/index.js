@@ -249,13 +249,14 @@ export default class ArticleList extends Component {
             dataSource={dataSource}
             columns={columns}
             loading={isLoading}
+            scroll={{ x: 1200 }}
             pagination={{
               total: total,
               current: pageNo,
               pageSize: pageSize,
               hideOnSinglePage: true,
               onChange: this.onPageChange,
-              position: 'top',
+              position: 'bottom',
               showQuickJumper: true,
               showSizeChanger: true,
               onShowSizeChange: this.onPageSizeChange,

@@ -42,6 +42,10 @@ const Test = Loadable({
   loader: () => import('./Test'),
   loading: Loading
 })
+const Swiper = Loadable({
+  loader: () => import('./Swiper'),
+  loading: Loading
+})
 
 export {
   Login,
@@ -53,7 +57,8 @@ export {
   Notice,
   NoAuth,
   Profile,
-  Test
+  Test,
+  Swiper
 }
 
 

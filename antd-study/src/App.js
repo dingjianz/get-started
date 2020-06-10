@@ -30,7 +30,7 @@ class App extends Component {
                   path={route.pathname}
                   exact={route.exact}
                   render={routerProps => {
-                    // roles权限判断
+                  // roles权限判断
                   const hasPermission = route.roles.includes(role)
                   return hasPermission ? <route.component {...routerProps} /> : <Redirect to='/admin/noauth' />
                 }} />

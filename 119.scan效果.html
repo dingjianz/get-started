@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .scan {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 514px;
+      border-bottom: 3px solid #3e88f1;
+      animation: scan 1.2s infinite;
+      background: linear-gradient(180deg, transparent, #3e88f1);
+      cursor: grab;
+    }
+
+    @keyframes scan {
+      0% {
+        height: 0
+      }
+
+      to {
+        opacity: 0;
+        height: 514px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="scan"></div>
+</body>
+
+</html>

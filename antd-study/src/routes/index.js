@@ -1,4 +1,4 @@
-import { Dashboard, Login, NotFound, Settings, ArticleList, ArticleEdit, Notice, NoAuth, Profile, Test } from '../views'
+import { Dashboard, Login, NotFound, Settings, ArticleList, ArticleEdit, Notice, NoAuth, Profile, Test, Swiper } from '../views'
 
 export const mainRouter = [{ // 和app同级
   pathname: '/login',
@@ -55,5 +55,18 @@ export const adminRouter =[{
   title: '测试',
   isNav: true,
   iconName: 'setting',
-  roles: ['001', '002', '003']
+  roles: ['001', '002', '003'],
+  children: [{
+    pathname: '/admin/test',
+    component: Test,
+    title: '测试',
+    isNav: true,
+    roles: ['001', '002', '003']
+  }, {
+    pathname: '/admin/test/swiper',
+    component: Swiper,
+    title: 'Swiper',
+    isNav: true,
+    roles: ['001', '002', '003']
+  }]
 }]

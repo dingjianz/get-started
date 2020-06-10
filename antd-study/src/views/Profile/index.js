@@ -25,6 +25,7 @@ class Profile extends Component {
     const data = new FormData()
     data.append('Token', 'fba9dea75c5773b9bbab4bf11ca5d35036f12acb:S-LZNq_wjF9l9i0GOx9Uz3EXZII=:eyJkZWFkbGluZSI6MTU4MDc0MTAyOCwiYWN0aW9uIjoiZ2V0IiwidWlkIjoiNzA4NzAzIiwiYWlkIjoiMTY2MTkzOCIsImZyb20iOiJmaWxlIn0=')
     data.append('file', arg.file)
+    console.log(data)
     uploadImg(data).then(res => {
       if (res.status) {
         this.setState({
