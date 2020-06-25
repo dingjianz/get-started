@@ -19,7 +19,7 @@ export default class ArticleList extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isOpen: false,
+      isOpen: true,
       columns: [],
       dataSource: [],
       total: 0,

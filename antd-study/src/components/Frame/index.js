@@ -9,6 +9,7 @@ import './frame.less'
 
 import { Layout, Menu, Icon, Dropdown, Badge, Avatar } from 'antd'
 const { Header, Content, Sider } = Layout
+const { SubMenu } = Menu
 
 const mapStateToProps = state => {
   return {
@@ -95,11 +96,22 @@ class Frame extends Component {
             >
             {
               this.props.menus.map(route => {
-                return (
-                  <Menu.Item key={route.pathname} onClick={({key}) => this.props.history.push(key) }>
-                    <Icon type={route.iconName} /> {route.title}
-                  </Menu.Item>
-                )
+                if (!route.children) {
+                  return (
+                    <Menu.Item key={route.pathname} onClick={({key}) => this.props.history.push(key)}>
+                      <Icon type={route.iconName} /> {route.title}
+                    </Menu.Item>
+                  )
+                } else {
+                  return route.children.map(subRoute => {
+                    return (
+                      <SubMenu key={route.pathname} title={route.title}>
+                        <Menu.Item key={subRoute.pathname} onClick={({key}) => this.props.history.push(key)}>{subRoute.title}</Menu.Item>
+                      </SubMenu>
+                    )
+                  })
+                  
+                }
               })
             }
             </Menu>

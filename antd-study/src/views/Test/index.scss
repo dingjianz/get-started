@@ -28,6 +28,7 @@
       }
       &.prize-desc {
         @extend .flex;
+        flex-direction: column;
       }
     }
   }

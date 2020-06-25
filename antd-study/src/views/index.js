@@ -38,6 +38,10 @@ const Profile = Loadable({
   loader: () => import('./Profile'),
   loading: Loading
 })
+const TestIndex = Loadable({
+  loader: () => import('./Test'),
+  loading: Loading
+})
 
 export {
   Login,
@@ -48,7 +52,8 @@ export {
   NotFound,
   Notice,
   NoAuth,
-  Profile
+  Profile,
+  TestIndex
 }
 
 

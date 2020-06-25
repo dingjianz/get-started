@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import { adminRouter }  from './routes'
 import { Frame } from './components'
 import { connect } from 'react-redux'
+import './assets/css/reset.scss'
 
 const menus = adminRouter.filter(route => route.isNav)
 
@@ -15,6 +16,27 @@ const mapStateToProps = state => {
 
 @connect(mapStateToProps)
 class App extends Component {
+
+  renderRoute = (menuList, role) => {
+    return menuList.map(route => {
+      if (route.children && route.isNav) {
+        return this.renderRoute(route.children, role)
+      } else {
+        return (
+          <Route
+            key={route.pathname}
+            path={route.pathname}
+            exact={route.exact}
+            render={routerProps => {
+              // roles权限判断
+            const hasPermission = route.roles.includes(role)
+            return hasPermission ? <route.component {...routerProps} /> : <Redirect to='/admin/noauth' />
+          }}/>
+        )
+      }
+    })
+  } 
+
   render() {
     const { isLogin, role } = this.props
     return (
@@ -22,23 +44,9 @@ class App extends Component {
       ?
       <Frame menus={menus}>
         <Switch>
-        {
-          adminRouter.map((route, index) => {
-            return (
-                <Route
-                  key={route.pathname}
-                  path={route.pathname}
-                  exact={route.exact}
-                  render={routerProps => {
-                    // roles权限判断
-                  const hasPermission = route.roles.includes(role)
-                  return hasPermission ? <route.component {...routerProps} /> : <Redirect to='/admin/noauth' />
-                }} />
-                )
-              })
-            }
-            <Redirect to='/admin/dashboard' from='/admin' exact/>
-            <Redirect to='/404' />
+          {this.renderRoute(menus, role)}
+          <Redirect to='/admin/dashboard' from='/admin' exact/>
+          <Redirect to='/404' />
         </Switch>
       </Frame>
       :
