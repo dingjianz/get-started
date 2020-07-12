@@ -19,7 +19,7 @@ class App extends Component {
 
   renderRoute = (menuList, role) => {
     return menuList.map(route => {
-      if (route.children && route.isNav) {
+      if (route.children) {
         return this.renderRoute(route.children, role)
       } else {
         return (
@@ -44,7 +44,7 @@ class App extends Component {
       ?
       <Frame menus={menus}>
         <Switch>
-          {this.renderRoute(menus, role)}
+          {this.renderRoute(adminRouter, role)}
           <Redirect to='/admin/dashboard' from='/admin' exact/>
           <Redirect to='/404' />
         </Switch>

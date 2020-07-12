@@ -43,6 +43,11 @@ const TestIndex = Loadable({
   loading: Loading
 })
 
+const CssIndex = Loadable({
+  loader: () => import('./Test/cssIndex/index.jsx'),
+  loading: Loading
+})
+
 export {
   Login,
   Dashboard,
@@ -53,7 +58,8 @@ export {
   Notice,
   NoAuth,
   Profile,
-  TestIndex
+  TestIndex,
+  CssIndex
 }
 
 

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      overflow-x: hidden;
+      width: 100vw;
+      height:200vh;
+      background-color: #ccc;
+    }
+    #main {
+      width: 200px;
+      height: 600px;
+      margin-top: 600px;
+      background-color: red;
+    }
+    .affix {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      background-color: purple;
+      cursor: pointer;
+      position: fixed;
+      right: 0;
+      top: 49%;
+    }
+  </style>
+</head>
+<body>
+  <div id="main"></div>
+  <a class="affix"></a>
+
+
+  <script>
+    window.onload = function () {
+      function scrollToTop () {
+        var c = window.pageYOffset
+                  || document.documentElement.scrollTop  
+                  || document.body.scrollTop  
+                  || 0
+        if (c > 0) {
+          window.scroll(0, Math.floor(c - c / 8))
+          requestAnimationFrame(scrollToTop)
+        }
+      }
+      scrollToTop()
+
+      let $main = document.getElementById('main')
+      let $affix = document.querySelector('.affix')
+      $affix.onclick = function () {
+        // https://developer.mozilla.org/zh-CN/docs/Web/API/Element/scrollIntoView
+        $main.scrollIntoView({
+          behavior: 'smooth'
+        })
+      }
+    }
+  </script>
+</body>
+</html>

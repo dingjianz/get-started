@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { fetchNoticeList } from '../../store/actions/noticeAction'
 import { loginOut } from '../../store/actions/userAction'
+import { adminRouter }  from '../../routes'
 
 import logoImg from './logo.png'
 import './frame.less'
@@ -69,8 +70,20 @@ class Frame extends Component {
 
   render() {
     const { avatar, displayName } = this.props
-    const activePathArr = this.props.location.pathname.split('/')
-    activePathArr.length = 3
+    const pathArr = this.props.location.pathname.split('/')
+    let activePathArr = pathArr.slice(0, 3) // 3的原因是：进入详情页时，列表页menu仍选中状态
+    let openPathArr = pathArr.slice(0, 4) || []
+    let defaultProps = {}
+    if (openPathArr.length > 3) {  // 当path超过三层时，即可能进入subMenu二级菜单或着详情页的情况下
+      const openKeys = openPathArr.join('/')
+      // 如果是isNav显示在sider上，且有子路由，当前path包含父级路由的pathname
+      const flag = adminRouter.some(item => item.children && item.isNav && openKeys.includes(item.pathname))
+      if (flag) { // 此时可确定一定是进入了二级菜单
+        defaultProps = { openKeys }
+        activePathArr = pathArr.slice(0, 4) // 此时长度要设置4，3短了
+      } 
+    }
+
     return (
       <Layout style={{minHeight:'100%'}}>
         <Header className="header dj-header" style={{backgroundColor:'#fff'}}>
@@ -93,6 +106,7 @@ class Frame extends Component {
               mode="inline"
               selectedKeys={[activePathArr.join('/')]}
               style={{ height: '100%', borderRight: 0 }}
+              {...defaultProps}
             >
             {
               this.props.menus.map(route => {
@@ -103,14 +117,17 @@ class Frame extends Component {
                     </Menu.Item>
                   )
                 } else {
-                  return route.children.map(subRoute => {
-                    return (
-                      <SubMenu key={route.pathname} title={route.title}>
-                        <Menu.Item key={subRoute.pathname} onClick={({key}) => this.props.history.push(key)}>{subRoute.title}</Menu.Item>
-                      </SubMenu>
-                    )
-                  })
-                  
+                  return (
+                    <SubMenu key={route.pathname} title={
+                      <span><Icon type={route.iconName} /> {route.title}</span>
+                    }>
+                    {
+                      route.children.map(subRoute => { 
+                        return  <Menu.Item key={subRoute.pathname} onClick={({key}) => this.props.history.push(key)}>{subRoute.title}</Menu.Item>
+                      })
+                    }
+                    </SubMenu>
+                  )
                 }
               })
             }

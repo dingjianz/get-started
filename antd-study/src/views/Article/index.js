@@ -223,11 +223,13 @@ export default class ArticleList extends Component {
   }
 
   toEditPage = (record) => {
-    this.props.history.push({
-      pathname: `/admin/article/edit/${record.id}`,
-      state: {
-        title: record.title
-      } 
+    this.setState({isOpen: false}, () => {
+      this.props.history.push({
+        pathname: `/admin/article/edit/${record.id}`,
+        state: {
+          title: record.title
+        } 
+      })
     })
   }
 
