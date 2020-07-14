@@ -22,13 +22,13 @@ export const adminRouter =[{
   title: '文章管理',
   isNav: true,
   iconName: 'unordered-list',
-  roles: ['001', '002']
+  roles: ['001', '002', '003']
 }, {
   pathname: '/admin/article/edit/:id',
   component: ArticleEdit,
   exact: true,
   title: '文章编辑',
-  roles: ['001', '002']
+  roles: ['001', '002', '003']
 },{
   pathname: '/admin/notice',
   component: Notice,

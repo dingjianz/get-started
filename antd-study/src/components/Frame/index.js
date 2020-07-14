@@ -136,9 +136,7 @@ class Frame extends Component {
           <Layout style={{ padding: '16px' }} className='main-content'>
             <Content
               style={{
-                background: '#fff',
-                margin: 0,
-                minHeight: 280,
+                margin: 0
               }}
             >
               {this.props.children}
