@@ -5,9 +5,14 @@ const isDev = process.env.NODE_ENV === 'development'
 
 const whiteList = ['/api/v1/login']
 
+axios.defaults.timeout = 5000
+axios.defaults.withCredentials = true //允许跨越时携带cookie并不是加上就能跨域
+
 const ajax = axios.create({
   baseURL: isDev ? 'http://rap2api.taobao.org/app/mock/242697' : ''
 })
+
+console.log(document.cookie)
 
 ajax.interceptors.request.use(config => {
   if (!whiteList.includes(config.url)) {

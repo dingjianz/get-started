@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { throttle, debounce } from '@/utils'
 import classnames from 'classnames'
 import pic from '@/assets/images/Sol_8.png'
 import './index.scss'
@@ -16,6 +17,11 @@ class CssIndex extends Component {
 
   componentDidMount () {
     this.backToBot()
+    window.addEventListener('scroll', this.handleScroll, true)
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('scroll', this.handleScroll, true)
   }
 
   backToBot = () => {
@@ -25,6 +31,18 @@ class CssIndex extends Component {
       block: 'end'
     })
   }
+
+  // 节流
+  handleScroll = throttle(() => {
+    const section = document.querySelector('.main-content.ant-layout');
+    const scrollVal = section.scrollTop || 0
+    console.log(scrollVal)
+  }, 1000)
+
+  // 防抖
+  handleClick = debounce(() => {
+    console.log('我被点击了')
+  }, 500)
 
   render() {
     const { list, tabData } = this.state
@@ -85,7 +103,7 @@ class CssIndex extends Component {
         </div>
 
         <div className="btn-wrap">
-          <span>
+          <span onClick={this.handleClick}>
             <em>点我</em>
           </span>
         </div>
@@ -175,6 +193,10 @@ class CssIndex extends Component {
               })
             }
           </ul>
+        </div>
+
+        <div className="ipt-wrap">
+            <input type="text" className="ipt" placeholder="请输入名字"/>
         </div>
       </div>
     )

@@ -19,9 +19,9 @@ export default class App extends Component {
           <li><NavLink to="users">用户</NavLink></li>
         </ul>
         <Switch>
-          <Route component={Home} path="/home" />
-          <Route component={Artical} path="/artical" exact />
-          <Route component={ArticalDetail} path="/artical/:id" />
+          <Route path="/home" component={Home} />
+          <Route  path="/artical" component={Artical} exact />
+          <Route path="/artical/:id" component={ArticalDetail} />
 
           {/*  <Route component={Users} path="/users" /> */}
           
@@ -29,7 +29,7 @@ export default class App extends Component {
             return this.state.isLogin ? <Users {...routeProps} x="1"/> : <h1>请登录</h1>
           }} />
 
-          <Route component={NotFound} path="/404" />
+          <Route path="/404" component={NotFound} />
           <Redirect to="/home" from="/" exact />
           <Redirect to="/404" />
         </Switch>

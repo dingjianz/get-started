@@ -4,7 +4,8 @@ import { BackHome } from '../../components'
 
 export default class ArticalDetail extends Component {
   render() {
-    // console.log(this.props)
+    console.log(this.props)
+
     /* 
     query传参：
     const search = this.props.location.search.substr(1)
@@ -24,12 +25,12 @@ export default class ArticalDetail extends Component {
       1.ajax;
       2. img: 
          const img = new Image()
-         img.rux="http://www.domainame.com/button-01.gif?x=1&y=2"
+         img.src="http://www.domainame.com/button-01.gif?x=1&y=2"
       3. navigator.sendBeacon(url,data)
     */
     return (
       <div>
-        文章详情---{this.props.match.params.id}
+        文章详情---{this.props.match.params.id} ---- {this.props.location.state?.type}
         <BackHome />
       </div>
     )

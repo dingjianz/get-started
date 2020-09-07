@@ -41,7 +41,10 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
-
+input {
+  border: none;
+  outline: none;
+}
 ::-webkit-scrollbar {
   width: 14px
 }

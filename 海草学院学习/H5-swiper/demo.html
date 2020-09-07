@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html,
+    body,
+    .container {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      background: #333 url(./bg.jpg) center center no-repeat;
+      background-size: cover;
+    }
+
+    .container {
+      padding-top: 1px;
+      transition: all .5s .1s;
+      transform: scale(1);
+    }
+
+    .container.active {
+      transform: scale(0.8);
+    }
+
+    .logo-wrap {
+      margin-top: .3rem;
+      padding: .16rem .30rem;
+      background: #02060d;
+    }
+
+    .logo-wrap img {
+      display: block;
+      height: .60rem;
+    }
+
+    .swiper-container {
+      width: 100%;
+      height: calc(100% - (.30rem + .92rem));
+    }
+
+    .swiper-slide {
+      position: relative;
+      background: #333 center center no-repeat;
+      background-size: 100% 100%;
+    }
+
+    .swiper-slide1 {
+      background-image: url(./page1.jpg);
+    }
+
+    .swiper-slide2 {
+      background-image: url(./page2.jpg);
+    }
+
+    .swiper-slide3 {
+      background-image: url(./page3.jpg);
+    }
+
+    .swiper-slide4 {
+      background-image: url(./page4.jpg);
+    }
+
+    .icon-swiper-down {
+      position: absolute;
+      bottom: .4rem;
+      left: 50%;
+      margin-left: -.2rem;
+      display: block;
+      width: .4rem;
+      height: .4rem;
+      background: url(./down.png) no-repeat;
+      background-size: cover;
+      animation: toNext 1s infinite;
+    }
+
+    @keyframes toNext {
+
+      0%,
+      100% {
+        transform: translate3d(0, 0, 0);
+        opacity: 1
+      }
+
+      50% {
+        transform: translate3d(0, -4px, 0);
+        opacity: .8
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div style="position: absolute; z-index: -1; overflow: hidden; opacity: 0; width: 0; height: 0">
+  </div>
+  <div class="container">
+    <div class="logo-wrap">
+      <img src="./logo.png" />
+    </div>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide swiper-slide1">
+          <i class="icon-swiper-down"></i>
+        </div>
+        <div class="swiper-slide swiper-slide2">
+          <i class="icon-swiper-down"></i>
+        </div>
+        <div class="swiper-slide swiper-slide3">
+          <i class="icon-swiper-down"></i>
+        </div>
+        <div class="swiper-slide swiper-slide4"></div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/Swiper/3.4.2/js/swiper.jquery.umd.min.js"></script>
+  <script>
+    window.onload = () => {
+      function client() {
+        if (window.innerWidth) { // IE9+ 和 最新的浏览器
+          return {
+            width: window.innerWidth,
+            height: window.innerHeight
+          }
+        } else if (document.compatMode === 'CSS1Compat') {
+          return {
+            width: document.documentElement.clientWidth,
+            height: document.documentElement.clientHeight
+          }
+        }
+        return {
+          width: document.body.clientWidth,
+          height: document.body.clientHeight
+        }
+      }
+
+      (function setSizeH5() {
+        let psdW = 750
+        let psdH = 1334
+        const winW = client().width
+        const winH = client().height
+        let size = Math.min(winW / psdW, winH / psdH, 1)
+        const $html = document.getElementsByTagName('html')[0]
+        console.log(size * 100 + 'px')
+        $html.style.fontSize = (size * 100).toFixed(2) + 'px'
+        console.log($html.style.fontSize)
+      })()
+
+      new Swiper('.swiper-container', {
+        direction: 'vertical',
+        spaceBetween: 60,
+        onSlideChangeStart: function () {
+          console.log($('.container'))
+          $('.container').addClass('active')
+        },
+        onSlideChangeEnd: function () {
+          console.log($('.container'))
+          $('.container').removeClass('active')
+        }
+      })
+    }
+  </script>
+</body>
+
+</html>

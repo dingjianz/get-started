@@ -21,7 +21,7 @@ const fetchBlogListFailed = () => {
   }
 }
 
-export const fetchBlogList = () => dispatch => {
+export const fetchBlogList = () => (dispatch, getState) => {
   dispatch(startFetchBlogList())
   getHttp('posts')
     .then(resp => {

@@ -1,0 +1,136 @@
+body .background {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #f7da7f 0%, #f5ce51 100%);
+  border-radius: 5px;
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.25);
+  width: 400px;
+  height: 400px;
+}
+
+body .background .umbrellaWrapper {
+  margin-top: -100px;
+  margin-right: -50px;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(75deg) rotateY(12deg);
+}
+
+body .background .umbrellaWrapper .pole {
+  position: absolute;
+  width: 5px;
+  height: 150px;
+  top: 100px;
+  left: 100px;
+  background: #888;
+  transform-origin: 50% 0;
+  transform: translateZ(-3px) rotateX(-90deg);
+  border-radius: 2px;
+  z-index: 1;
+}
+
+body .background .umbrellaWrapper .umbrella {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  transform-style: preserve-3d;
+  animation: umbrella 5s linear infinite;
+  z-index: 2;
+}
+
+body .background .umbrellaWrapper .umbrella .triangle {
+  position: absolute;
+  top: 100px;
+  left: 75px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 24px 100px 25px;
+  border-color: transparent transparent #fff transparent;
+  transform-origin: 50% 0;
+  z-index: 2;
+}
+
+body .background .umbrellaWrapper .umbrella .triangle-1 {
+  transform: rotateZ(0deg) rotateX(-24deg) translateY(-1px);
+}
+
+body .background .umbrellaWrapper .umbrella .triangle-2 {
+  transform: rotateZ(30deg) rotateX(-24deg) translateY(-1px);
+}
+
+body .background .umbrellaWrapper .umbrella .triangle-3 {
+  transform: rotateZ(60deg) rotateX(-24deg) translateY(-1px);
+}
+
+body .background .umbrellaWrapper .umbrella .triangle-4 {
+  transform: rotateZ(90deg) rotateX(-24deg) translateY(-1px);
+}
+
+body .background .umbrellaWrapper .umbrella .triangle-5 {
+  transform: rotateZ(120deg) rotateX(-24deg) translateY(-1px);
+}
+
+body .background .umbrellaWrapper .umbrella .triangle-6 {
+  transform: rotateZ(150deg) rotateX(-24deg) translateY(-1px);
+}
+
+body .background .umbrellaWrapper .umbrella .triangle-7 {
+  transform: rotateZ(180deg) rotateX(-24deg) translateY(-1px);
+}
+
+body .background .umbrellaWrapper .umbrella .triangle-8 {
+  transform: rotateZ(210deg) rotateX(-24deg) translateY(-1px);
+}
+
+body .background .umbrellaWrapper .umbrella .triangle-9 {
+  transform: rotateZ(240deg) rotateX(-24deg) translateY(-1px);
+}
+
+body .background .umbrellaWrapper .umbrella .triangle-10 {
+  transform: rotateZ(270deg) rotateX(-24deg) translateY(-1px);
+}
+
+body .background .umbrellaWrapper .umbrella .triangle-11 {
+  transform: rotateZ(300deg) rotateX(-24deg) translateY(-1px);
+}
+
+body .background .umbrellaWrapper .umbrella .triangle-12 {
+  transform: rotateZ(330deg) rotateX(-24deg) translateY(-1px);
+}
+
+body .background .umbrellaWrapper .umbrella .triangle-1 {
+  border-color: transparent transparent #556ec5 transparent;
+}
+
+body .background .umbrellaWrapper .umbrella .triangle-3 {
+  border-color: transparent transparent #556ec5 transparent;
+}
+
+body .background .umbrellaWrapper .umbrella .triangle-5 {
+  border-color: transparent transparent #556ec5 transparent;
+}
+
+body .background .umbrellaWrapper .umbrella .triangle-7 {
+  border-color: transparent transparent #556ec5 transparent;
+}
+
+body .background .umbrellaWrapper .umbrella .triangle-9 {
+  border-color: transparent transparent #556ec5 transparent;
+}
+
+body .background .umbrellaWrapper .umbrella .triangle-11 {
+  border-color: transparent transparent #556ec5 transparent;
+}
+@keyframes umbrella {
+  from {
+    transform: rotateZ(0deg);
+  }
+
+  to {
+    transform: rotateZ(360deg);
+  }
+}

@@ -44,7 +44,7 @@ export const decrementAmount = (id) => {
 }
 */
 
-export const decrementAmountAsync = id => dispatch =>{ // 异步action
+export const decrementAmountAsync = id => dispatch => { // 异步action
   setTimeout(() => {
     dispatch(decrementAmount(id))
   }, 2000)
