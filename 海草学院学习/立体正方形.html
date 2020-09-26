@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    #box {
+      width: 500px;
+      height: 500px;
+      margin: 0 auto;
+      position: relative;
+      transform-style: preserve-3d;
+      animation-name: r;
+      animation-duration: 5s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    #box div {
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      line-height: 200px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 100px;
+      top: 250px;
+      left: 200px;
+      opacity: 0.8;
+
+    }
+
+    #a {
+      background: red;
+      transform-origin: right;
+      transform: rotateY(270deg) rotateX(180deg);
+
+    }
+
+    #b {
+      background: blue;
+      opacity: 0.8;
+    }
+
+    #c {
+      background: yellow;
+      transform-origin: left;
+      transform: rotateY(90deg) rotateX(180deg);
+    }
+
+    #d {
+      background: green;
+      transform-origin: top;
+      transform: rotateX(-90deg);
+    }
+
+    #e {
+      background: purple;
+      transform-origin: bottom;
+      transform: rotateX(-270deg) rotateY(180deg);
+    }
+
+    #f {
+      background: orange;
+      transform: translateZ(-200px);
+    }
+
+    @keyframes r {
+      0% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+      }
+
+      100% {
+        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg)
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <div id="f">6</div>
+    <div id="a">2</div>
+    <div id="b">3</div>
+    <div id="c">4</div>
+    <div id="d">1</div>
+    <div id="e">5</div>
+  </div>
+</body>
+
+</html>

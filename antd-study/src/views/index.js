@@ -48,6 +48,11 @@ const CssIndex = Loadable({
   loading: Loading
 })
 
+const TimeLine = Loadable({
+  loader: () => import('./Test/TimeLine/index.jsx'),
+  loading: Loading
+})
+
 export {
   Login,
   Dashboard,
@@ -59,7 +64,8 @@ export {
   NoAuth,
   Profile,
   TestIndex,
-  CssIndex
+  CssIndex,
+  TimeLine
 }
 
 

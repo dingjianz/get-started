@@ -30,6 +30,10 @@ class CssIndex extends Component {
       behavior: 'smooth',
       block: 'end'
     })
+//     window.scrollTo({
+//       top: 0,
+//       behavior: 'smooth'
+//     })
   }
 
   // 节流
