@@ -9,7 +9,6 @@ export const incrementAmount = (id) => {
   }
 }
 
-
 export const decrementAmount = (id) => {
   return {
     type: actionType.CART_AMOUNT_DECREMENT,
