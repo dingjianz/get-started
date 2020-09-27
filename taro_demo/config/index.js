@@ -1,3 +1,6 @@
+const path = require('path');
+const customRoutes = require('./../src/router/customRoutes') // 自定义路由，h5
+
 const config = {
   projectName: 'taro_demo',
   date: '2020-9-24',
@@ -19,6 +22,12 @@ const config = {
     }
   },
   framework: 'react',
+  alias: {
+    '@/components': path.resolve(__dirname, '..', 'src/components'),
+    '@/common': path.resolve(__dirname, '..', 'src/common'),
+    '@/api': path.resolve(__dirname, '..', 'src/api'),
+    '@/src': path.resolve(__dirname, '..', 'src'),
+  },
   mini: {
     postcss: {
       pxtransform: {
@@ -58,7 +67,12 @@ const config = {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
-    }
+    },
+    router: {
+      mode: 'browser',
+      customRoutes: customRoutes
+    },
+    esnextModules: ["taro-ui"],
   }
 }
 
