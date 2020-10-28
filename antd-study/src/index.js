@@ -4,6 +4,7 @@ import zhCN from 'antd/es/locale/zh_CN'
 import { ConfigProvider } from 'antd'
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
 import App from './App'
+
 import './index.less'
 
 import { mainRouter } from './routes'

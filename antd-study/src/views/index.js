@@ -53,6 +53,11 @@ const TimeLine = Loadable({
   loading: Loading
 })
 
+const Parabola = Loadable({
+  loader: () => import('./Test/Parabola/index.jsx'),
+  loading: Loading
+})
+
 export {
   Login,
   Dashboard,
@@ -65,7 +70,8 @@ export {
   Profile,
   TestIndex,
   CssIndex,
-  TimeLine
+  TimeLine,
+  Parabola
 }
 
 

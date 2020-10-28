@@ -1,4 +1,18 @@
-import { Dashboard, Login, NotFound, Settings, ArticleList, ArticleEdit, Notice, NoAuth, Profile, TestIndex, CssIndex, TimeLine } from '../views'
+import {
+  Dashboard,
+  Login,
+  NotFound,
+  Settings,
+  ArticleList,
+  ArticleEdit,
+  Notice,
+  NoAuth,
+  Profile,
+  TestIndex,
+  CssIndex,
+  TimeLine,
+  Parabola
+} from '../views'
 
 export const mainRouter = [{ // 和app同级
   pathname: '/login',
@@ -69,6 +83,13 @@ export const adminRouter =[{
       iconName: 'setting',
       roles:['001', '002', '003'],
       component: TimeLine
+    },  {
+      pathname: '/admin/test/parabola',
+      title: '抛物线',
+      isNav: true,
+      iconName: 'setting',
+      roles:['001', '002', '003'],
+      component: Parabola
     }
   ]
 },{

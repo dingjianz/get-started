@@ -1,10 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+
 import './index.scss'
 
 class TimeLine extends Component {
+  
   render() {
     return (
       <div className="time-line">
+      <button onClick={() => {
+        this.setState({
+          isActive: true
+        })
+      }}>点击</button>
         <ul>
           <li>
             <div className="name">
