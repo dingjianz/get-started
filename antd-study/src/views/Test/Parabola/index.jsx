@@ -1,10 +1,26 @@
-import React from 'react'
-import funParabola from './parabola'
-import { Button, Card } from 'antd'
+import React, { useEffect } from 'react';
+import funParabola from './parabola';
+import { Button, Card } from 'antd';
+import './index.scss';
 
-import './index.scss'
+import ajax from '@/service/index';
+import { testApi } from '@/api/common'
 
 export default () => {
+
+  useEffect(() => {
+    testApi().then(res => {
+      console.log('res', res)
+    }).catch(err => {
+      console.log(err)
+    })
+    // ajax.get('http://127.0.0.1:8010/').then(res => {
+    //   console.log('res', res)
+    // }).catch(e => {
+    //   console.log(e)
+    // })
+  })
+
   let parabola = null;
 
   const handleMove = () => {
