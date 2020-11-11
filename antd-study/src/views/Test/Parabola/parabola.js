@@ -3,187 +3,190 @@
  * you can visit http://www.zhangxinxu.com/wordpress/?p=3855 to get more infomation
  * under MIT license
  */
-const funParabola = function (element, target, options) {
+var funParabola = function (element, target, options) {
   /*
-   * 网页模拟现实需要一个比例尺
-   * 如果按照1像素就是1米来算，显然不合适，因为页面动不动就几百像素
-   * 页面上，我们放两个物体，200~800像素之间，我们可以映射为现实世界的2米到8米，也就是100:1
-   * 不过，本方法没有对此有所体现，因此不必在意
+   * 缃戦〉妯℃嫙鐜板疄闇€瑕佷竴涓瘮渚嬪昂
+   * 濡傛灉鎸夌収1鍍忕礌灏辨槸1绫虫潵绠楋紝鏄剧劧涓嶅悎閫傦紝鍥犱负椤甸潰鍔ㄤ笉鍔ㄥ氨鍑犵櫨鍍忕礌
+   * 椤甸潰涓婏紝鎴戜滑鏀句袱涓墿浣擄紝200~800鍍忕礌涔嬮棿锛屾垜浠彲浠ユ槧灏勪负鐜板疄涓栫晫鐨�2绫冲埌8绫筹紝涔熷氨鏄�100:1
+   * 涓嶈繃锛屾湰鏂规硶娌℃湁瀵规鏈夋墍浣撶幇锛屽洜姝や笉蹇呭湪鎰�
    */
 
-  const defaults = {
-    speed: 166.67, // 每帧移动的像素大小，每帧（对于大部分显示屏）大约16~17毫秒
-    curvature: 0.001, // 实际指焦点到准线的距离，你可以抽象成曲率，这里模拟扔物体的抛物线，因此是开口向下的
-    progress() {},
-    complete() {},
+  var defaults = {
+    speed: 166.67, // 姣忓抚绉诲姩鐨勫儚绱犲ぇ灏忥紝姣忓抚锛堝浜庡ぇ閮ㄥ垎鏄剧ず灞忥級澶х害16~17姣
+    curvature: 0.001, // 瀹為檯鎸囩劍鐐瑰埌鍑嗙嚎鐨勮窛绂伙紝浣犲彲浠ユ娊璞℃垚鏇茬巼锛岃繖閲屾ā鎷熸墧鐗╀綋鐨勬姏鐗╃嚎锛屽洜姝ゆ槸寮€鍙ｅ悜涓嬬殑
+    progress: function () {},
+    complete: function () {}
   };
 
-  const params = {};
+  var params = {};
   options = options || {};
 
-  for (const key in defaults) {
+  for (var key in defaults) {
     params[key] = options[key] || defaults[key];
   }
 
-  const exports = {
-    mark() {
+  var exports = {
+    mark: function () {
       return this;
     },
-    position() {
+    position: function () {
       return this;
     },
-    move() {
+    move: function () {
       return this;
     },
-    init() {
+    init: function () {
       return this;
-    },
+    }
   };
 
-  /* 确定移动的方式
-   * IE6-IE8 是margin位移
-   * IE9+使用transform
+  /* 纭畾绉诲姩鐨勬柟寮� 
+   * IE6-IE8 鏄痬argin浣嶇Щ
+   * IE9+浣跨敤transform
    */
-  let moveStyle = 'margin';
-  const testDiv = document.createElement('div');
-  if ('oninput' in testDiv) {
-    ['', 'ms', 'webkit'].forEach(function (prefix) {
-      const transform = `${prefix + (prefix ? 'T' : 't')}ransform`;
+  var moveStyle = "margin",
+    testDiv = document.createElement("div");
+  if ("oninput" in testDiv) {
+    ["", "ms", "webkit"].forEach(function (prefix) {
+      var transform = prefix + (prefix ? "T" : "t") + "ransform";
       if (transform in testDiv.style) {
         moveStyle = transform;
       }
     });
   }
 
-  // 根据两点坐标以及曲率确定运动曲线函数（也就是确定a, b的值）
-  /* 公式： y = a*x*x + b*x + c;
+  // 鏍规嵁涓ょ偣鍧愭爣浠ュ強鏇茬巼纭畾杩愬姩鏇茬嚎鍑芥暟锛堜篃灏辨槸纭畾a, b鐨勫€硷級
+  /* 鍏紡锛� y = a*x*x + b*x + c;
    */
-  const a = params.curvature;
-  let b = 0;
-  // const c = 0;
+  var a = params.curvature,
+    b = 0,
+    c = 0;
 
-  // 是否执行运动的标志量
-  let flagMove = true;
+  // 鏄惁鎵ц杩愬姩鐨勬爣蹇楅噺
+  var flagMove = true;
 
-  if (element && target && element.nodeType === 1) {
-    let rectElement = {};
-    // const rectTarget = {};
+  if (element && target && element.nodeType == 1 && target.nodeType == 1) {
+    var rectElement = {},
+      rectTarget = {};
 
-    // 移动元素的中心点位置，目标元素的中心点位置
-    let centerElement = {};
-    let centerTarget = {};
+    // 绉诲姩鍏冪礌鐨勪腑蹇冪偣浣嶇疆锛岀洰鏍囧厓绱犵殑涓績鐐逛綅缃�
+    var centerElement = {},
+      centerTarget = {};
 
-    // 目标元素的坐标位置
-    let coordElement = {};
-    let coordTarget = {};
+    // 鐩爣鍏冪礌鐨勫潗鏍囦綅缃�
+    var coordElement = {},
+      coordTarget = {};
 
-    // 标注当前元素的坐标
+    // 鏍囨敞褰撳墠鍏冪礌鐨勫潗鏍�
     exports.mark = function () {
-      if (flagMove = false) return this;
-      if (typeof coordElement.x === 'undefined') this.position();
-      element.setAttribute('data-center', [coordElement.x, coordElement.y].join());
+      if (flagMove == false) return this;
+      if (typeof coordElement.x == "undefined") this.position();
+      element.setAttribute("data-center", [coordElement.x, coordElement.y].join());
+      target.setAttribute("data-center", [coordTarget.x, coordTarget.y].join());
       return this;
-    };
+    }
 
     exports.position = function () {
-      if (flagMove === false) return this;
+      if (flagMove == false) return this;
 
-      const scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
-      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft,
+        scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
 
-      // 初始位置
-      if (moveStyle === 'margin') {
-        element.style.marginLeft = element.style.marginTop = '0px';
+      // 鍒濆浣嶇疆
+      if (moveStyle == "margin") {
+        element.style.marginLeft = element.style.marginTop = "0px";
       } else {
-        element.style[moveStyle] = 'translate(0, 0)';
+        element.style[moveStyle] = "translate(0, 0)";
       }
 
-      // 四边缘的坐标
+      // 鍥涜竟缂樼殑鍧愭爣
       rectElement = element.getBoundingClientRect();
+      rectTarget = target.getBoundingClientRect();
 
-      // 移动元素的中心点坐标
+      // 绉诲姩鍏冪礌鐨勪腑蹇冪偣鍧愭爣
       centerElement = {
         x: rectElement.left + (rectElement.right - rectElement.left) / 2 + scrollLeft,
-        y: rectElement.top + (rectElement.bottom - rectElement.top) / 2 + scrollTop,
-      };
-      // 目标元素的中心点位置
-      centerTarget = {
-        x: target.x + scrollLeft,
-        y: target.y + scrollTop,
+        y: rectElement.top + (rectElement.bottom - rectElement.top) / 2 + scrollTop
       };
 
-      // 转换成相对坐标位置
+      // 鐩爣鍏冪礌鐨勪腑蹇冪偣浣嶇疆
+      centerTarget = {
+        x: rectTarget.left + (rectTarget.right - rectTarget.left) / 2 + scrollLeft,
+        y: rectTarget.top + (rectTarget.bottom - rectTarget.top) / 2 + scrollTop
+      };
+
+      // 杞崲鎴愮浉瀵瑰潗鏍囦綅缃�
       coordElement = {
         x: 0,
-        y: 0,
+        y: 0
       };
       coordTarget = {
         x: -1 * (centerElement.x - centerTarget.x),
-        y: -1 * (centerElement.y - centerTarget.y),
+        y: -1 * (centerElement.y - centerTarget.y)
       };
 
       /*
-       * 因为经过(0, 0), 因此c = 0
-       * 于是：
+       * 鍥犱负缁忚繃(0, 0), 鍥犳c = 0
+       * 浜庢槸锛�
        * y = a * x*x + b*x;
        * y1 = a * x1*x1 + b*x1;
        * y2 = a * x2*x2 + b*x2;
-       * 利用第二个坐标：
+       * 鍒╃敤绗簩涓潗鏍囷細
        * b = (y2+ a*x2*x2) / x2
        */
-      // 于是
+      // 浜庢槸
       b = (coordTarget.y - a * coordTarget.x * coordTarget.x) / coordTarget.x;
 
       return this;
     };
 
-    // 按照这个曲线运动
+    // 鎸夌収杩欎釜鏇茬嚎杩愬姩
     exports.move = function () {
-      // 如果曲线运动还没有结束，不再执行新的运动
-      if (flagMove === false) return this;
+      // 濡傛灉鏇茬嚎杩愬姩杩樻病鏈夌粨鏉燂紝涓嶅啀鎵ц鏂扮殑杩愬姩
+      if (flagMove == false) return this;
 
-      let startx = 0;
-      const rate = coordTarget.x > 0 ? 1 : -1;
+      var startx = 0,
+        rate = coordTarget.x > 0 ? 1 : -1;
 
       var step = function () {
-        // 切线 y'=2ax+b
-        const tangent = 2 * a * startx + b;
-        // 下面是根据确定的移动速度，得到当前切线下x也就是水平方向移动的大小
-        // 已知两点之间的距离为
+        // 鍒囩嚎 y'=2ax+b
+        var tangent = 2 * a * startx + b;
+        // 涓嬮潰鏄牴鎹‘瀹氱殑绉诲姩閫熷害锛屽緱鍒板綋鍓嶅垏绾夸笅x涔熷氨鏄按骞虫柟鍚戠Щ鍔ㄧ殑澶у皬
+        // 宸茬煡涓ょ偣涔嬮棿鐨勮窛绂讳负
         // Math.sqrt((x2-x1) * (x2-x1) + (y2-y1) * (y2-y1));
-        // 因此应当是
-        // Math.sqrt(△x*△x + △y*△y) = speed
-        // 因为写这段代码的时候，脑子不在线，所以，根号忘记了
-        // 就套用了下面的公式（导致很多小伙伴不理解，这里说声抱歉）
-        // 不过对于大功能并不影响，就是这个speed参数值有些大，哈哈
+        // 鍥犳搴斿綋鏄�
+        // Math.sqrt(鈻硏*鈻硏 + 鈻硑*鈻硑) = speed
+        // 鍥犱负鍐欒繖娈典唬鐮佺殑鏃跺€欙紝鑴戝瓙涓嶅湪绾匡紝鎵€浠ワ紝鏍瑰彿蹇樿浜�
+        // 灏卞鐢ㄤ簡涓嬮潰鐨勫叕寮忥紙瀵艰嚧寰堝灏忎紮浼翠笉鐞嗚В锛岃繖閲岃澹版姳姝夛級
+        // 涓嶈繃瀵逛簬澶у姛鑳藉苟涓嶅奖鍝嶏紝灏辨槸杩欎釜speed鍙傛暟鍊兼湁浜涘ぇ锛屽搱鍝�
         // y*y + x*x = speed
         // (tangent * x)^2 + x*x = speed
         // x = Math.sqr(speed / (tangent * tangent + 1));
-        startx += rate * Math.sqrt(params.speed / (tangent * tangent + 1));
+        startx = startx + rate * Math.sqrt(params.speed / (tangent * tangent + 1));
 
-        // 防止过界
-        if ((rate === 1 && startx > coordTarget.x) || (rate === -1 && startx < coordTarget.x)) {
+        // 闃叉杩囩晫
+        if ((rate == 1 && startx > coordTarget.x) || (rate == -1 && startx < coordTarget.x)) {
           startx = coordTarget.x;
         }
-        const x = startx;
-        const y = a * x * x + b * x;
+        var x = startx,
+          y = a * x * x + b * x;
 
-        // 标记当前位置，这里有测试使用的嫌疑，实际使用可以将这一行注释
-        // element.setAttribute("data-center", [Math.round(x), Math.round(y)].join());
+        // 鏍囪褰撳墠浣嶇疆锛岃繖閲屾湁娴嬭瘯浣跨敤鐨勫珜鐤戯紝瀹為檯浣跨敤鍙互灏嗚繖涓€琛屾敞閲�
+        element.setAttribute("data-center", [Math.round(x), Math.round(y)].join());
 
-        // x, y目前是坐标，需要转换成定位的像素值
-        if (moveStyle === 'margin') {
-          element.style.marginLeft = `${x}px`;
-          element.style.marginTop = `${y}px`;
+        // x, y鐩墠鏄潗鏍囷紝闇€瑕佽浆鎹㈡垚瀹氫綅鐨勫儚绱犲€�
+        if (moveStyle == "margin") {
+          element.style.marginLeft = x + "px";
+          element.style.marginTop = y + "px";
         } else {
-          element.style[moveStyle] = `translate(${[`${x}px`, `${y}px`].join()})`;
+          element.style[moveStyle] = "translate(" + [x + "px", y + "px"].join() + ")";
         }
 
         if (startx !== coordTarget.x) {
           params.progress(x, y);
           window.requestAnimationFrame(step);
         } else {
-          // 运动结束，回调执行
+          // 杩愬姩缁撴潫锛屽洖璋冩墽琛�
           params.complete();
           flagMove = true;
         }
@@ -194,7 +197,7 @@ const funParabola = function (element, target, options) {
       return this;
     };
 
-    // 初始化方法
+    // 鍒濆鍖栨柟娉�
     exports.init = function () {
       this.position().mark().move();
     };
@@ -207,20 +210,19 @@ const funParabola = function (element, target, options) {
  * by zhangxinxu 2013-09-30
  */
 (function () {
-  let lastTime = 0;
-  const vendors = ['webkit', 'moz'];
-  for (let x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-    window.requestAnimationFrame = window[`${vendors[x]}RequestAnimationFrame`];
-    window.cancelAnimationFrame =
-      window[`${vendors[x]}CancelAnimationFrame`] || // name has changed in Webkit
-      window[`${vendors[x]}CancelRequestAnimationFrame`];
+  var lastTime = 0;
+  var vendors = ['webkit', 'moz'];
+  for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+    window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+    window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || // name has changed in Webkit
+      window[vendors[x] + 'CancelRequestAnimationFrame'];
   }
 
   if (!window.requestAnimationFrame) {
     window.requestAnimationFrame = function (callback, element) {
-      const currTime = new Date().getTime();
-      const timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
-      const id = window.setTimeout(function () {
+      var currTime = new Date().getTime();
+      var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
+      var id = window.setTimeout(function () {
         callback(currTime + timeToCall);
       }, timeToCall);
       lastTime = currTime + timeToCall;
@@ -232,6 +234,6 @@ const funParabola = function (element, target, options) {
       clearTimeout(id);
     };
   }
-})();
+}());
 
 export default funParabola;

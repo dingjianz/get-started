@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { throttle, debounce } from '@/utils'
-import classnames from 'classnames'
 import pic from '@/assets/images/Sol_8.png'
 import './index.scss'
 
