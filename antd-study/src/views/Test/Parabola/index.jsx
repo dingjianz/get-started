@@ -25,7 +25,7 @@ export default () => {
 
   const handleMove = () => {
     let ball = document.createElement('div')
-    ball.setAttribute('class', 'ball')
+          ball.setAttribute('class', 'ball')
     const container = document.getElementsByClassName('container')[0]
     container.appendChild(ball)
     const cart = document.getElementsByClassName('shop')[0]

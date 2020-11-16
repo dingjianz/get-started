@@ -8,7 +8,7 @@ const whiteList = ['/api/v1/login']
 axios.defaults.timeout = 5000
 axios.defaults.withCredentials = true //允许跨越时携带cookie并不是加上就能跨域
 axios.defaults.headers.common['Content-Type'] = 'application/json;charset=utf-8';
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+// axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 const ajax = axios.create({
   baseURL: isDev ? 'http://rap2api.taobao.org/app/mock/242697' : ''
@@ -17,7 +17,6 @@ const ajax = axios.create({
 // console.log(document.cookie)
 
 ajax.interceptors.request.use(config => {
-  console.log(config)
   if (!whiteList.includes(config.url)) {
     config.data = {
       ...config.data,
