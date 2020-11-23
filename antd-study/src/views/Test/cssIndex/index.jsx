@@ -1,106 +1,117 @@
-import React, { Component } from 'react'
-import { throttle, debounce } from '@/utils'
-import pic from '@/assets/images/Sol_8.png'
-import './index.scss'
+/* eslint-disable no-irregular-whitespace */
+import React, { Component } from 'react';
+// eslint-disable-next-line import/no-unresolved
+import { throttle, debounce } from '@/utils';
+// eslint-disable-next-line import/no-unresolved
+import pic from '@/assets/images/Sol_8.png';
+import './index.scss';
 
 class CssIndex extends Component {
-  state = {
-    // list: new Array(6)
-    list:[1,1,1,1,1],
-    tabData: [
-      {title: 'tab1标题', desc: 'tab1内容'},
-      {title: 'tab2标题', desc: 'tab2内容'},
-      {title: 'tab3标题', desc: 'tab3内容'}
-    ]
+  constructor() {
+    super();
+    this.state = {
+      // list: new Array(6)
+      list: [1, 1, 1, 1, 1],
+      tabData: [
+        { title: 'tab1标题', desc: 'tab1内容' },
+        { title: 'tab2标题', desc: 'tab2内容' },
+        { title: 'tab3标题', desc: 'tab3内容' },
+      ],
+    };
   }
 
-  componentDidMount () {
-    this.backToBot()
-    window.addEventListener('scroll', this.handleScroll, true)
+  componentDidMount() {
+    this.backToBot();
+    window.addEventListener('scroll', this.handleScroll, true);
   }
 
-  componentWillUnmount () {
-    window.removeEventListener('scroll', this.handleScroll, true)
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll, true);
   }
 
-  backToBot = () => {
-    console.log(this.$dom)
-    this.$dom.scrollIntoView({
-      behavior: 'smooth',
-      block: 'end'
-    })
-//     window.scrollTo({
-//       top: 0,
-//       behavior: 'smooth'
-//     })
-  }
+  // 防抖
+  handleClick = debounce(() => {
+    console.log('我被点击了');
+  }, 500);
 
   // 节流
   handleScroll = throttle(() => {
     const section = document.querySelector('.main-content.ant-layout');
-    const scrollVal = section.scrollTop || 0
-    console.log(scrollVal)
-  }, 1000)
+    const scrollVal = section.scrollTop || 0;
+    console.log(scrollVal);
+  }, 1000);
 
-  // 防抖
-  handleClick = debounce(() => {
-    console.log('我被点击了')
-  }, 500)
+  backToBot = () => {
+    console.log(this.$dom);
+    this.$dom.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+    });
+    //     window.scrollTo({
+    //       top: 0,
+    //       behavior: 'smooth'
+    //     })
+  };
 
   render() {
-    const { list, tabData } = this.state
+    const { list, tabData } = this.state;
     return (
-        <div className="css-container" ref={el => this.$dom = el}>
-          {/* css 第一部分  翻转 */}
-          <div className="card-container">
-            <div className="card">
-              <div className="front">
-                <p>Lorem ipsum dolor sit amet consectetur adipisi.</p>
-              </div>
-              <div className="back">
-                <div>
-                  <p>Consectetur adipisicing elit. Possimus, praesentium?</p>
-                  <p>Provident consectetur natus voluptatem quis tenetur sed beatae eius sint.</p>
-                  <button className="button">Click Here</button>
-                </div>
+      <div className="css-container" ref={(el) => (this.$dom = el)}>
+        {/* css 第一部分  翻转 */}
+        <div className="card-container">
+          <div className="card">
+            <div className="front">
+              <p>Lorem ipsum dolor sit amet consectetur adipisi.</p>
+            </div>
+            <div className="back">
+              <div>
+                <p>Consectetur adipisicing elit. Possimus, praesentium?</p>
+                <p>Provident consectetur natus voluptatem quis tenetur sed beatae eius sint.</p>
+                <button type="button" className="button">
+                  Click Here
+                </button>
               </div>
             </div>
           </div>
+        </div>
 
-          {/* css 第二部分 伸缩 */}
-          <ul className="accordion-container">
-            <li className="accordion-item active">
-              <div className="title">1</div>
-            </li>
-            <li className="accordion-item">
-              <div className="title">2</div>
-            </li>
-            <li className="accordion-item">
-              <div className="title">3</div>
-            </li>
-          </ul>
+        {/* css 第二部分 伸缩 */}
+        <ul className="accordion-container">
+          <li className="accordion-item active">
+            <div className="title">1</div>
+          </li>
+          <li className="accordion-item">
+            <div className="title">2</div>
+          </li>
+          <li className="accordion-item">
+            <div className="title">3</div>
+          </li>
+        </ul>
 
-          {/* css 第三部分 动画 */}
-          <ul className="item-ul">
-          {
-            list.map((item, index) => {
-              return <li className="item" key={index}>{index}</li>
-            })
-          }
-          </ul>
+        {/* css 第三部分 动画 */}
+        <ul className="item-ul">
+          {list.map((item, index) => {
+            return (
+              // eslint-disable-next-line react/no-array-index-key
+              <li className="item" key={index}>
+                {index}
+              </li>
+            );
+          })}
+        </ul>
 
-           {/* css 第三部分 border 跑马灯 */}
+        {/* css 第三部分 border 跑马灯 */}
         <div className="box">
-          <div className="icon icon1"></div>
-          <div className='icon icon2'></div>
+          <div className="icon icon1" />
+          <div className="icon icon2" />
         </div>
 
         {/* css 第四部分 hover 颜色变化 */}
         <div className="hover-wrap">
           <div className="hr-circle">
             <div className="circle">
-              <div className="cl"></div>
-              <div className="cr"></div>
+              <div className="cl" />
+              <div className="cr" />
             </div>
           </div>
         </div>
@@ -113,13 +124,13 @@ class CssIndex extends Component {
 
         {/* css 第五部分 hover 图片变大变化 hover图片旋转360 */}
         <div className="avatar-wrap">
-          <img src={pic} alt=""/>
+          <img src={pic} alt="" />
         </div>
 
-         {/* css 第六部分 风扇 */}
-          <div className="fan"></div>
+        {/* css 第六部分 风扇 */}
+        <div className="fan" />
 
-          {/* css 第七部分 水波纹 banner */}
+        {/* css 第七部分 水波纹 banner */}
         <div className="banner-wrap">
           <div className="double-circle circle-size-1 left-0">
             <div className="inner-delay-1 circle size-1" />
@@ -170,7 +181,7 @@ class CssIndex extends Component {
               </g>
             </svg>
           </div>
-          <div className="bg-blur"></div>
+          <div className="bg-blur" />
         </div>
 
         {/* https://blog.csdn.net/sillies_3/article/details/90607648  */}
@@ -183,27 +194,32 @@ class CssIndex extends Component {
 
         <div className="tab-wrap">
           <ul className="nav-wrap">
-            {
-              tabData.map((navIt, navIndex) => {
-                return <li key={navIndex} className="tab-nav">{navIt.title}</li>
-              })
-            }
+            {tabData.map((navIt, navIndex) => {
+              return (
+                <li key={navIndex} className="tab-nav">
+                  {navIt.title}
+                </li>
+              );
+            })}
           </ul>
           <ul className="tab-content-wrap clearfix">
-            {
-              tabData.map((navIt, navIndex) => {
-                return <li key={navIndex} className="tab-content">{navIt.desc}</li>
-              })
-            }
+            {tabData.map((navIt, navIndex) => {
+              return (
+                // eslint-disable-next-line react/no-array-index-key
+                <li key={navIndex} className="tab-content">
+                  {navIt.desc}
+                </li>
+              );
+            })}
           </ul>
         </div>
 
         <div className="ipt-wrap">
-            <input type="text" className="ipt" placeholder="请输入名字"/>
+          <input type="text" className="ipt" placeholder="请输入名字" />
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default CssIndex
+export default CssIndex;

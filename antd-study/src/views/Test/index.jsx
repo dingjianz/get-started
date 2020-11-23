@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Button, Modal } from "antd";
-import classnames from "classnames";
+import React, { Component } from 'react';
+import { Button, Modal } from 'antd';
+import classnames from 'classnames';
 
-import "./index.scss";
+import './index.scss';
 
 const times = [];
 
@@ -62,8 +62,8 @@ class TestIndex extends Component {
       this.setState({ btnDisable: false });
       Modal.info({
         width: 500,
-        content: "恭喜你抽中奖品",
-        okText: "确定",
+        content: '恭喜你抽中奖品',
+        okText: '确定',
       });
     }
   };
@@ -73,56 +73,20 @@ class TestIndex extends Component {
     return (
       <div className="text-index">
         <ul className="prize-wrap">
-          <li
-            className={classnames("prize-item", { active: activeWheel === 0 })}
-          >
-            0
-          </li>
-          <li
-            className={classnames("prize-item", { active: activeWheel === 1 })}
-          >
-            1
-          </li>
-          <li
-            className={classnames("prize-item", { active: activeWheel === 2 })}
-          >
-            2
-          </li>
-          <li
-            className={classnames("prize-item", { active: activeWheel === 7 })}
-          >
-            7
-          </li>
+          <li className={classnames('prize-item', { active: activeWheel === 0 })}>0</li>
+          <li className={classnames('prize-item', { active: activeWheel === 1 })}>1</li>
+          <li className={classnames('prize-item', { active: activeWheel === 2 })}>2</li>
+          <li className={classnames('prize-item', { active: activeWheel === 7 })}>7</li>
           <li className="prize-item prize-desc">
             10积分/次
-            <Button
-              type="primary"
-              onClick={this.startWheel}
-              disabled={btnDisable}
-            >
+            <Button type="primary" onClick={this.startWheel} disabled={btnDisable}>
               立即抽奖
             </Button>
           </li>
-          <li
-            className={classnames("prize-item", { active: activeWheel === 3 })}
-          >
-            3
-          </li>
-          <li
-            className={classnames("prize-item", { active: activeWheel === 6 })}
-          >
-            6
-          </li>
-          <li
-            className={classnames("prize-item", { active: activeWheel === 5 })}
-          >
-            5
-          </li>
-          <li
-            className={classnames("prize-item", { active: activeWheel === 4 })}
-          >
-            4
-          </li>
+          <li className={classnames('prize-item', { active: activeWheel === 3 })}>3</li>
+          <li className={classnames('prize-item', { active: activeWheel === 6 })}>6</li>
+          <li className={classnames('prize-item', { active: activeWheel === 5 })}>5</li>
+          <li className={classnames('prize-item', { active: activeWheel === 4 })}>4</li>
         </ul>
       </div>
     );
