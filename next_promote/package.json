@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dj": "node server.js",
     "build": "next build",
     "start": "next start"
   },

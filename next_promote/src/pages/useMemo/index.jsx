@@ -16,7 +16,7 @@
 
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useMemo } from 'react';
-import ChildMemo from './childMemo';
+import ChildMemo from '@/components/useMemo/childMemo';
 
 const UseMemoDemo = () => {
   const [count, setCount] = useState(0);

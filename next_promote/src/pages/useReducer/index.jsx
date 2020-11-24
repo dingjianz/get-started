@@ -1,7 +1,7 @@
 import React from 'react';
-import { HocComponent } from './HocComponent';
-import Text1 from './Text1';
-import Text2 from './Text2';
+import { HocComponent } from '@/components/useReducer/HocComponent';
+import Text1 from '@/components/useReducer/Text1';
+import Text2 from '@/components/useReducer/Text2';
 
 const UseReducer = () => {
   return (

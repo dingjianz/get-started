@@ -1,20 +1,20 @@
 /* eslint-disable react/jsx-curly-newline */
 import React, { useContext } from 'react';
-import { MyContext } from './HocComponent';
+import { MyContext } from '@/components/useReducer/HocComponent';
 
-const Text1 = () => {
+const Text2 = () => {
   const { state, dispatch } = useContext(MyContext);
   return (
     <>
       <h1>
-        Text1: 姓名：{state?.name ?? '张三'} ----- 年龄：{state?.age ?? 0}
+        Text2: 姓名：{state?.name ?? '张三'} ----- 年龄：{state?.age ?? 0}
       </h1>
       <button
         type="button"
         onClick={() =>
           dispatch({
             type: 'setname',
-            name: '王五',
+            name: '赵六',
           })
         }
       >
@@ -25,7 +25,7 @@ const Text1 = () => {
         onClick={() =>
           dispatch({
             type: 'setage',
-            age: 100,
+            age: 36,
           })
         }
       >
@@ -35,4 +35,4 @@ const Text1 = () => {
   );
 };
 
-export default Text1;
+export default Text2;
