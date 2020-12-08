@@ -16,6 +16,7 @@ class Blog extends Component {
         </Head>
         <h1 className={styles.test}>我是blog页面 --- {name}</h1>
         <img className={styles.img_logo} src="/logo.jpg" alt="" />
+        <div className={styles.logowrap} />
       </div>
     );
   }

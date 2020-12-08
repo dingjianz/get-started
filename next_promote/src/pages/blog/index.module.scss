@@ -6,3 +6,10 @@
   width: 200px;
   height: auto;
 }
+
+.logowrap {
+  width: 100px;
+  height: 100px;
+  background: #f00 url(/logo.jpg) center center no-repeat;
+  background-size: cover;
+}

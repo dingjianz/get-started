@@ -1,6 +1,9 @@
 const path = require("path");
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
+  assetPrefix: isProd ? 'https://cdn.mydomain.com' : '',
+  
   webpack: (config, { dev }) => {
     config.module.rules.push({
       enforce: "pre",
