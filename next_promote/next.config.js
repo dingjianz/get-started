@@ -2,18 +2,22 @@ const path = require("path");
 const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
+  basePath: '/docs',
+  env: {
+    superName: 'jianding9',
+  },
   assetPrefix: isProd ? 'https://cdn.mydomain.com' : '',
   
   webpack: (config, { dev }) => {
     config.module.rules.push({
-      enforce: "pre",
+      enforce: 'pre',
       test: /\.jsx?$/,
-      include: [path.join(__dirname, "src")],
-      loader: "eslint-loader",
+      include: [path.join(__dirname, 'src')],
+      loader: 'eslint-loader',
       options: {
         emitWarning: dev,
-        // eslint-disable-next-line global-require
-        formatter: require("eslint-friendly-formatter"),
+        // eslint-disable-next-line global-require
+        formatter: require('eslint-friendly-formatter'),
         fix: true,
       },
     });
