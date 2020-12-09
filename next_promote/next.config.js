@@ -1,13 +1,14 @@
-const path = require("path");
+const path = require('path');
+
 const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  basePath: '/docs',
+  basePath: isProd ? '/docs' : '',
   env: {
     superName: 'jianding9',
   },
   assetPrefix: isProd ? 'https://cdn.mydomain.com' : '',
-  
+
   webpack: (config, { dev }) => {
     config.module.rules.push({
       enforce: 'pre',

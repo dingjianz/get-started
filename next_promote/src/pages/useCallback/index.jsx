@@ -27,8 +27,12 @@ const UseCallbackDemo = () => {
       <h3>num: {num}</h3>
       <h3>callBack: {callBack()}</h3>
 
-      <button onClick={() => setCount(count + 1)}>setCount</button>
-      <button onClick={() => setNum(num + 1)}>setNum</button>
+      <button type="button" onClick={() => setCount(count + 1)}>
+        setCount
+      </button>
+      <button type="button" onClick={() => setNum(num + 1)}>
+        setNum
+      </button>
     </div>
   );
 };

@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
-const FancyButton = (props) => {
+const FancyButton = forwardRef((props, ref) => {
   console.log(props);
   return (
-    <button className="FancyButton" type="button">
-      {props.children}
-    </button>
+    <>
+      <button type="button">btn1</button>
+      <button type="button" ref={ref}>
+        btn2
+      </button>
+    </>
   );
-};
+});
 
 export default FancyButton;
