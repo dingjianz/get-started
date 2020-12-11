@@ -1,4 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -10,6 +12,7 @@ module.exports = {
   assetPrefix: isProd ? 'https://cdn.mydomain.com' : '',
 
   webpack: (config, { dev }) => {
+    config.plugins.push(new BundleAnalyzerPlugin());
     config.module.rules.push({
       enforce: 'pre',
       test: /\.jsx?$/,
