@@ -12,7 +12,9 @@ module.exports = {
   assetPrefix: isProd ? 'https://cdn.mydomain.com' : '',
 
   webpack: (config, { dev }) => {
-    config.plugins.push(new BundleAnalyzerPlugin());
+    if (isProd) {
+      config.plugins.push(new BundleAnalyzerPlugin());
+    }
     config.module.rules.push({
       enforce: 'pre',
       test: /\.jsx?$/,

@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "cross-env NODE_ENV=development next dev -p 10087 ",
     "dj": "node server.js",
-    "build": "next build",
-    "start": "next start"
+    "build": "cross-env NODE_ENV=production next build",
+    "start": "cross-env NODE_ENV=production next start"
   },
   "dependencies": {
     "antd": "^4.8.5",
+    "cross-env": "^7.0.3",
     "eslint-friendly-formatter": "^4.0.1",
     "next": "10.0.2",
     "react": "17.0.1",
