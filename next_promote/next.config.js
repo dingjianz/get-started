@@ -2,17 +2,19 @@
 const path = require('path');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const isProd = process.env.NODE_ENV === 'production';
+// const isProd = process.env.NODE_ENV === 'production';
+const isAnalyzer = process.env.NODE_ENV === 'analyzer';
 
 module.exports = {
-  basePath: isProd ? '/docs' : '',
+  // basePath: isProd ? '/docs' : '',
   env: {
     superName: 'jianding9',
   },
-  assetPrefix: isProd ? 'https://cdn.mydomain.com' : '',
+  // assetPrefix: isProd ? 'https://cdn.mydomain.com' : '.',
+  assetPrefix: '.',
 
   webpack: (config, { dev }) => {
-    if (isProd) {
+    if (isAnalyzer) {
       config.plugins.push(new BundleAnalyzerPlugin());
     }
     config.module.rules.push({

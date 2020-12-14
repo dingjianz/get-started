@@ -1,0 +1,24 @@
+// ---------------- Color -----------------
+/* 主题色 */
+$color-theme-primary: #4a81ff;  // 产品主色
+$color-theme-accent: #ff8787;  // 产品强调色
+/* 文字颜色 */
+$color-text-primary: #24374e; // 主要信息字色
+$color-text-secondary: #8393ac; // 次要信息字色
+$color-text-inverse: #ffffff; // 反色
+$color-text-hint: #415266; // 辅助&提示字色
+/* 背景色 */
+$color-bg: #f9faff; // App底色
+// 按功能
+$color-divider: #e6e8f4; // 分隔线颜色
+$color-green: #21c286;
+$color-orange: #ec971f;
+$color-red: #ff4d4f;
+
+$zindex-anchorbar: 9;
+$zindex-sidebar: 10;
+
+$sidebar-width: 200px;
+$navbar-height: 48px;
+$page-width: 1200px;
+$breakpoint: 576px;
