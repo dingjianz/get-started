@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const {
   override,
   fixBabelImports,
@@ -25,5 +26,9 @@ module.exports = override(
     '@components': path.resolve(__dirname, './src/components'),
     '@utils': path.resolve(__dirname, './src/utils'),
     '@views': path.resolve(__dirname, './src/views'),
-  })
+  }),
+  (config) => {
+    config.output.publicPath = './';
+    return config;
+  }
 );

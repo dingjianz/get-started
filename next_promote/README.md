@@ -1,6 +1,16 @@
 # Nextjs
 
-### `Next.js`项目配置及`Eslint`配置
+### `Next.js`项目配置及[`Eslint`配置](https://eslint.bootcss.com/docs/user-guide/getting-started)
+
+```js
+  npx eslint --init
+
+"off" or 0 - 关闭规则
+"warn" or 1 - 将规则视为一个警告（不会影响退出码）
+"error" or 2 - 将规则视为一个错误 (退出码为1)
+```
+
+
 
 ### React相关hook
 ```js
@@ -16,7 +26,7 @@
 ### 3.为什么需要服务端渲染？
 - 国内搜索引擎只能解析HTML，包括百度不能解析`js`。
 - 国外谷歌搜索可以解析`js`。
-- 多页应用
+- 多页应用。
 
 ### 4.什么项目适合服务端渲染?
 上线需要搜索到的，比如博客，官网等等。
@@ -55,3 +65,32 @@
 Next.js 是围绕着 [页面（pages）](https://www.nextjs.cn/docs/basic-features/pages) 的概念构造的。一个页面（page）就是一个从 `pages` 目录下的 `.js`、`.jsx`、`.ts` 或 `.tsx` 文件导出的 [React 组件](https://reactjs.org/docs/components-and-props.html)。
 页面（page） 根据其文件名与路由关联。例如，pages/about.js 被映射到 /about。甚至可以在文件名中添加动态路由参数。
 
+--- 
+## 获取数据
+#### Nextjs两种形式的预渲染：
+### 服务端渲染
+> 访问xxx路由之前，向服务器要数据，把要回来的数据和HTML加工，直接返回前台展示。
+### 静态化
+> 访问xxx路由之前，向服务器请求数据，将请求来的数据和HTML加工成真正的xxx.html文件。  
+> 作用：下次访问同一个路由地址的时候，直接返回静态页面，减小服务器的压力，以达到性能优化的目的。
+
+#### 获取数据的几种方式
+**getInitialProps**淘汰的东西我们不讲
+ 
+获取数据方法|  静态化  | 异步 | 只能在pages文件夹下 | 作用  | 服务端请求
+:----: | :-----: | :------:  | :-----: | :------: | :-----:
+getStaticProps  | 是 | 是 | 是 | 请求数据  | 是 http (非 XMLHttpRequest)
+getStaticPaths  |  是 | 是 | 是 | 生成动态路由 | 是
+getServerSideProps  | 否 | 是 | 是 | 请求数据  | 是
+
+
+getServerSideProps() - 不静态化 - 异步 async
+1. `getServerSideProps(coontext)`:
+    - params: 接收`getStaticPaths()`返回的动态路径，方便请求动态数据； 
+      比如 `http://localhost:3000/list/xxxx`
+    - req: HTTP IncomingMessage 对象；
+    - res: HTTP 响应对象；
+    - query: 查询字符串；
+2. `getServerSideProps`的返回值是一个对象，其中对象必有一个`key`值为`props`，并且这个`props`作为该组件的`props`；
+
+`getStaticProps`
