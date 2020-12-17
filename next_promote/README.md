@@ -65,6 +65,19 @@
 Next.js 是围绕着 [页面（pages）](https://www.nextjs.cn/docs/basic-features/pages) 的概念构造的。一个页面（page）就是一个从 `pages` 目录下的 `.js`、`.jsx`、`.ts` 或 `.tsx` 文件导出的 [React 组件](https://reactjs.org/docs/components-and-props.html)。
 页面（page） 根据其文件名与路由关联。例如，pages/about.js 被映射到 /about。甚至可以在文件名中添加动态路由参数。
 
+### 摘要
+ #### Next.js 的两种预渲染形式。
+
+**静态生成（推荐）：** HTML 在 构建时 生成，并在每次页面请求（request）时重用。
+HTML 是在 **构建时（build time）** 生成的，并重用于每个页面请求。要使页面使用“静态生成”，只需导出（export）页面组件或导出（export） `getStaticProps` 函数（如果需要还可以导出 `getStaticPaths` 函数）。对于可以在用户请求之前预先渲染的页面来说，这非常有用。你也可以将其与客户端渲染一起使用以便引入其他数据。
+
+**服务器端渲染：**
+在**每次页面请求（request）时**重新生成 HTML。
+ HTML 是在 **每个页面请求** 时生成的。要设置某个页面使用服务器端渲染，请导出（export） `getServerSideProps`函数。由于服务器端渲染会导致性能比“静态生成”慢，因此仅在绝对必要时才使用此功能。
+ 如果 page（页面）使用的是**服务器端渲染**，则会在**每次页面请求时**重新生成页面的 HTML 。
+要对 page（页面）使用服务器端渲染，你需要 export 一个名为`getServerSideProps`的`async`函数。服务器将在每次页面请求时调用此函数。
+例如，假设你的某个页面需要预渲染频繁更新的数据（从外部 API 获取）。你就可以编写`getServerSideProps` 获取该数据并将其传递给`Page`。
+
 --- 
 ## 获取数据
 #### Nextjs两种形式的预渲染：
@@ -87,10 +100,18 @@ getServerSideProps  | 否 | 是 | 是 | 请求数据  | 是
 getServerSideProps() - 不静态化 - 异步 async
 1. `getServerSideProps(coontext)`:
     - params: 接收`getStaticPaths()`返回的动态路径，方便请求动态数据； 
-      比如 `http://localhost:3000/list/xxxx`
+      比如 `http://localhost:10087/api/list/xxxx`
     - req: HTTP IncomingMessage 对象；
     - res: HTTP 响应对象；
     - query: 查询字符串；
 2. `getServerSideProps`的返回值是一个对象，其中对象必有一个`key`值为`props`，并且这个`props`作为该组件的`props`；
 
-`getStaticProps`
+getStaticProps - 会静态化 - 异步方法async
+
+1. `getStaticProps({params, preview, previewData})`;
+2. 在动态路由文件`[xxx].js`里面用;
+3. `params`: 接收`getStaticPaths()` 返回的动态路径，方便请求动态数据；
+
+    比如：`http://localhost:10087/api/list/xxxx`
+
+4. `getStaticProps`的返回值是一个对象，其中对象必有一个`key`值为`props`，并且这个`props`作为该组件的`props`;

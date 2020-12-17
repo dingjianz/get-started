@@ -11,7 +11,6 @@ module.exports = {
     superName: 'jianding9',
   },
   // assetPrefix: isProd ? 'https://cdn.mydomain.com' : '.',
-  assetPrefix: '.',
 
   webpack: (config, { dev }) => {
     if (isAnalyzer) {

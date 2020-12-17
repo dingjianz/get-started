@@ -5,7 +5,7 @@ const GetServerSidePropsDemo = (props) => {
   const {
     result: { data },
   } = props;
-  console.log('data', data);
+  // console.log('data', data);
   return (
     <div>
       {data.map((item) => {
@@ -15,6 +15,17 @@ const GetServerSidePropsDemo = (props) => {
           </Link>
         );
       })}
+
+      <hr />
+
+      {data.map((item) => {
+        return (
+          <Link href={`/songDetail2/${item.songId}`} key={item.songStringId}>
+            <a>{item.songName}</a>
+          </Link>
+        );
+      })}
+
       <style jsx>
         {`
           a {
