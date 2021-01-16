@@ -28,7 +28,7 @@ module.exports = override(
     '@views': path.resolve(__dirname, './src/views'),
   }),
   (config) => {
-    config.output.publicPath = './';
+    config.output.publicPath = '/';
     return config;
   }
 );

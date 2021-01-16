@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
+import config from 'config';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -15,6 +16,7 @@ class MyDocument extends Document {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
           <meta name="renderer" content="webkit" />
           <meta name="format-detection" content="telephone=no,email=no,address=no" />
+          <script src={`${config.AUTH_SITE}/SSOService/login/getcookies`} />
         </Head>
         <body>
           <Main />

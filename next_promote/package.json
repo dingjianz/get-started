@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development next dev -p 10087 ",
-    "server": "node server.js",
+    "server": "cross-env NODE_ENV=production node server.js",
     "build:analyzer": "cross-env NODE_ENV=analyzer next build",
     "build": "next build",
-    "start": "next start",
+    "start": "cross-env NODE_ENV=production next start",
     "export": "next export"
   },
   "dependencies": {

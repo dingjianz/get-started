@@ -11,18 +11,19 @@ class Blog extends Component {
   inputEl = null;
 
   sendData = async () => {
-    const val = this.inputEl.value;
-    const r = await fetch('http://localhost:10087/api/hello', {
-      body: JSON.stringify({
-        value: val,
-      }),
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const data = await r.json();
-    console.log('data', data);
+    // const val = this.inputEl.value;
+    // const r = await fetch('http://localhost:10087/api/hello', {
+    //   body: JSON.stringify({
+    //     value: val,
+    //   }),
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    // });
+    // const data = await r.json();
+    // console.log('data', data);
+    window.open('http://localhost:10087/pagetest');
   };
 
   render() {
