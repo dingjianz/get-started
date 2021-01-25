@@ -11,18 +11,21 @@ class Blog extends Component {
   inputEl = null;
 
   sendData = async () => {
-    // const val = this.inputEl.value;
-    // const r = await fetch('http://localhost:10087/api/hello', {
-    //   body: JSON.stringify({
-    //     value: val,
-    //   }),
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    // });
-    // const data = await r.json();
-    // console.log('data', data);
+    const val = this.inputEl.value;
+    const r = await fetch('http://localhost:10087/api/hello', {
+      body: JSON.stringify({
+        value: val,
+      }),
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await r.json();
+    console.log('data', data);
+  };
+
+  openNewPage = () => {
     window.open('http://localhost:10087/pagetest');
   };
 
@@ -41,6 +44,8 @@ class Blog extends Component {
         <button type="button" onClick={this.sendData}>
           点击发送 /api/hello
         </button>
+        <br />
+        <button type="button" onClick={this.openNewPage}>打开新页面 opener</button>
       </div>
     );
   }
