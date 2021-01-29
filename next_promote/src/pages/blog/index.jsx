@@ -1,6 +1,7 @@
-/* eslint-disable no-return-assign */
+/* eslint-disable */
 import React, { Component } from 'react';
 import Head from 'next/head';
+import Router, { useRouter } from 'next/router';
 import styles from './index.module.scss';
 
 class Blog extends Component {
@@ -26,7 +27,11 @@ class Blog extends Component {
   };
 
   openNewPage = () => {
-    window.open('http://localhost:10087/pagetest');
+    // window.open('http://localhost:10087/pagetest');
+    Router.push('/pagetest').then(() => document.body.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    }))
   };
 
   render() {
@@ -45,7 +50,57 @@ class Blog extends Component {
           点击发送 /api/hello
         </button>
         <br />
-        <button type="button" onClick={this.openNewPage}>打开新页面 opener</button>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <button type="button" onClick={this.openNewPage}>
+          打开新页面 opener
+        </button>
       </div>
     );
   }

@@ -1,6 +1,7 @@
+/* eslint-disable */
 import React from 'react';
+import Router, { useRouter } from 'next/router';
 
-// eslint-disable-next-line react/prefer-stateless-function
 class PageTest extends React.Component {
   componentDidMount() {
     const curDate = new Date(); // 当前时间
@@ -20,14 +21,67 @@ class PageTest extends React.Component {
 
   fn = () => {
     console.log(window.opener);
-    window.self.close();
-    window.opener.location.reload();
+    // window.self.close();
+    // window.opener.location.reload();
+    console.log('Router', Router);
+    console.log('useRouter', useRouter);
+    Router.push('/blog')
   };
 
   render() {
     return (
       <div>
         <h1>pagetest</h1>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
         <button onClick={this.fn} type="button">
           点击
         </button>
