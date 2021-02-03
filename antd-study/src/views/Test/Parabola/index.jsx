@@ -1,5 +1,4 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable no-console */
+/* eslint-disable */
 import React, { useEffect } from 'react';
 import { Button, Card } from 'antd';
 import './index.scss';
@@ -42,17 +41,36 @@ export default () => {
     parabola.position().move();
   };
 
+  const showStar = (e) => {
+    e.persist();
+    const { clientX, clientY } = e;
+    const mydiv = document.createElement('div');
+    mydiv.setAttribute('style', `left:${clientX}px;top:${clientY}px;`);
+    mydiv.setAttribute('class', `divs`);
+    const t = document.createTextNode('♥');
+    mydiv.appendChild(t);
+    const wraps = document.getElementsByClassName('wraps')[0];
+    wraps.append(mydiv);
+    const childs = wraps.childNodes;
+    if (childs.length > 3) wraps.removeChild(childs[0]);
+  };
+
   return (
-    <Card title="抛物线动画">
-      <div className="container">
-        <Button type="primary" onClick={handleMove}>
-          点击购买
-        </Button>
-        <div className="card-footer">
-          <div className="iconfont icon-SHOPPINGCART" />
-          <div className="shop">购物车</div>
+    <>
+      <Card title="抛物线动画">
+        <div className="container">
+          <Button type="primary" onClick={handleMove}>
+            点击购买
+          </Button>
+          <div className="card-footer">
+            <div className="iconfont icon-SHOPPINGCART" />
+            <div className="shop">购物车</div>
+          </div>
         </div>
-      </div>
-    </Card>
+        <div className="wraps" onClick={showStar}>
+          <h1>css</h1>
+        </div>
+      </Card>
+    </>
   );
 };

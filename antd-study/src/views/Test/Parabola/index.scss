@@ -24,3 +24,31 @@
     }
   }
 }
+
+.wraps {
+  height: 400px;
+  background-color: #ccc;
+  cursor: pointer;
+  position: relative;
+
+  .divs {
+    width: 20px;
+    height: 20px;
+    font-size: 24px;
+    color: red;
+    position: fixed;
+    animation: heartAni 1s linear forwards;
+  }
+
+  @keyframes heartAni {
+    from {
+      transform: translate(0, 0px);
+      opacity: 1;
+    }
+
+    to {
+      transform: translate(0, -25px);
+      opacity: 0;
+    }
+  }
+}
