@@ -36,7 +36,7 @@ const UseMemoDemo = () => {
 
   return (
     <>
-      {/* <div>技术器: count：--- {count}</div> */}
+      {/* <div>计数器: count：--- {count}</div> */}
       <div>
         <h2>计数器:</h2> count：--- {res.count}
         <br />

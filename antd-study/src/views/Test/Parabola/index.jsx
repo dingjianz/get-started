@@ -41,11 +41,14 @@ export default () => {
     parabola.position().move();
   };
 
-  const showStar = (e) => {
-    e.persist();
-    const { clientX, clientY } = e;
+  const showStar = (event) => {
+    event.persist();
+    const e = event.nativeEvent // 获取React的mouseEvent
+    console.log(e)
+    const { clientX, clientY, offsetX, offsetY } = e;
+    console.log({ clientX, clientY, offsetX, offsetY });
     const mydiv = document.createElement('div');
-    mydiv.setAttribute('style', `left:${clientX}px;top:${clientY}px;`);
+    mydiv.setAttribute('style', `left:${offsetX}px;top:${offsetY}px;`);
     mydiv.setAttribute('class', `divs`);
     const t = document.createTextNode('♥');
     mydiv.appendChild(t);
