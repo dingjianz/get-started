@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RegExp---Lesson1</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+  <link rel="stylesheet" href="style.scss">
+  <script type="module" src="./index.js"></script>
+</head>
+
+<body>
+  <div class="box">Lesson 1</div>
+  <script>
+  /* 
+      \    ===>  转义符号
+    \字符  ===>  转义字符
+    var res = "我是一个\"牛逼\"的程序员"
+    console.log(res)
+
+
+    RegExp = regular expression 
+    字符串片段 大小写默认敏感 连续
+
+    //gim 修饰符，也叫做正则属性
+    i: ignore case 忽略大小写
+    g: global 全局匹配
+    m: multi-line 多行匹配
+
+    const reg = /^test/g  // ^表示以test开头
+    const reg = /[^0]/ /[^;]/  // 表达式（中括号[]）内部, ^表示非的意思, eg：非0 非分号
+
+    const reg = /[0123456789][0123456789][0123456789]/g
+    const str = '0987cfdc-r981sdcd34'
+    console.log(str.match(reg))
+
+    const reg = /[wx][xy][z]/g
+    const str = 'wxyz'
+    console.log(str.match(reg)) // ["xyz"]
+
+    const reg = /[0-9][a-z][A-Z]/g,  // 区间： /[0-9A-Za-z]/
+          str = 'sdc21378aA0dd2-2;。，kkdZ'
+    console.log(str.match(reg)) // ["8aA"]
+
+    const reg = /123|456/g // | 代表或的意思
+    const str = '123sfdcdfv4567fv'
+    console.log(str.match(reg)) // ["123", "456"] 
+
+    const reg = /123|456[a-z]/g // ["123", "456f"]v
+    const reg = /(123|456)[a-z]/g // ["123s", "456f"] // ()能够划定优先级
+
+
+    元字符：正则使用的转义字符
+      \w: [0-9A-z_]
+      \W: [^\w]
+      \d: [0-9] //数字 digit
+      \D: [^\d] // 非数字
+      \s: [\r\n\t\v\f] // \r回车符 \n换行符 \t制表符tab \v垂直换行符 \f换页符  ===> 后两个用不到
+      \S: [^\s]
+      \b: 单词边界（不和单词挨着）
+      \B: [^\b]非单词边界（紧跟单词）
+      .: 点可以匹配除了\r \n外的所有字符
+
+    const str = '123%df2%76+8^'
+    const reg = /[\w][\w][\w]/g // ["123", "df2"]
+    const reg = /[\W][\w][\W]/g // [+8^"]
+
+    const str = '123ab%df2%76+ab8^'
+    const reg = /\dab/g // ["3ab"]
+    const reg = /\Dab/g // ["+ab"]
+
+    const str = '123 ab%&^'
+    const reg = /\sab/g // ["3ab"]
+
+    const str = '123 ab%&^\nab--- ab'
+    const reg = /\sab/g //  [" ab", "↵ab", " ab"]
+
+    const str = 'this is my house'
+    const reg = /\bthis\b/g // ["this"]
+    const reg = /\Bthis\b/g // null
+
+    const str = 'this\nis my house'
+          reg = /\ni/g // ["↵i"]
+
+    const str = 'this\nis\rmy\thouse'
+            reg = /./g  // ["t", "h", "i", "s", "i", "s", "m", "y", "	", "h", "o", "u", "s", "e"]
+
+    // 匹配三位全字符
+    const str = 'ab*=_%dsc1'
+              reg = /[\w\W][\S\s][\D\d]/g //  ["ab*", "=_%", "dsc"]  顺序无所谓
+
+    // /\w\W/g === /[\w][\W]/g === /[0-9A-z_][^\w]/g
+    const str = 'ab*=_%ds\nc1'
+          reg = /\w\W/g //  ["b*", "_%"]
+          reg = /\S\s/g //  ["s↵"]
+          reg = /[\S][\s]/g // ["s↵"]
+  */
+  </script>
+</body>
+
+</html>
