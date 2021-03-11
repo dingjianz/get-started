@@ -15,17 +15,31 @@
     /* 
       不回头：字符串从左到右，依次匹配，如果一旦匹配就不回头匹配
       贪婪匹配原则：能匹配多个，绝不匹配少个。
+
+
+    以下全为正则量词!!!
       n+: {1, 正无穷} 尽可能匹配任何包含至少一个 n 的字符串。
       n*: {0, 正无穷} 匹配0或1个，为0（没能匹配）时返回 ""
       n?: 匹配任何包含零个或一个 n 的字符串，为0（没能匹配）时，返回 ""
       n{x,y}: 匹配包含 X 至 Y 个 n 的序列的字符串。注意y前面不能加空格 n{x, y}，x必须小于y, 若x为0，则为0（没能匹配）时，返回 ""
       n{X,}: 匹配包含至少 X 个 n 的序列的字符串。
+      n{X}: 匹配包含 X 个 n 的序列的字符串。
 
       ^n: 匹配任何以n开头的字符串
       n$: 匹配任何以n结尾的字符串
-      n+:	
+      ?=n: 匹配任何其后紧接指定字符串 n 的字符串。
+      ?!n: 匹配任何其后没有紧接指定字符串 n 的字符串。
+
+
       /^a[\D\d]*d$/gm: [\D\d]*代表以a开头且d结尾的中间字符串，无论有或没有都无所谓，相当于占位的作用
-      /^a.d$/gm: [\D\d]*代表以a开头且d结尾的中间字符串，无论有或没有都无所谓，相当于占位的作用
+      /^a.d$/gm: .代表以a开头且d结尾的中间字符串，无论有或没有都无所谓，相当于占位的作用
+
+  RegExp对象属性
+    global：RegExp对象是否具有标志 g；
+    ignoreCase： RegExp对象是否具有标志 i；
+    lastIndex：一个整数，标示开始下一次匹配的字符位置；
+    multiline：RegExp对象是否具有标志 m；
+    source：正则表达式的源文本。
 
       const str = 'abcd-efg'
             reg = /\w+/g //  ["abcd", "efg"]
@@ -80,10 +94,45 @@
           reg = /^a\d*d$/g //  ["ad"]
           reg = /^a[\d]*d$/g //  ["ad"]
           // reg = /^a\d+d$/g //  null
-  */
 
-  // 匹配以138开头的11位手机号码
-  const str = 'abcd-efg'
+
+     // 匹配以138开头的11位手机号码
+    const str = '13888888e888',
+        reg = /^138\d{8}/g
+    console.log(str.match(reg) ? 'yes' : 'no')
+
+
+    // 需求：匹配任何其后紧接b的字符串。
+    const str = 'abcdefga',
+          reg = /a(?=b)/g // ["a"] 返回开头的a
+          reg = /a(?!b)/g // ["a"] 返回结尾的a  匹配任何其后紧接非b的字符串。
+
+     // 需求：判断字符串是否全部为字母
+    const str = 'abcdefg',
+          reg = /^[A-z]+$/g;
+          console.log(reg.test(str)) // true
+    
+    // 需求：判断字符串是否全部为数字
+    const str = '1234567890',
+          reg = /^\d+$/g;
+          console.log(reg.test(str)) // true
+
+    const str = '123456a7890',
+          reg = /^(\d|a|b|c)+$/g;
+          console.log(reg.test(str)) // true
+
+    // 需求：匹配xxxx yyyy 运用到子表达式(括号内即为子表达式)，子表达式有记忆功能，数字代表第几个子表达式
+    var str = 'bbaaaaccddddee',
+        reg = /(a)\1\1\1/g; // ["aaaa"]
+        reg = /(\w)\1\1\1/g; // ["aaaa", "dddd"] 体现出子表达式的记忆功能
+        reg = /(\w)\1(\w)\2/g; // ["bbaa", "aacc", "dddd"]
+
+
+    const str = '1234123412341234',
+          reg = /123/g
+    const r = reg.exec(str) // 类数组，但是_proto_ 继承Array
+    console.log([...r]) // 类数组转真数组
+  */
 
 
     // const str = 'abcd-efg'
@@ -91,7 +140,8 @@
     //       reg = /\w/g //  ["a", "b", "c", "d", "e", "f", "g"]
     //       reg = /\d*/g // ["", "", "", "", "", "", "", "", ""]
     //       reg = /\d+/g // null
-    
+    const str = '123123123123123',
+          reg = /123/g
   </script>
 </body>
 

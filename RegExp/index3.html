@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RegExp---Lesson3</title>
+  <link rel="stylesheet" href="style.scss">
+</head>
+
+<body>
+  <div class="box">Lesson 3</div>
+  <script>
+    /* 
+      *** match与exec的区别
+      1. match是字符串对象，exec是正则对象上的方法；
+      2. match参数是正则，exec参数是字符串；
+      3. match、exec 返回一个类数组；
+      4：
+        **exec
+          加g：exec 机械式循环匹配，执行一次匹配一次，自定增加匹配位置开头的下表，直到返回null以后，再回到最开始重新匹配；
+          非g：只匹配到第一个可匹配的片段，且只匹配一次；
+          无论加g与否，都返回子表达式中的字符串片段。
+
+        **match
+          加g：自动循环匹配，返回所有可被匹配的片段，但不返回子表达式中的字符串；
+          非g：返回第一个被匹配的片段，并返回子表达式中的字符串；
+
+      var str = 'cdcdaabbccddabab'
+          reg = /(\w)\1(\w)\2/g; // str.match(reg) ["aabb", "ccdd"]
+          reg = /(\w)\1(\w)\2/; // str.match(reg) ["aabb", "a", "b", index: 4, input: "cdcdaabbccddabab", groups: undefined]
+          reg = /(\w)\1(\w)\2/g; // reg.exec(str) 逐个匹配
+          reg = /(\w)\1(\w)\2/; // reg.exec(str) 只匹配第一个
+          
+      // split 字符串分割 结合正则
+      var str = 'abcd1efg2hijk3lmn'
+          reg = /\d/g;
+          console.log(str.split(reg)) // ["abcd", "efg", "hijk", "lmn"]
+        
+              
+      const str = 'abcde',
+            reg = /ab(c)/g
+      const r = reg.exec(str)
+      console.log(r) // ["abc", "c", index: 0, input: "abcde", groups: undefined]
+      console.log(r[0]) // abc
+      console.log(r[1]) // c
+      console.log([...r]) // ["abc", "c"]
+    */
+
+    var str = 'abcd{{efg}}hijk{{lmn}}',
+        reg = /^{{.}}$/g;
+  </script>
+</body>
+
+</html>
