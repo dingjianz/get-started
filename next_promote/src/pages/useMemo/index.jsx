@@ -27,7 +27,7 @@ const UseMemoDemo = () => {
   // });
 
   const res = useMemo(() => {
-    console.log('useMemo');
+    console.log('useMemo'); // 只有setCount时才会打印
     return {
       count,
       num,

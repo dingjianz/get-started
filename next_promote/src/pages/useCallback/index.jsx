@@ -16,8 +16,10 @@ import React, { useState, useCallback } from 'react';
 const UseCallbackDemo = () => {
   const [count, setCount] = useState(0);
   const [num, setNum] = useState(0);
+
+  // 相当于新设定了一个变量callBack，执行后返回
   const callBack = useCallback(() => {
-    console.log(count);
+    console.log('count', count); // setCount和setNum每次执行都触发，每次都打印，只是只有setNum时，才会返回值。
     return count;
   }, [num]);
 
