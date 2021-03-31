@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RegExp---Lesson5</title>
+  <link rel="stylesheet" href="style.scss">
+</head>
+
+<body>
+  <div class="box">Lesson 5</div>
+  <a href="/index.html">Lesson1</a>
+  <a href="/index2.html">Lesson2</a>
+  <a href="/index3.html">Lesson3</a>
+  <a href="/index4.html">Lesson4</a>
+  <a href="/index5.html">Lesson5</a>
+
+  <br>
+  <p>input禁止输入空格</p>
+  <!-- <input type="text" id="ipt" onkeyup="test(this, /\s/)"> -->
+
+  <p>input禁止非数字输入</p>
+  <input type="text" id="ipt1" onkeyup="test(this)">
+
+  <script type="text/javascript">
+    function test(e, reg) {
+      // e.value = e.value.replace(/\s/, ''); // input禁止输入空格
+      e.value = e.value.replace(/\D/, ''); // input禁止非数字输入
+    }
+  </script>
+</body>
+
+</html>

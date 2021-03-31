@@ -20,6 +20,7 @@ class ImperativeHandleDemo extends PureComponent {
     this.iptRef = createRef();
   }
 
+  // eslint-disable-next-line no-undef
   consoleLogRef = () => {
     const { count, focus } = this.iptRef.current;
     this.setState({

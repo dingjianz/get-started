@@ -2,7 +2,7 @@ import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 import styles from './imperative.module.scss';
 
 const Imperative = forwardRef((props, ref) => {
-  const $ref = useRef(null);
+  const $inputRef = useRef(null);
 
   const [count, setCount] = useState(0);
   const [num, setNum] = useState(0);
@@ -13,7 +13,7 @@ const Imperative = forwardRef((props, ref) => {
       return {
         count,
         focus() {
-          $ref.current.focus();
+          $inputRef.current.focus();
         },
       };
     },
@@ -22,7 +22,7 @@ const Imperative = forwardRef((props, ref) => {
 
   return (
     <div>
-      <input type="text" ref={$ref} className={styles.ipt} />
+      <input type="text" ref={$inputRef} className={styles.ipt} />
       <h3>count: {count}</h3>
       <h3>num: {num}</h3>
       <button type="button" onClick={() => setCount(count + 1)}>

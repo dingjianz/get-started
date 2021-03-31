@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RegExp---Lesson4</title>
+  <link rel="stylesheet" href="style.scss">
+</head>
+
+<body>
+  <div class="box">Lesson 4</div>
+  <a href="/index.html">Lesson1</a>
+  <a href="/index2.html">Lesson2</a>
+  <a href="/index3.html">Lesson3</a>
+  <a href="/index4.html">Lesson4</a>
+  <a href="/index5.html">Lesson5</a>
+
+  <div id="tpl">
+    <h1>{{title}}</h1>
+    <h2>{{desc}}</h2>
+    <h3>{{tip}}</h3>
+  </div>
+
+  <script>
+    /* 
+      // 正向预查
+      var str = '1231231231', 
+        reg = /1(?=2)/g // ['1', '1', '1'] 前三个1
+        reg = /1(?!2)/g // ['1'] 最后一个1
+        r = str.replace(reg, '*')
+    */
+
+    // 贪婪模式（默认） 非贪婪模式
+    var str = 'abcd{{efg}}hijk{{lmn}}',
+        reg = /{{.*}}/g; // ["{{efg}}hijk{{lmn}}"] 贪婪模式
+        reg = /{{.*?}}/g; //  ["{{efg}}", "{{lmn}}"]  非贪婪模式   .? 0次或者1次     *? 取消贪婪模式
+
+
+    var str = 'aaaaaa',
+        reg = /\w?/g; // 贪婪模式 ['a', 'a', 'a', 'a', 'a', 'a', '']
+        reg = /\w??/g; // 非贪婪模式 ["", "", "", "", "", "", ""]
+
+
+    var str = 'JSplusplus';
+      console.log(str.replace(/plus/g, '+')); // JS++
+
+
+    var name = '"a", "b"';
+      console.log(name.replace(/"([^"]*)"/g, "'$1'")) // 'a', 'b'   把所有的花引号替换为直引号
+
+
+    var str1 = 'aabbccdd' // ---> bbaaddcc
+      console.log(str1.replace(/(\w)\1(.)\2/g, '$2$2$1$1')) // bbaaddcc
+      str1.replace(/(\w)\1(.)\2/g, function ($, $1, $2) { // $1, $2 代表子表达式
+        console.log({
+          $, $1, $2
+        }); // {$: "aabb", $1: "a", $2: "b"} {$: "ccdd", $1: "c", $2: "d"} 打印了两次
+        return $2 + $2 + $1 + $1;
+      })
+
+    var str = 'aa?bb\cc', // ---> aabbcc
+        str1 = str.replace(/\?|\\/g, '')
+        console.log(str1)
+
+    var str = 'aabbcc', // ---> abc
+        str1 = str.replace(/(\w)\1/g, '$1') // abc
+
+    var str = 'aaaaabbbccccccccccccd', // ---> abcd
+        str4 = str.replace(/(\w)\1*/g, '$1') // abcd
+
+
+    var str = 'JS-plus-plus' // ---> JSPlusPlus
+      console.log(str.replace(/-p/g, 'P')) // JSPlusPlus
+    var str1 = str.replace(/-(.)/g, function ($, $1) {  // !!!!!!!! 记住正则子表达式一定要加()，这样$1才有值
+      console.log({
+        $, $1
+      }) // {$: "-p", $1: "p"} {$: "-p", $1: "p"} 打印了两次
+      return $1.toUpperCase();
+    })
+    console.log('str1', str1); // JSPlusPlus
+
+    var str = 'jsPlusPlus'; // ---> js_plus_plus
+    var str1 = str.replace(/([A-Z])/g, function($, $1) {
+      return '_' + $1.toLowerCase();
+    })
+    console.log(str1); // js_plus_plus
+
+    var str = 'xxyyzz'; // ---> XxYyZz
+    var str1 = str.replace(/(\w)\1/g, function($, $1) {
+      console.log({
+        $, $1
+      }) // {$: "xx", $1: "x"} {$: "yy", $1: "y"} {$: "zz", $1: "z"} 打印了三次
+      return $1.toUpperCase() + $1;
+    })
+    console.log(str1); // XxYyZz
+
+    var str = 'xxyyzz'; // ---> x*y*z*
+    var str1 = str.replace(/(\w)\1/g, '$1*')  // x*y*z*
+    var str2 = str.replace(/(\w)\1/g, '$1$$')  // 如果是$ 要$$  ---> '$1$$'  x$y$z$
+
+
+    var str = '1000000'; // ---> js_plus_plus
+    // var str1 = str.replace(/(?=(\B)(\d{3})+$)/g, function($, $1) {
+    //   return $1 + ',' // {$1: '' } {$1: '' } 打印了两次
+    // })
+    var str1 = str.replace(/(?=(\B)(\d{3})+$)/g, ',');
+    console.log('str1', str1); // 1,000,000
+
+
+    var str = 'abcdefghijklmnopqrstuvwxyz'; // ---> ab-cdef-ghij-klmn-opqr-stuv-wxyz
+    var str1 = str.replace(/(?=(\B)(\w{4})+$)/g, '-');
+    console.log('str1', str1); // ab-cdef-ghij-klmn-opqr-stuv-wxyz
+
+    ;(function() {
+      const tpl = document.getElementById('tpl');
+      const htmlRes = tpl.innerHTML;
+      const newTmlRes = htmlRes.replace(/{{(.*?)}}/g, function($, $1) {
+        // 相当于把$ 替换 成 obj[key] 我是一个tiitle 我是一个desc 我是一个tip
+        console.log({ $, $1 });
+        /* 
+          {$: "{{title}}", $1: "title"}
+          {$: "{{desc}}", $1: "desc"}
+          {$: "{{tip}}", $1: "tip"}
+        */
+        return {
+          title: "我是一个tiitle",
+          desc: "我是一个desc",
+          tip: "我是一个tip",
+        }[$1];
+      })
+
+      tpl.innerHTML = newTmlRes;
+    })()
+
+  </script>
+</body>
+
+</html>
