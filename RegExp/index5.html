@@ -19,16 +19,59 @@
 
   <br>
   <p>input禁止输入空格</p>
-  <!-- <input type="text" id="ipt" onkeyup="test(this, /\s/)"> -->
+  <!-- <input type="text" onkeyup="test(this, /\s/)"> -->
 
   <p>input禁止非数字输入</p>
-  <input type="text" id="ipt1" onkeyup="test(this)">
+  <input type="text" onkeyup="test(this)" placeholder="请输入数字">
+
+  <div>
+    <p>input限制整数输入</p>
+    <input type="text" onkeyup="test(this)" placeholder="请输入整数">
+    <p class="tips" style="display:none;color:red;">请输入整数</p>
+  </div>
+
+  <div>
+    <p>输入文字高亮</p>
+    <input type="text" onkeyup="handlechange(this)" placeholder="请输入">
+    <p class="gaoliang">我是一段提示文字</p>
+  </div>
 
   <script type="text/javascript">
-    function test(e, reg) {
+    const tips = document.getElementsByClassName('tips')[0]
+    const gaoliang = document.getElementsByClassName('gaoliang')[0]
+
+    function test(e) {
       // e.value = e.value.replace(/\s/, ''); // input禁止输入空格
-      e.value = e.value.replace(/\D/, ''); // input禁止非数字输入
+      // e.value = e.value.replace(/\D/, ''); // input禁止非数字输入
+      const reg = /^-?\d+$/g
+      const val = e.value;
+      const flag = reg.test(val);
+      console.log(flag)
+      if (!flag) tips.style.display = 'block';
+      else tips.style.display = 'none';
     }
+
+    function handlechange(e) {
+      // const resArr = [...e.value]
+      console.log(e.value)
+      try {
+        const reg = new RegExp(e.value, 'g')
+        const htmlPre = gaoliang.innerHTML.replace(reg, function ($, $1) {
+          return `<span style="color:red">
+              ${$}
+            </span>`
+        })
+      } catch (e) {
+        console.log(e)
+      }
+    }
+
+    var str = 'abcdefg';
+    console.log(/a|d/g.test(str)) // true
+    console.log(/[ad]/g.test(str)) // true
+
+    var str = 'houduan22034dscs9234778'
+    console.log(str.replace(/\D/g, ''))
   </script>
 </body>
 
