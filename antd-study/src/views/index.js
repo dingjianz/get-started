@@ -63,6 +63,11 @@ const Parabola = Loadable({
   loading: Loading,
 });
 
+const TreeDemo = Loadable({
+  loader: () => import('./Test/Tree/index.jsx'),
+  loading: Loading,
+});
+
 export {
   Login,
   Dashboard,
@@ -78,6 +83,7 @@ export {
   TimeLine,
   Parabola,
   HocComponent,
+  TreeDemo,
 };
 
 // export { default as Login } from './Login'

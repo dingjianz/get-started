@@ -13,6 +13,7 @@ import {
   TimeLine,
   HocComponent,
   Parabola,
+  TreeDemo,
 } from '../views';
 
 export const mainRouter = [
@@ -112,6 +113,14 @@ export const adminRouter = [
         iconName: 'setting',
         roles: ['001', '002', '003'],
         component: Parabola,
+      },
+      {
+        pathname: '/admin/test/tree',
+        title: 'tree组件',
+        isNav: true,
+        iconName: 'setting',
+        roles: ['001', '002', '003'],
+        component: TreeDemo,
       },
     ],
   },
