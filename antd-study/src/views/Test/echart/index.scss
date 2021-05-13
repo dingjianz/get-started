@@ -1,0 +1,14 @@
+.echart-page {
+  background-color: rgb(88, 93, 236);
+  padding-bottom: 60px;
+  background-image: linear-gradient(0deg, transparent 24%, rgba(88, 93, 236, .329) 25%, hsla(0, 8%, 80.4%, .05) 26%, transparent 27%, transparent 74%, hsla(0, 5.2%, 81%, .185) 75%, rgba(88, 93, 236, .05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(204, 196, 196, .226) 25%, hsla(0, 4%, 66.1%, .05) 26%, transparent 27%, transparent 74%, hsla(0, 5.2%, 81%, .185) 75%, rgba(88, 93, 236, .05) 76%, transparent 77%, transparent);
+  background-color: #fff;
+  background-size: 50px 50px;
+  scroll-behavior: smooth;
+
+  .chart {
+    width: 400px;
+    height: 400px;
+    margin-bottom: 50px;
+  }
+}

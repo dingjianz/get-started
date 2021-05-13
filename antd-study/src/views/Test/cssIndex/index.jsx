@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-irregular-whitespace */
 import React, { Component } from 'react';
 // eslint-disable-next-line import/no-unresolved
@@ -42,7 +43,6 @@ class CssIndex extends Component {
   }, 1000);
 
   backToBot = () => {
-    console.log(this.$dom);
     this.$dom.scrollIntoView({
       behavior: 'smooth',
       block: 'end',

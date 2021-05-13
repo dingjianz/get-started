@@ -14,6 +14,7 @@ import {
   HocComponent,
   Parabola,
   TreeDemo,
+  EchartDemo,
 } from '../views';
 
 export const mainRouter = [
@@ -121,6 +122,14 @@ export const adminRouter = [
         iconName: 'setting',
         roles: ['001', '002', '003'],
         component: TreeDemo,
+      },
+      {
+        pathname: '/admin/test/echart',
+        title: 'echart',
+        isNav: true,
+        iconName: 'setting',
+        roles: ['001', '002', '003'],
+        component: EchartDemo,
       },
     ],
   },

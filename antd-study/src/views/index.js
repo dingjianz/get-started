@@ -68,6 +68,11 @@ const TreeDemo = Loadable({
   loading: Loading,
 });
 
+const EchartDemo = Loadable({
+  loader: () => import('./Test/echart/index.jsx'),
+  loading: Loading,
+});
+
 export {
   Login,
   Dashboard,
@@ -84,6 +89,7 @@ export {
   Parabola,
   HocComponent,
   TreeDemo,
+  EchartDemo,
 };
 
 // export { default as Login } from './Login'
