@@ -267,36 +267,87 @@ class EchartDemo extends Component {
         },
       ]),
       title: {
-        text: `${(value * 100).toFixed(0)}{a|%}`,
+        text: 'CPU使用率',
         textStyle: {
-          fontSize: 50,
-          fontFamily: 'Microsoft Yahei',
           fontWeight: 'normal',
-          color: '#bcb8fb',
-          rich: {
-            a: {
-              fontSize: 28,
-            },
-          },
+          fontSize: 25,
+          color: 'rgb(97, 142, 205)',
         },
-        x: 'center',
-        y: '35%',
       },
       graphic: [
         {
           type: 'group',
-          left: 'center',
-          top: '60%',
+          rotation: Math.PI / 4,
+          bounding: 'raw',
+          right: 110,
+          bottom: 110,
+          z: 100,
           children: [
+            {
+              type: 'rect',
+              left: 'center',
+              top: 'center',
+              z: 100,
+              shape: {
+                width: 400,
+                height: 50,
+              },
+              style: {
+                fill: 'rgba(0,0,0,0.3)',
+              },
+            },
+            {
+              type: 'text',
+              left: 'center',
+              top: 'center',
+              z: 100,
+              style: {
+                fill: '#fff',
+                text: 'ECHARTS LINE CHART',
+                font: 'bold 26px sans-serif',
+              },
+            },
+          ],
+        },
+        {
+          type: 'group',
+          left: '10%',
+          top: 'center',
+          children: [
+            {
+              type: 'rect',
+              z: 100,
+              left: 'center',
+              top: 'middle',
+              shape: {
+                width: 190,
+                height: 100,
+              },
+              style: {
+                fill: '#fff',
+                stroke: '#555',
+                lineWidth: 1,
+                shadowBlur: 8,
+                shadowOffsetX: 3,
+                shadowOffsetY: 3,
+                shadowColor: 'rgba(0,0,0,0.2)',
+              },
+            },
             {
               type: 'text',
               z: 100,
-              left: '10',
+              left: 'center',
               top: 'middle',
               style: {
-                fill: '#aab2fa',
-                text: '流量统计',
-                font: '20px Microsoft YaHei',
+                fill: '#333',
+                text: [
+                  '横轴表示温度，单位是 °C',
+                  '纵轴表示高度，单位是 km',
+                  '右上角有一个图片做的水印',
+                  '这个文本块可以放在图中各',
+                  '种位置',
+                ].join('\n'),
+                font: '14px Microsoft YaHei',
               },
             },
           ],
@@ -306,87 +357,19 @@ class EchartDemo extends Component {
         {
           type: 'liquidFill',
           radius: '80%',
-          center: ['50%', '50%'],
-          //  shape: 'roundRect',
           data,
           backgroundStyle: {
-            color: {
-              type: 'linear',
-              x: 1,
-              y: 0,
-              x2: 0.5,
-              y2: 1,
-              colorStops: [
-                {
-                  offset: 1,
-                  color: 'rgba(68, 145, 253, 0)',
-                },
-                {
-                  offset: 0.5,
-                  color: 'rgba(68, 145, 253, .25)',
-                },
-                {
-                  offset: 0,
-                  color: 'rgba(68, 145, 253, 1)',
-                },
-              ],
-              globalCoord: false,
-            },
-          },
-          outline: {
-            borderDistance: 0,
-            itemStyle: {
-              borderWidth: 20,
-              borderColor: {
-                type: 'linear',
-                x: 0,
-                y: 0,
-                x2: 0,
-                y2: 1,
-                colorStops: [
-                  {
-                    offset: 0,
-                    color: 'rgba(69, 73, 240, 0)',
-                  },
-                  {
-                    offset: 0.5,
-                    color: 'rgba(69, 73, 240, .25)',
-                  },
-                  {
-                    offset: 1,
-                    color: 'rgba(69, 73, 240, 1)',
-                  },
-                ],
-                globalCoord: false,
-              },
-              shadowBlur: 10,
-              shadowColor: '#000',
-            },
-          },
-          color: {
-            type: 'linear',
-            x: 0,
-            y: 0,
-            x2: 0,
-            y2: 1,
-            colorStops: [
-              {
-                offset: 1,
-                color: 'rgba(58, 71, 212, 0)',
-              },
-              {
-                offset: 0.5,
-                color: 'rgba(31, 222, 225, .2)',
-              },
-              {
-                offset: 0,
-                color: 'rgba(31, 222, 225, 1)',
-              },
-            ],
-            globalCoord: false,
+            borderWidth: 5,
+            borderColor: 'rgb(255,0,255,0.9)',
+            color: 'rgb(255,0,255,0.01)',
           },
           label: {
-            formatter: '',
+            normal: {
+              formatter: `${(value * 100).toFixed(2)}%`,
+              textStyle: {
+                fontSize: 50,
+              },
+            },
           },
         },
       ],
