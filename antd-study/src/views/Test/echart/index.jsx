@@ -1,3 +1,5 @@
+/* eslint-disable no-script-url */
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable no-console */
 /* eslint-disable prefer-rest-params */
 /* eslint-disable no-irregular-whitespace */
@@ -9,6 +11,24 @@ import './index.scss';
 
 const colorList = ['#1089e7', '#f57474', '#56D0E3', '#F8d448', '#8B78F7', '#4fc08d'];
 
+const yearData = {
+  2020: {
+    year: '2020', // 年份
+    data: [
+      // 两个数组是因为有两条线
+      [120, 182, 91, 24, 110, 330, 110],
+      [203, 32, 91, 234, 290, 130, 210],
+    ],
+  },
+  2021: {
+    year: '2021',
+    data: [
+      [34, 182, 191, 234, 390, 330, 310],
+      [260, 382, 191, 224, 210, 30, 10],
+    ],
+  },
+};
+
 class EchartDemo extends Component {
   componentDidMount() {
     this.backToBot();
@@ -17,6 +37,7 @@ class EchartDemo extends Component {
     this.initChart3();
     this.initChart4();
     this.initChart5();
+    this.initChart6();
   }
 
   backToBot = () => {
@@ -378,9 +399,10 @@ class EchartDemo extends Component {
     myChart.setOption(option);
   };
 
-  initChart5 = () => {
+  initChart5 = (year = 2020) => {
     const myChart = echarts.init(document.getElementById('main5'));
     const option = {
+      color: ['#00f2f1', '#ed3f35'], // 通过这个color修改两条线的颜色
       tooltip: {
         trigger: 'axis',
       },
@@ -407,24 +429,172 @@ class EchartDemo extends Component {
       },
       xAxis: {
         type: 'category',
-        boundaryGap: false,
-        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+        boundaryGap: false, // 去除轴间距（大白话：贴不贴x y 轴）
+        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月'],
+        axisTick: {
+          show: false,
+        },
+        axisLabel: {
+          color: '#4c9bfd',
+        },
+        axisLine: {
+          show: false,
+        },
       },
       yAxis: {
         type: 'value',
+        axisTick: {
+          show: false,
+        },
+        axisLabel: {
+          color: '#4c9bfd',
+        },
+        axisLine: {
+          show: false,
+        },
+        splitLine: {
+          lineStyle: {
+            color: '#012f4a',
+          },
+        },
       },
+      series: [
+        {
+          name: '新增粉丝',
+          type: 'line',
+          data: yearData[year].data[0],
+          smooth: true, // 是否平滑曲线显示
+          itemStyle: {
+            color: 'yellow',
+            borderColor: 'red',
+          },
+          tooltip: {
+            position: [10, 10],
+            // formatter: '{b0}: {c0}<br />{b1}: {c1}',
+          },
+        },
+        {
+          name: '新增游客',
+          type: 'line',
+          data: yearData[year].data[1],
+        },
+      ],
+    };
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+  };
+
+  initChart6 = () => {
+    const myChart = echarts.init(document.getElementById('main6'));
+    const option = {
+      tooltip: {
+        trigger: 'axis',
+      },
+      legend: {
+        data: ['邮件营销', '联盟广告'],
+      },
+      grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true,
+      },
+      xAxis: [
+        {
+          type: 'category',
+          boundaryGap: false,
+          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+        },
+      ],
+      yAxis: [
+        {
+          type: 'value',
+        },
+      ],
       series: [
         {
           name: '邮件营销',
           type: 'line',
-          stack: '总量',
+          smooth: true,
           data: [120, 132, 101, 134, 90, 230, 210],
+          areaStyle: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              0,
+              0,
+              1,
+              [
+                {
+                  offset: 0,
+                  color: 'rgba(1, 132, 213, .4)', // 渐变色的起始颜色
+                },
+                {
+                  offset: 0.8,
+                  color: 'rgba(1, 132, 213, .1)', // 渐变色的结束颜色
+                },
+              ],
+              false
+            ),
+            shadowColor: 'rgba(0, 0, 0, 0.1)',
+          },
+          showSymbol: false, // 开始不显示拐点，鼠标hover才显示
+          symbol: 'circle', // 设置拐点类型
+          symbolSize: 12, // 设置拐点大小
+          emphasis: {
+            focus: 'series',
+          },
+          itemStyle: {
+            // 设置拐点样式
+            color: '#0184d5', // 拐点颜色
+            borderColor: 'rgba(221, 220, 107, .1)', // 拐点边框颜色
+            borderWidth: 12, // 拐点边框大小
+          },
+          lineStyle: {
+            type: 'solid',
+            color: '#0184d5',
+          },
         },
         {
           name: '联盟广告',
           type: 'line',
-          stack: '总量',
+          smooth: true,
           data: [220, 182, 191, 234, 290, 330, 310],
+          areaStyle: {
+            color: new echarts.graphic.LinearGradient(
+              0,
+              0,
+              0,
+              1,
+              [
+                {
+                  offset: 0,
+                  color: 'rgba(0, 216, 135, .4)', // 渐变色的起始颜色
+                },
+                {
+                  offset: 0.8,
+                  color: 'rgba(0, 216, 135, .1)', // 渐变色的结束颜色
+                },
+              ],
+              false
+            ),
+            shadowColor: 'rgba(0, 0, 0, 0.1)',
+          },
+          showSymbol: false, // 开始不显示拐点，鼠标hover才显示
+          symbol: 'circle', // 设置拐点类型
+          symbolSize: 12, // 设置拐点大小
+          emphasis: {
+            focus: 'series',
+          },
+          itemStyle: {
+            // 设置拐点样式
+            color: '#00d887', // 拐点颜色
+            borderColor: 'rgba(221, 220, 107, .1)', // 拐点边框颜色
+            borderWidth: 12, // 拐点边框大小
+          },
+          lineStyle: {
+            type: 'solid',
+            color: '#00d887',
+          },
         },
       ],
     };
@@ -440,7 +610,16 @@ class EchartDemo extends Component {
         <div className="chart" id="main2" />
         <div className="chart" id="main3" />
         <div className="chart" id="main4" />
+        <div className="change-data">
+          <a href="javascript:;" onClick={this.initChart5.bind(this, 2020)}>
+            2020
+          </a>
+          <a href="javascript:;" onClick={this.initChart5.bind(this, 2021)}>
+            2021
+          </a>
+        </div>
         <div className="chart" id="main5" />
+        <div className="chart" id="main6" />
       </div>
     );
   }

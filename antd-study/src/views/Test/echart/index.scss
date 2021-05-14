@@ -11,4 +11,15 @@
     height: 400px;
     margin-bottom: 50px;
   }
+
+  .change-data {
+    padding-left: 30px;
+    a {
+      text-decoration: none;
+      padding-right: 30px;
+      &:hover {
+        color: red;
+      }
+    }
+  }
 }
