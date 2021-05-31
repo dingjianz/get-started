@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self';script-src cdn.qiniu.com;style-src: cdn.qiniu.com;font-src cdn.qiniu.com;media-src cdn.qcloud.com;">
+  <title>网页安全策略</title>
+</head>
+
+<body>
+  <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3141248892,1003998260&fm=26&gp=0.jpg" alt="">
+  <video autoplay="" muted="" loop="" playsinline="" preload="auto"
+    poster="https://p1.music.126.net/Oq3EQRMgwK2AYvp3hlXlpQ==/109951165418425655">
+    <source
+      src="https://vodkgeyttp9c.vod.126.net/vodkgeyttp8/LvC1f4Ay_3178552633_shd.mp4?ts=1919130567&amp;rid=7859AE92117216E8AD0E345795682128&amp;rl=0&amp;rs=hshSERxELyHpcTtlhBmAihKBMJdHpCDj&amp;sign=6ef716a5997cbbfd306f07f45a9c4abf&amp;coverId=Oq3EQRMgwK2AYvp3hlXlpQ==/109951165418425655&amp;infoId=265044"
+      type="video/mp4">
+  </video>
+  <script>
+    /* 
+    场景：
+    1. 当前网站域名为 website.com;
+    2. js、css、font静态资源在 cdn.qiniu.com;
+    3. 视频资源在 cdn.qcloud.com;
+
+    根据上述场景，配置一套最小范围 Content-Security-Policy
+  */
+  </script>
+</body>
+
+</html>
