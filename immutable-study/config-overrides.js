@@ -1,8 +1,11 @@
 const {
   override,
   fixBabelImports,
-  addLessLoader
-} = require('customize-cra')
+  addLessLoader,
+  addWebpackAlias,
+} = require('customize-cra');
+
+const path = require('path');
 
 
 module.exports = override(
@@ -15,4 +18,7 @@ module.exports = override(
     // style: 'css',
     style: true // 要安装less less-loader
   }),
+  addWebpackAlias({
+    '@': path.resolve('./src'),
+  })
 );

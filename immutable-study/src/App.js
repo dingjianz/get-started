@@ -1,18 +1,19 @@
-import React from 'react'
-import { CounterBtn, CounterDisplay } from './components'
-import { connect } from 'react-redux'
-import { addCountAction, reduceCountAction } from './store/actions/todoAction'
+import React from "react";
+import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
+import ReduxDemo from "@/pages/redux";
+import ImmutableDemo from "@/pages/immutable";
 
-import './App.scss'
-
-function App(props) {
+function App() {
   return (
     <div className="App">
-      <CounterBtn onClick={() => props.reduceCountAction(2)}>-</CounterBtn>
-      <CounterDisplay></CounterDisplay>
-      <CounterBtn onClick={() => props.addCountAction(2)}>+</CounterBtn>
+      <Router>
+        <Switch>
+          <Route path="/immutable" component={ImmutableDemo} />
+          <Route path="/" component={ReduxDemo}  exact />
+        </Switch>
+      </Router>
     </div>
-  )
+  );
 }
 
-export default connect(null, { addCountAction, reduceCountAction })(App)
+export default App;
