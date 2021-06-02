@@ -1,21 +1,16 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class CounterDisplay extends Component {
   render() {
-    return (
-      <div>
-        {this.props.count}
-      </div>
-    )
+    return <div>{this.props.count}</div>;
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    count: state.getIn(['todoReducer', 'count'])
-  }
-}
+    count: state.getIn(["todoReducer", "count"]),
+  };
+};
 
-export default connect(mapStateToProps)(CounterDisplay)
+export default connect(mapStateToProps)(CounterDisplay);
