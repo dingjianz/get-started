@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01.两数之和</title>
+</head>
+
+<body>
+  <script>
+    //  https://www.cnblogs.com/echolun/p/12877981.html
+    /**
+     * @param {number[]} nums
+     * @param {number} target
+     * @return {number[]}
+     */
+    // const twoSum = function (nums = [], target = 0) {
+    //   let r = undefined;
+    //   let flag1 = undefined;
+    //   nums.forEach((item, index) => {
+    //     console.log('item', item)
+    //     flag1 = index;
+    //     const flag2 = nums.findIndex((value, i) => {
+    //       const preNum = target - item;
+    //       return value === preNum;
+    //     })
+    //     console.log('flag1::::', flag1)
+    //     console.log('flag2::::', flag2)
+    //     if (flag2 === -1) return false;
+    //     if (flag1 !== flag2 && !r) r = [flag1, flag2];
+    //   })
+    //   return r.sort();
+    // };
+
+    // var twoSum = function (nums, target) {
+    //   var arr = {};
+    //   for (var i = 0; i < nums.length; i++) {
+    //     console.log('i', i)
+    //     console.log('nums[i]', nums[i])
+    //     if (typeof (arr[nums[i]]) !== "undefined") {
+    //       return [arr[nums[i]], i];
+    //     }
+    //     arr[target - nums[i]] = i;
+    //   }
+    // };
+
+
+    const arr = [1, 2, 3, 4, 5]
+    // arr.forEach((item, index) => {
+    //   console.log('item', item)
+    //   if (index === 0) return false;
+    // })
+    // for (let item of arr) {
+    //   if (item < 2) return console.log('item::', item); // Uncaught SyntaxError: Illegal return statement 不能return 语句
+    // }
+    var twoSum = function (nums, target) {
+      // 用来装目标索引的空数组
+      var result = [],
+        len = nums.length;
+      for (var i = 0; i < len; i++) {
+        // 注意，这里从i+1开始遍历
+        for (var j = i + 1; j < len; j++) {
+          if (nums[i] + nums[j] === target) {
+            // 注意，concat返回一个新数组
+            result = result.concat(i, j);
+            return result;
+          };
+        };
+      }
+    };
+
+    // var twoSum = function (nums, target) {
+    //   var temp = [],
+    //     len = nums.length;
+    //   for (var i = 0; i < len; i++) {
+    //     var dif = target - nums[i];
+    //     if (temp[dif] != undefined) {
+    //       return [temp[dif], i];
+    //     };
+    //     temp[nums[i]] = i;
+    //   };
+    // };
+
+    const result = twoSum([2, 7, 3, 6], 9);
+    console.log('result:::::', result);
+  </script>
+</body>
+
+</html>
