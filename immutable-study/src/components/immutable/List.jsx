@@ -7,6 +7,7 @@ const ListDemo = () => {
     // const list = new List([1, 2, 3, 4]); // NG list是工厂函数，不能new
     const list = List([1, 2, 3, 4, 5]);
     console.log(list);
+
     /* 
         List有两个静态方法，List.isList()和List.of()
         List.isList()判断是否是List类型
@@ -16,8 +17,10 @@ const ListDemo = () => {
     console.log(List.isList([1, 2, 3, 4, 5])); // false
     const list2 = List.of(1, 2, 3, 4, 5);
     console.log("list2", list2);
+
     // size取得List得长度
     console.log(list.size); // 5
+
     // set方法用来设定指定下标的值，set(下标, 值)，其中下标可以超出size， 如果是负值，即从右往左
     const list3 = list.set(0, 999);
     const list4 = list.set(-1, 888);
@@ -30,6 +33,7 @@ const ListDemo = () => {
     const u1 = List([1, 2, 3, 4, 5]);
     const u2 = u1.update(1, (x) => x + 100);
     console.log("u2", u2);
+
     // clear清空并返回一个长度为0的新数组
     // push pop unshift shift和原生数组方法相同
     // map 同原生数组的map，循环并返回新的list
@@ -46,15 +50,18 @@ const ListDemo = () => {
     // const updateInList2 = updateInList1.updateIn([1, 1], x => x = 88);
     console.log("updateInList1", updateInList1);
     console.log("updateInList2", updateInList2);
+
     // concat连接List concat(List1, List2, List3)
     const cList1 = List([1, 2, 3]);
     const cList2 = List([4, 5, 6]);
     const cList3 = List([7, 8, 9]);
     const titoalList1 = cList1.concat(cList2, cList3);
     console.log("titoalList1", titoalList1);
+
     // merge是concat的别名
     const titoalList2 = cList1.merge(cList2, cList3);
     console.log("titoalList2", titoalList2);
+
     // flatten扁平化这个list
     const fla1 = List([
       List([1, 2, 3]),
@@ -65,6 +72,7 @@ const ListDemo = () => {
     const fla3 = fla1.flatten(true); // 只拉平第一层
     console.log("fla2", fla2);
     console.log("fla3", fla3);
+
     // find查找，返回第一个符合的结果
     // findLast查找，返回最后一个符合的结果 findIndex findKey
     // keys返回所有下标 values返回所有的值 entries返回所有entry, [key, value]形式
@@ -86,6 +94,7 @@ const ListDemo = () => {
     const gp = people.groupBy((x) => x.sex);
     console.log("gp", gp);
   }, []);
+
   return <h2>immutable List</h2>;
 };
 

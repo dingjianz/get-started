@@ -124,14 +124,15 @@ const MapDemo = () => {
       name: "jianding9",
       age: 18,
     });
-    console.log('has::', testMap.has('name')); // true
-    console.log('includes::', testMap.includes(18)); // true
+    console.log("has::", testMap.has("name")); // true
+    console.log("includes::", testMap.includes(18)); // true
 
-    // forEach方法 toOrderedMap和set顺序有关 有序输出
+    // forEach方法
     testMap.forEach((val, key) => {
       console.log(`key: ${key}, val: ${val}`); // key: name, val: jianding9 key: age, val: 18
-    })
-  });
+    });
+  }, []);
+
   return <h2>immutable Map</h2>;
 };
 
