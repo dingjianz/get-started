@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>svg动画</title>
+  <style>
+    .container {
+      position: relative;
+    }
+
+    .container svg {
+      background: gray;
+    }
+
+    .container svg path {
+      stroke: black;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    @keyframes svg-path-animation {
+      from {
+        offset-distance: 0%;
+      }
+
+      to {
+        offset-distance: 100%;
+      }
+    }
+
+    .container .rect {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 10px;
+      height: 10px;
+      background: darkred;
+      offset-path: path("M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80");
+      offset-distance: 0%;
+      animation: svg-path-animation 2s ease-in-out 0s infinite normal none;
+    }
+
+    .svg-container {
+      position: relative;
+      background-color: #e9e9e9;
+      width: 400px;
+      height: 400px;
+    }
+
+    .line {
+      stroke-width: 2px;
+      stroke: #f00;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: skyblue;
+      position: absolute;
+      left: 0;
+      top: 0;
+      offset-path: path("M 0,0 L 100,200 L 200,300 Z");
+      offset-distance: 0%;
+      animation: svg-path-animation 2s ease-in-out 0s infinite normal none;
+    }
+
+    /* 动画 */
+
+    .bg {
+      background-color: hsl(17, 75%, 55%);
+    }
+
+    path {
+      stroke-dasharray: 10 20;
+      stroke-dashoffset: 300;
+      animation: dash 5s linear infinite;
+      stroke: white;
+    }
+
+    @keyframes dash {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    circle {
+      fill: white;
+      opacity: 0;
+      animation: dots .3s linear;
+      animation-fill-mode: forwards;
+    }
+
+    circle:nth-child(2) {
+      animation-delay: .3s;
+    }
+
+    circle:nth-child(3) {
+      animation-delay: .6s;
+    }
+
+    circle:nth-child(4) {
+      animation-delay: 1.2s;
+    }
+
+    circle:nth-child(5) {
+      animation-delay: 1.5s;
+    }
+
+    circle:last-child {
+      animation-delay: 1.8s;
+    }
+
+    @keyframes dots {
+      to {
+        opacity: 1
+      }
+    }
+
+
+    /* 表格 */
+    .text {
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+      <path d="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" />
+    </svg>
+    <div class="rect"></div>
+  </div>
+
+
+  <svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 10 10 C 20 20, 40 20, 50 10" stroke="black" fill="transparent" />
+    <path d="M 70 10 C 70 20, 110 20, 110 10" stroke="black" fill="transparent" />
+    <path d="M 130 10 C 120 20, 180 20, 170 10" stroke="black" fill="transparent" />
+    <path d="M 10 60 C 20 80, 40 80, 50 60" stroke="black" fill="transparent" />
+    <path d="M 70 60 C 70 80, 110 80, 110 60" stroke="black" fill="transparent" />
+    <path d="M 130 60 C 120 80, 180 80, 170 60" stroke="black" fill="transparent" />
+    <path d="M 10 110 C 20 140, 40 140, 50 110" stroke="black" fill="transparent" />
+    <path d="M 70 110 C 70 140, 110 140, 110 110" stroke="black" fill="transparent" />
+    <path d="M 130 110 C 120 140, 180 140, 170 110" stroke="black" fill="transparent" />
+  </svg>
+
+  <svg width="190" height="160" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" stroke="black" fill="transparent" />
+  </svg>
+  <!-- 不指定width height, SVG图像默认大小是300px*150px -->
+  <svg width="100%" height="100%">
+    <circle cx="50" cy="50" r="50" fill="orange"></circle>
+  </svg>
+  <hr />
+
+  <!-- 50 50 50 50: 前面两个50分别代表左上角的横纵坐标，后面两个50代表视口的宽高 -->
+  <svg width="100" height="100" viewbox="50 50 50 50">
+    <circle cx="50" cy="50" r="50" fill="orange"></circle>
+  </svg>
+
+  <!-- 绘制1/4圆 -->
+  <svg width="100" height="100" viewbox="0 0 50 50">
+    <circle cx="50" cy="50" r="50" fill="orange"></circle>
+  </svg>
+
+  <!-- 绘制直线和曲线 -->
+  <svg width="400" height="400" style="background:grey;">
+    <line x1="0" y1="0" x2="400" y2="400" class="line"></line>
+    <polyline points="0,0 200,300, 400,400" fill="none" style="stroke-width: 2px;stroke:green;"></polyline>
+  </svg>
+
+  <!-- 绘制矩形 x y 控制起始点 width height控制宽高 rx ry用来控制圆角 rx圆角的x方位的半径 ry圆角的y方位的半径-->
+  <svg width="300" height="180" style="background:grey;">
+    <rect x="0" y="0" width="200" height="100" style="stroke-width: 2px;stroke:#70d5dd;" fill="#dd524b"></rect>
+    <rect x="60" y="10" rx="10" ry="10" width="30" height="100" stroke="black" fill="transparent" stroke-width="5">
+    </rect>
+  </svg>
+
+  <!-- cx cy 椭圆圆心  rx ry制定了椭圆的横纵轴的半径 -->
+  <svg width="300" height="180" style="background:grey;">
+    <ellipse cx="100" cy="100" rx="80" ry="40" style="stroke-width: 2px;stroke:#70d5dd;" fill="#dd524b"></ellipse>
+  </svg>
+
+  <!-- 绘制多边形 -->
+  <svg width="300" height="180" style="background:grey;">
+    <polygon cx="100" points="0,0 100,100, 0,100" style="stroke-width: 2px;stroke:#70d5dd;" fill="#dd524b"></polygon>
+  </svg>
+
+  <!-- path标签用于绘制直线路径 
+    M: 移动到（moveTo） 表示起始点
+    L:画直线到（lineTo）
+    Z: 闭合路径
+
+    每一个命令都有两种表示方式，一种是用大写字母，表示采用绝对定位。另一种是用小写字母，表示采用相对定位（例如：从上一个点开始，向上移动10px，向左移动7px）。
+  -->
+  <div class="svg-container">
+    <svg width="400" height="400" style="background:grey;">
+      <path d="M 0,0 L 100,200 L 200,300 Z" style="stroke-width: 2px;stroke:#70d5dd;" fill="#dd524b"></path>
+      <!-- 字体颜色用fill填充 stroke可以描边  text-shadow font-size 正常使用  -->
+      <text x="200" y="300" fill="red" style="font-size:30px;stroke-width: 1px;stroke:#70d5dd;">这是绘制路径</text>
+    </svg>
+    <div class="dot"></div>
+  </div>
+
+
+  <!-- 。H，绘制水平线。V，绘制垂直线。这两个命令都只带一个参数，标明在x轴或y轴移动到的位置，因为它们都只在坐标轴的一个方向上移动。 -->
+  <svg width="400" height="400" style="background:grey;">
+    <path d="M10 10 H 100 V 100 H 10 V 10" style="stroke-width: 2px;stroke:#70d5dd;" fill="#dd524b"></path>
+  </svg>
+
+  <hr>
+  <!-- TODO: 
+    use标签用于复制一个形状
+    defs标签用于自定义形状，它内部的代码不会显示，仅供使用
+    g标签用于将多个形状组成一个组（group）,方便复用
+    pattern标签用于自定义一个形状，该标签可以被引用来平铺一个区域
+    下面代码中，pattern标签将一个圆形定义为dots模式，patternUnits="userSpaceOnUse"表示pattern的宽度和长度是实际的像素值，然后指定这个模式去填充下面的矩形。
+  -->
+  <svg width="500" height="500">
+    <defs>
+      <pattern id="dots" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <circle fill="#bee9e8" cx="50" cy="50" r="35"></circle>
+      </pattern>
+    </defs>
+    <rect x="0" y="0" width="100%" height="100%" fill="url(#dots)"></rect>
+  </svg>
+
+  <!-- image标签用于插入图片 基本不会这么操作 -->
+  <svg width="500" height="500" viewBox="0 0 1000 100">
+    <image xlink:href="img/1.png" width="50%" height="50%"></image>
+  </svg>
+
+  <hr>
+
+  <div class="bg">
+    <svg>
+      <g transform="translate(-35.317 -721.93)">
+        <g>
+          <circle cx="39.317" cy="813.71" r="4" />
+          <circle cx="109.32" cy="783.79" r="4" />
+          <circle cx="179.32" cy="824.51" r="4" />
+          <circle cx="249.32" cy="776.65" r="4" />
+          <circle cx="319.32" cy="780.93" r="4" />
+          <circle cx="389.32" cy="725.93" r="4" />
+        </g>
+        <path d="m39.913 813.59 69.701-30.305 70.711 42.426 69.195-48.992 70.711 4.5457 69.195-55.053" stroke="#000"
+          stroke-width="1px" fill="none" />
+      </g>
+    </svg>
+  </div>
+
+  <hr>
+
+  <svg width="800" height="800">
+    <circle cx="400" cy="400" r="350" fill="none" stroke="grey" stroke-width="40" stroke-linecap="round"></circle>
+    <circle class="progressDom" transform="rotate(-90, 400, 400)" cx="400" cy="400" r="350" fill="none" stroke="red"
+      stroke-width="40" stroke-linecap="round" stroke-dasharray="0,10000"> </circle>
+    <text class="textDom" x="400" y="400" font-size="200" fill="red">36</text>
+  </svg>
+
+  <script>
+    window.onload = () => {
+      const progressDom = document.querySelector('.progressDom');
+      const textDom = document.querySelector('.textDom');
+
+      function rotateCircle(persent) {
+        // 获取svg圆环的总长，通过半径长度算出总长
+        const circleLength = Math.floor(2 * Math.PI * parseFloat(progressDom.getAttribute('r')))
+        // 按照百分比，算出进度环长度
+        const value = persent * circleLength / 100;
+        // 红色是RGB 255, 0, 0
+        // 蓝色RGB 0, 191, 255
+        
+        const red = 255 + parseInt((0 - 255) / 100 * persent);
+        const green = 0 + parseInt((191 - 0) / 100 * persent);
+        const blue = 0 + parseInt((255 - 0) / 100 * persent);
+        // 设置stroke-dasharray和路径颜色
+        progressDom.setAttribute('stroke-dasharray', value + ",100000")
+        progressDom.setAttribute('stroke', `rgb(${red},${green},${blue})`)
+        textDom.innerHTML = persent + '%';
+        textDom.setAttribute('fill', `rgb(${red},${green},${blue})`)
+      }
+
+      let num = 0
+      setInterval(() => {
+        num++;
+        if (num > 100) num = 0;
+        rotateCircle(num);
+      }, 30)
+    }
+  </script>
+
+</body>
+
+</html>

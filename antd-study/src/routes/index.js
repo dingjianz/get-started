@@ -15,6 +15,7 @@ import {
   Parabola,
   TreeDemo,
   EchartDemo,
+  UseRefDemo,
 } from '../views';
 
 export const mainRouter = [
@@ -130,6 +131,14 @@ export const adminRouter = [
         iconName: 'setting',
         roles: ['001', '002', '003'],
         component: EchartDemo,
+      },
+      {
+        pathname: '/admin/test/useRef',
+        title: 'useRef',
+        isNav: true,
+        iconName: 'setting',
+        roles: ['001', '002', '003'],
+        component: UseRefDemo,
       },
     ],
   },

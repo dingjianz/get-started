@@ -73,6 +73,11 @@ const EchartDemo = Loadable({
   loading: Loading,
 });
 
+const UseRefDemo = Loadable({
+  loader: () => import('./Test/useRef/index.jsx'),
+  loading: Loading,
+});
+
 export {
   Login,
   Dashboard,
@@ -90,6 +95,7 @@ export {
   HocComponent,
   TreeDemo,
   EchartDemo,
+  UseRefDemo,
 };
 
 // export { default as Login } from './Login'
