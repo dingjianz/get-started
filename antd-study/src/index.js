@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 import { render } from 'react-dom';
 import zhCN from 'antd/es/locale/zh_CN';
