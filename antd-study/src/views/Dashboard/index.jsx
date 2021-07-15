@@ -50,10 +50,12 @@ export default class Dashboard extends Component {
       ],
     };
     this.myChart.setOption(option);
+    window.addEventListener('resize', () => {
+      this.myChart.resize();
+    });
   };
 
   render() {
-    // const {  } = this.state
     return (
       <>
         <Card title="概览" bordered={false}>

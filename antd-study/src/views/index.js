@@ -1,4 +1,5 @@
 import Loadable from 'react-loadable';
+
 // import Loadable from './selfLoadable' // 简易react-loadable原理
 import { Loading } from '../components';
 
@@ -44,37 +45,42 @@ const TestIndex = Loadable({
 });
 
 const CssIndex = Loadable({
-  loader: () => import('./Test/cssIndex/index.jsx'),
+  loader: () => import('./Test/cssIndex'),
   loading: Loading,
 });
 
 const TimeLine = Loadable({
-  loader: () => import('./Test/TimeLine/index.jsx'),
+  loader: () => import('./Test/TimeLine'),
   loading: Loading,
 });
 
 const HocComponent = Loadable({
-  loader: () => import('./Test/hoc/index.jsx'),
+  loader: () => import('./Test/hoc'),
   loading: Loading,
 });
 
 const Parabola = Loadable({
-  loader: () => import('./Test/Parabola/index.jsx'),
+  loader: () => import('./Test/Parabola'),
   loading: Loading,
 });
 
 const TreeDemo = Loadable({
-  loader: () => import('./Test/Tree/index.jsx'),
+  loader: () => import('./Test/Tree'),
   loading: Loading,
 });
 
 const EchartDemo = Loadable({
-  loader: () => import('./Test/echart/index.jsx'),
+  loader: () => import('./Test/echart'),
   loading: Loading,
 });
 
 const UseRefDemo = Loadable({
-  loader: () => import('./Test/useRef/index.jsx'),
+  loader: () => import('./Test/useRef'),
+  loading: Loading,
+});
+
+const ImgLazyLoad = Loadable({
+  loader: () => import('./Test/lazyLoad'),
   loading: Loading,
 });
 
@@ -96,6 +102,7 @@ export {
   TreeDemo,
   EchartDemo,
   UseRefDemo,
+  ImgLazyLoad,
 };
 
 // export { default as Login } from './Login'

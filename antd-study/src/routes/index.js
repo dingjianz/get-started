@@ -16,6 +16,7 @@ import {
   TreeDemo,
   EchartDemo,
   UseRefDemo,
+  ImgLazyLoad,
 } from '../views';
 
 export const mainRouter = [
@@ -139,6 +140,14 @@ export const adminRouter = [
         iconName: 'setting',
         roles: ['001', '002', '003'],
         component: UseRefDemo,
+      },
+      {
+        pathname: '/admin/test/lazyload',
+        title: 'lazyload',
+        isNav: true,
+        iconName: 'setting',
+        roles: ['001', '002', '003'],
+        component: ImgLazyLoad,
       },
     ],
   },
