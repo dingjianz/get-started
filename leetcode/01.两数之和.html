@@ -55,33 +55,35 @@
     // for (let item of arr) {
     //   if (item < 2) return console.log('item::', item); // Uncaught SyntaxError: Illegal return statement 不能return 语句
     // }
-    var twoSum = function (nums, target) {
-      // 用来装目标索引的空数组
-      var result = [],
-        len = nums.length;
-      for (var i = 0; i < len; i++) {
-        // 注意，这里从i+1开始遍历
-        for (var j = i + 1; j < len; j++) {
-          if (nums[i] + nums[j] === target) {
-            // 注意，concat返回一个新数组
-            result = result.concat(i, j);
-            return result;
-          };
-        };
-      }
-    };
-
     // var twoSum = function (nums, target) {
-    //   var temp = [],
+    //   // 用来装目标索引的空数组
+    //   var result = [],
     //     len = nums.length;
     //   for (var i = 0; i < len; i++) {
-    //     var dif = target - nums[i];
-    //     if (temp[dif] != undefined) {
-    //       return [temp[dif], i];
+    //     // 注意，这里从i+1开始遍历
+    //     for (var j = i + 1; j < len; j++) {
+    //       if (nums[i] + nums[j] === target) {
+    //         // 注意，concat返回一个新数组
+    //         result = result.concat(i, j);
+    //         return result;
+    //       };
     //     };
-    //     temp[nums[i]] = i;
-    //   };
+    //   }
     // };
+
+    var twoSum = function (nums, target) {
+      var obj = {},
+        len = nums.length;
+      for (var i = 0; i < len; i++) {
+        console.log('i', i)
+        var dif = target - nums[i];
+        if (obj[dif] !== undefined) {
+          return [obj[dif], i];
+        };
+        obj[nums[i]] = i;
+        console.log('obj', obj)
+      };
+    };
 
     const result = twoSum([2, 7, 3, 6], 9);
     console.log('result:::::', result);
