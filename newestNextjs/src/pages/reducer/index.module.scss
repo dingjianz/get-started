@@ -1,0 +1,18 @@
+@import "../../assets/css/mixin.scss";
+
+.reducer {
+  @include whSet(400px, 300px);
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: center;
+
+  .opreate_btn {
+    width: 100px;
+    margin: 0 auto;
+    margin-top: 30px;
+  }
+}

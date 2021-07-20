@@ -1,0 +1,41 @@
+.text {
+  color: #4fc08d;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.link_btn {
+  display: inline-block;
+  width: 100px;
+  margin-left: 100px;
+}
+
+.title {
+  background-color: #42b983;
+  min-height: 40px;
+  padding: 10px 60px;
+  z-index: 19;
+  box-sizing: border-box;
+  text-align: center;
+  color: #d6ffec;
+}
+
+.static {
+  color: green;
+  font-size: 24px;
+  font-size: 500;
+
+  >li {
+    cursor: pointer;
+  }
+}
+
+.server {
+  color: purple;
+  font-size: 24px;
+  font-size: 500;
+
+  >li {
+    cursor: pointer;
+  }
+}

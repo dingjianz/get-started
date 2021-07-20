@@ -1,0 +1,13 @@
+@mixin flexLayout($dir: row, $ali: center, $jusc: center, $flw: nowrap) {
+  display: flex;
+  flex-direction: $dir;
+  align-items: $ali;
+  justify-content: $jusc;
+  flex-wrap: $flw;
+}
+
+@mixin whSet($w, $h) {
+  width: $w;
+  height: $h;
+  box-sizing: border-box;
+}
