@@ -1,7 +1,7 @@
-import React from "react";
-import Link from "next/link";
-import { Button, SelfHeader } from "@components";
-import styles from "@assets/css/Home.module.css";
+import React from 'react';
+import Link from 'next/link';
+import { Button, SelfHeader } from '@components';
+import styles from '@assets/css/Home.module.css';
 
 function Home() {
   return (

@@ -1,4 +1,4 @@
-import * as types from "./types";
+import * as types from './types';
 
 // add count
 const addCountAction = (payload) => ({
@@ -7,9 +7,12 @@ const addCountAction = (payload) => ({
 });
 
 // reduce count
-const reduceCountAction = (payload) => ({
-  type: types.REDUCE_COUNT,
-  payload,
-});
+const reduceCountAction = (payload) => {
+  console.log(1123424);
+  return {
+    type: types.REDUCE_COUNT,
+    payload,
+  };
+};
 
 export { addCountAction, reduceCountAction };

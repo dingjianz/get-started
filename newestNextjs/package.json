@@ -3,22 +3,46 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 10010",
+    "dev": "cross-env NODE_ENV=development next dev -p 10010",
     "build": "next build",
-    "start": "next start",
+    "start": "cross-env NODE_ENV=production next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-webpack-plugin": "^3.0.1",
     "next": "11.0.1",
+    "prop-types": "^15.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-redux": "^7.2.4",
     "redux": "^4.1.0",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
-    "sass": "^1.35.2"
+    "sass": "^1.35.2",
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "cross-env": "^7.0.2",
     "eslint": "7.31.0",
-    "eslint-config-next": "11.0.1"
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "prettier": "^2.0.5"
+  },
+  "browserslist": [
+    ">0.3%",
+    "ie >= 9"
+  ],
+  "prettier": {
+    "printWidth": 200,
+    "semi": true,
+    "singleQuote": true
   }
 }
