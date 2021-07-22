@@ -1,7 +1,7 @@
 @import "../../assets/css/mixin.scss";
 
 .reducer {
-  @include whSet(400px, 300px);
+  @include whSet(500px, 400px);
   position: absolute;
   left: 0;
   right: 0;
@@ -13,6 +13,12 @@
   .opreate_btn {
     width: 100px;
     margin: 0 auto;
+    margin-left: 30px;
+    display: inline-block;
+  }
+
+  .number {
     margin-top: 30px;
+    margin-bottom: 30px;
   }
 }

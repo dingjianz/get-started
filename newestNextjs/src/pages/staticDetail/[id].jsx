@@ -1,6 +1,7 @@
-import React from "react";
-import { useRouter } from "next/router";
-import { SelfHeader } from "@components";
+/* eslint-disable react/jsx-one-expression-per-line */
+import React from 'react';
+import { useRouter } from 'next/router';
+import { SelfHeader } from '@components';
 
 const PageStaticDetail = ({ data }) => {
   // console.log('props', props)
@@ -13,7 +14,7 @@ const PageStaticDetail = ({ data }) => {
     <>
       <SelfHeader title="静态化detail" />
       <h1>
-        静态化detail---{id}: 查看的是{data?.name}，其今年{data?.age}岁了
+        静态化detail--- {id}: 查看的是 {data?.name}，其今年{data?.age}岁了
       </h1>
       <style jsx>
         {`
@@ -29,12 +30,12 @@ const PageStaticDetail = ({ data }) => {
 // 此函数在构建时被调用
 export async function getStaticPaths() {
   // 调用外部 API 获取博文列表
-  const r = await fetch("http://localhost:10010/api/list");
+  const r = await fetch('http://localhost:10010/api/list');
   const data = await r.json();
 
   // 据博文列表生成所有需要预渲染的路径 TODO: 必须得到所有的动态页面
   const paths = data.list.map((item) => ({
-    params: { id: item.name + "" },
+    params: { id: `${item.name}` },
   }));
 
   // We'll pre-render only these paths at build time.

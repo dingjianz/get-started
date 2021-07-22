@@ -7,6 +7,7 @@ import { SelfHeader, Button } from '@components';
 import { withRouter } from 'next/router';
 import Link from 'next/link';
 import fetch from 'node-fetch';
+import { fromJS, is } from 'immutable';
 
 import styles from './index.module.scss';
 
@@ -30,6 +31,14 @@ class DashBoard extends Component {
 
   componentDidMount() {
     // this.getDataFn();
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const propsIm = fromJS(this.props);
+    const nextPropsIm = fromJS(nextProps);
+    const stateIm = fromJS(this.state);
+    const nextStateIm = fromJS(nextState);
+    return !is(propsIm, nextPropsIm) || !is(stateIm, nextStateIm);
   }
 
   render() {

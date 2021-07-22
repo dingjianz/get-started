@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import Link from 'next/link';
 import { Button, SelfHeader } from '@components';
@@ -12,12 +13,12 @@ function Home() {
       <div>
         <Button>
           <Link href="/dashboard/jianding9" passHref>
-            dashboard
+            Dashboard
           </Link>
         </Button>
         <Button className={styles.rbtn}>
           <Link href="/reducer" passHref>
-            reducer
+            Redux
           </Link>
         </Button>
       </div>

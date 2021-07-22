@@ -14,7 +14,6 @@ const countReducer = (state = initState, { type, payload }) => {
         count: ++state.count,
       };
     case types.REDUCE_COUNT:
-      console.log('111');
       return {
         ...state,
         count: --state.count,

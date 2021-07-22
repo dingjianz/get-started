@@ -15,7 +15,10 @@ class MyDocument extends Document {
           <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
           <meta name="renderer" content="webkit" />
-          <meta name="format-detection" content="telephone=no,email=no,address=no" />
+          <meta
+            name="format-detection"
+            content="telephone=no,email=no,address=no"
+          />
         </Head>
         <body>
           <Main />

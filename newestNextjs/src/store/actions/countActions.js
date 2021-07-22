@@ -8,7 +8,6 @@ const addCountAction = (payload) => ({
 
 // reduce count
 const reduceCountAction = (payload) => {
-  console.log(1123424);
   return {
     type: types.REDUCE_COUNT,
     payload,
