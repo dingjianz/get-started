@@ -30,12 +30,12 @@ const PageServerDetail = ({ data }) => {
 // 此函数在构建时被调用
 export async function getServerSideProps(context) {
   // TODO: 这里是根据 [id]里面的id 动态返回对应的数据
-  // console.log(context)
+  console.log(context);
   const {
     query: { id },
   } = context;
   const r = await fetch(
-    `http://localhost:10010/api/detail?name=${encodeURI(id)}`
+    `http://localhost:10086/api/detail?name=${encodeURI(id)}`
   );
   const data = await r.json();
   console.log('data', data);

@@ -14,14 +14,16 @@ import config from 'config';
  */
 export function showErrorMsg(error) {
   const { code, msg } = error;
-  console.log(error, code, msg);
+  console.log('error:::::', error, code, msg);
   if (code === 100) {
     // 普通服务器端错误，直接将错误信息弹框显示
     // message.error(msg, 2);
   } else if (code === 101) {
     // 登录超时，跳转到登录页重新登录
     // message.warning(msg, 2, () => {
-    window.location.href = `${config.PASSPORT}?jump=${decodeURIComponent(window.location.href)}`;
+    window.location.href = `${config.PASSPORT}?jump=${decodeURIComponent(
+      window.location.href
+    )}`;
     // });
   } else if (code === 200) {
     // 普通客户端校验，正常显示错误信息
@@ -38,14 +40,14 @@ export function showErrorMsg(error) {
  */
 export function initServerError(error) {
   const { response, request } = error;
-  if (request.status === 0) {
+  if (request?.status === 0) {
     return {
       code: 100,
       msg: '服务器开小差了~稍后再试',
     };
   }
   // 判断如果是401错误 直接跳转至登录页
-  if (response.status === 401) {
+  if (response?.status === 401) {
     return {
       code: 101,
       msg: '登录超时，请重新登录',

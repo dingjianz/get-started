@@ -30,7 +30,7 @@ const PageStaticDetail = ({ data }) => {
 // 此函数在构建时被调用
 export async function getStaticPaths() {
   // 调用外部 API 获取博文列表
-  const r = await fetch('http://localhost:10010/api/list');
+  const r = await fetch('http://localhost:10086/api/list');
   const data = await r.json();
 
   // 据博文列表生成所有需要预渲染的路径 TODO: 必须得到所有的动态页面
@@ -51,7 +51,7 @@ export async function getStaticProps(context) {
     params: { id },
   } = context;
   const r = await fetch(
-    `http://localhost:10010/api/detail?name=${encodeURI(id)}`
+    `http://localhost:10086/api/detail?name=${encodeURI(id)}`
   );
   const data = await r.json();
   // console.log('data', data)

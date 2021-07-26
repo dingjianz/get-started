@@ -8,6 +8,7 @@ import '@assets/css/globals.css';
 
 function MyApp({ Component, pageProps }) {
   const { store, persistor } = Store();
+
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

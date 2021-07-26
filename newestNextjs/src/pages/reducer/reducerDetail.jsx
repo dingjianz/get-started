@@ -6,9 +6,9 @@ import WithImmutable from '@components/WithImmutable';
 const CountDetail = ({ count, number, character }) => {
   return (
     <>
-      <h1>持久化count：{count}</h1>
+      <h1>count：{count}</h1>
       <h1>持久化number：{number}</h1>
-      <h1>持久化character：{character}</h1>
+      {/* <h1>持久化character：{character}</h1> */}
     </>
   );
 };

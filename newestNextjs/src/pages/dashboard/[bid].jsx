@@ -19,18 +19,8 @@ class DashBoard extends Component {
     };
   }
 
-  // getDataFn = async () => {
-  //   try {
-  //     const r = await fetch("http://localhost:10010/api/list");
-  //     const { list } = await r.json();
-  //     this.setState({ list });
-  //   } catch (e) {
-  //     console.log("e", e);
-  //   }
-  // };
-
   componentDidMount() {
-    // this.getDataFn();
+    this.getDataFn();
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -41,14 +31,24 @@ class DashBoard extends Component {
     return !is(propsIm, nextPropsIm) || !is(stateIm, nextStateIm);
   }
 
+  getDataFn = async () => {
+    try {
+      const r = await fetch('http://localhost:10086/api/list');
+      const { list } = await r.json();
+      this.setState({ list });
+    } catch (e) {
+      console.log('e', e);
+    }
+  };
+
   render() {
     const { Title } = process.env;
-    // const { list } = this.state;
+    const { list } = this.state;
     const {
       router: {
         query: { bid },
       },
-      data: { list },
+      // data: { list },
       router,
     } = this.props;
 
@@ -95,14 +95,14 @@ class DashBoard extends Component {
   }
 }
 
-export const getServerSideProps = async () => {
-  const r = await fetch('http://localhost:10010/api/list');
-  const data = await r.json();
-  return {
-    props: {
-      data,
-    },
-  };
-};
+// export const getServerSideProps = async () => {
+//   const r = await fetch('http://localhost:10086/api/list');
+//   const data = await r.json();
+//   return {
+//     props: {
+//       data,
+//     },
+//   };
+// };
 
 export default withRouter(DashBoard);

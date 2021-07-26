@@ -30,7 +30,7 @@ const PageReducer = ({
       <div className={styles.reducer}>
         <div>
           <p>
-            持久化count:
+            count:
             {count}
           </p>
           <Button className={styles.opreate_btn} onClick={addCountAction}>
@@ -44,8 +44,8 @@ const PageReducer = ({
           <p>
             持久化number:
             {number}
-            &emsp;&emsp; 持久化character:
-            {character}
+            {/* &emsp;&emsp; 持久化character:
+            {character} */}
           </p>
           <Button className={styles.opreate_btn} onClick={addNumberAction}>
             number++
@@ -53,9 +53,9 @@ const PageReducer = ({
           <Button className={styles.opreate_btn} onClick={reduceNumberAction}>
             number--
           </Button>
-          <Button className={styles.opreate_btn} onClick={addCharacterAction}>
+          {/* <Button className={styles.opreate_btn} onClick={addCharacterAction}>
             character+
-          </Button>
+          </Button> */}
         </div>
 
         <Link href="/reducer/reducerDetail">

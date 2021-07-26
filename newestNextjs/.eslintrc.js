@@ -29,7 +29,10 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': 0,
     'jsx-a11y/click-events-have-key-events': 0,
     'jsx-a11y/no-static-element-interactions': 0,
-    'no-unused-expressions': [2, { allowShortCircuit: true, allowTernary: true }],
+    'no-unused-expressions': [
+      2,
+      { allowShortCircuit: true, allowTernary: true },
+    ],
     'no-console': process.env.NODE_ENV === 'production' ? 0 : 0,
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
   },

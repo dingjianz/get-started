@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { initServerError, initValidate, initClientError } from './error';
 
-axios.defaults.baseURL = '/';
+axios.defaults.baseURL = '/developer';
 // 超时时间15s
 axios.defaults.timeout = 15000;
 // Ajax请求
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-axios.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers.common['Content-Type'] =
+  'application/x-www-form-urlencoded';
 
 // 请求拦截器
 axios.interceptors.request.use(
@@ -20,10 +21,13 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   (response) => {
     const result = response.data || {};
+    // console.log('rrr:::::', result);
     if (result.code !== 0) {
       // TODO 异常处理逻辑根据项目实际情况调整
       if (result.code === 90000) {
-        return Promise.reject(initValidate({ code: 101, msg: result.desc, detail: result }));
+        return Promise.reject(
+          initValidate({ code: 101, msg: result.desc, detail: result })
+        );
       }
       return initClientError(result);
     }

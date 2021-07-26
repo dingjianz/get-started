@@ -3,8 +3,8 @@
 import * as types from '../actions/types';
 
 const initState = {
-  number: 999,
-  character: 10,
+  number: 0,
+  character: 0,
 };
 
 const numberReducer = (state = initState, { type, payload }) => {
