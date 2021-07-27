@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { initServerError, initValidate, initClientError } from './error';
 
-axios.defaults.baseURL = '/developer';
+axios.defaults.baseURL = 'http://rap2api.taobao.org/app/mock/242697';
 // 超时时间15s
 axios.defaults.timeout = 15000;
 // Ajax请求
@@ -21,7 +21,6 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   (response) => {
     const result = response.data || {};
-    // console.log('rrr:::::', result);
     if (result.code !== 0) {
       // TODO 异常处理逻辑根据项目实际情况调整
       if (result.code === 90000) {

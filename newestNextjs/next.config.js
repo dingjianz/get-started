@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-useless-concat */
 const path = require('path');
 
@@ -42,9 +43,7 @@ module.exports = {
     ];
   },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    // eslint-disable-next-line no-param-reassign
     config.resolve.alias.config = path.join(__dirname, 'src', configJs);
-    // Important: return the modified config
     config.plugins.push(
       new ESLintPlugin({
         fix: true,

@@ -5,6 +5,7 @@ import * as types from '../actions/types';
 const initState = {
   number: 0,
   character: 0,
+  dashboardList: undefined,
 };
 
 const numberReducer = (state = initState, { type, payload }) => {
@@ -23,6 +24,11 @@ const numberReducer = (state = initState, { type, payload }) => {
       return {
         ...state,
         character: ++state.character,
+      };
+    case types.SET_DASHBOARDLIST:
+      return {
+        ...state,
+        dashboardList: payload,
       };
     default:
       return state;

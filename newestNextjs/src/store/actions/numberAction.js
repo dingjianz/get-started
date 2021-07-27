@@ -7,19 +7,26 @@ const addNumberAction = (payload) => ({
 });
 
 // reduce number
-const reduceNumberAction = (payload) => {
-  return {
-    type: types.REDUCE_NUMBER,
-    payload,
-  };
-};
+const reduceNumberAction = (payload) => ({
+  type: types.REDUCE_NUMBER,
+  payload,
+});
 
 // add character
-const addCharacterAction = (payload) => {
-  return {
-    type: types.ADD_CHARACTER,
-    payload,
-  };
-};
+const addCharacterAction = (payload) => ({
+  type: types.ADD_CHARACTER,
+  payload,
+});
 
-export { addNumberAction, reduceNumberAction, addCharacterAction };
+// set dashboardList
+const setDashboardListAction = (payload) => ({
+  type: types.SET_DASHBOARDLIST,
+  payload,
+});
+
+export {
+  addNumberAction,
+  reduceNumberAction,
+  addCharacterAction,
+  setDashboardListAction,
+};

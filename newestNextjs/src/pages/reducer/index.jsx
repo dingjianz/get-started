@@ -17,12 +17,12 @@ import styles from './index.module.scss';
 const PageReducer = ({
   count,
   number,
-  character,
+  // character,
   addCountAction,
   reduceCountAction,
   addNumberAction,
   reduceNumberAction,
-  addCharacterAction,
+  // addCharacterAction,
 }) => {
   return (
     <>

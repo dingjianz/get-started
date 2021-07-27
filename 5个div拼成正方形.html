@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .wrap {
+      height: 600px;
+      width: 600px;
+      border: 1px solid #000;
+    }
+
+    .div-all {
+      float: left;
+      text-align: center;
+    }
+
+    .div1 {
+      width: 100px;
+      height: calc(100% - 100px);
+      background: #FF3;
+    }
+
+    .div3 {
+      width: calc(100% - 200px);
+      height: calc(100% - 200px);
+      background: red;
+    }
+
+    .div4 {
+      width: 100px;
+      height: calc(100% - 100px);
+      background: #FF3;
+      float: right;
+    }
+
+    .div2,
+    .div5 {
+      width: calc(100% - 100px);
+      height: 100px;
+      background: #F90;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="div-all div1">1</div>
+    <div class="div-all div2">2</div>
+    <div class="div-all div3">3</div>
+    <div class="div4">4</div>
+    <div class="div-all div5">5</div>
+  </div>
+</body>
+</html>

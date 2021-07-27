@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/no-unused-state */
 /* eslint-disable react/state-in-constructor */
@@ -5,9 +7,12 @@
 import React, { Component } from 'react';
 import { SelfHeader, Button } from '@components';
 import { withRouter } from 'next/router';
+import { connect } from 'react-redux';
 import Link from 'next/link';
 import fetch from 'node-fetch';
 import { fromJS, is } from 'immutable';
+import { getDashboardList } from '@api/dashboard';
+import { setDashboardListAction } from '@store/actions/numberAction';
 
 import styles from './index.module.scss';
 
@@ -33,9 +38,10 @@ class DashBoard extends Component {
 
   getDataFn = async () => {
     try {
-      const r = await fetch('http://localhost:10086/api/list');
-      const { list } = await r.json();
+      const { list } = await getDashboardList();
       this.setState({ list });
+      const { setDashboardListAction } = this.props;
+      setDashboardListAction(list);
     } catch (e) {
       console.log('e', e);
     }
@@ -48,7 +54,7 @@ class DashBoard extends Component {
       router: {
         query: { bid },
       },
-      // data: { list },
+      // list,
       router,
     } = this.props;
 
@@ -96,13 +102,17 @@ class DashBoard extends Component {
 }
 
 // export const getServerSideProps = async () => {
-//   const r = await fetch('http://localhost:10086/api/list');
-//   const data = await r.json();
+//   const r = await fetch(`${process.env.baseUrl}/api/v1/dashboard`);
+//   const {
+//     data: { list = [] },
+//   } = await r.json();
 //   return {
 //     props: {
-//       data,
+//       list,
 //     },
 //   };
 // };
 
-export default withRouter(DashBoard);
+export default connect(null, {
+  setDashboardListAction,
+})(withRouter(DashBoard));

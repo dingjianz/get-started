@@ -37,8 +37,8 @@
 - 自动代码拆分可加快页面加载速度；
 - 内置css支持，并且支持任何css-in-js库；
 - 基于webpack的开发环境，支持热模块替换（HMR）;
-- 可通过社区插件椅及您自己的Babel和webpack配置进行定制；
-   [官网网址](https://nextjs.org/docs/getting-started)
+- 可通过社区插件以及自己的Babel和webpack配置进行定制；
+   [官网网址](https://www.nextjs.cn/docs/getting-started)
 
 --- 
 ### [安装](https://www.nextjs.cn/docs/getting-started)
@@ -87,17 +87,16 @@ HTML 是在 **构建时（build time）** 生成的，并重用于每个页面�
 > 作用：下次访问同一个路由地址的时候，直接返回静态页面，减小服务器的压力，以达到性能优化的目的。
 
 #### 获取数据的几种方式
-**getInitialProps**淘汰的东西我们不讲
  
-获取数据方法|  静态化  | 异步 | 只能在pages文件夹下 | 作用  | 服务端请求
-:----: | :-----: | :------:  | :-----: | :------: | :-----:
-getStaticProps  | 是 | 是 | 是 | 请求数据  | 是 http (非 XMLHttpRequest)
-getStaticPaths  |  是 | 是 | 是 | 生成动态路由 | 是
-getServerSideProps  | 否 | 是 | 是 | 请求数据  | 是
+获取数据方法|  静态化  | 异步 | 只能在pages文件夹下 | 作用  |
+:----: | :-----: | :------:  | :-----: | :------: |
+getStaticProps  | 是 | 是 | 是 | 请求数据  | 
+getStaticPaths  |  是 | 是 | 是 | 生成动态路由 |
+getServerSideProps  | 否 | 是 | 是 | 请求数据  | 
 
 
 getServerSideProps() - 不静态化 - 异步 async
-1. `getServerSideProps(coontext)`:
+1. `getServerSideProps(context)`:
     - params: 接收`getStaticPaths()`返回的动态路径，方便请求动态数据； 
       比如 `http://localhost:10087/api/list/xxxx`
     - req: HTTP IncomingMessage 对象；

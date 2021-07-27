@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development node server.js",
     "build": "next build",
-    "start": "cross-env NODE_ENV=production next start",
+    "start": "cross-env NODE_ENV=production next server.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -17,6 +17,7 @@
     "http-proxy-middleware": "^1.0.4",
     "immutable": "^4.0.0-rc.12",
     "next": "11.0.1",
+    "node-fetch": "^2.6.1",
     "prop-types": "^15.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -24,8 +25,7 @@
     "redux": "^4.1.0",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
-    "sass": "^1.35.2",
-    "node-fetch": "^2.6.1"
+    "sass": "^1.35.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
