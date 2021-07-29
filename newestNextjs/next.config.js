@@ -31,6 +31,7 @@ module.exports = {
   },
   images: {
     domains: ['img2.baidu.com'],
+    disableStaticImages: true,
   },
   async rewrites() {
     return [
@@ -55,31 +56,24 @@ module.exports = {
         formatter: eslintFriendlyFormatter,
       })
     );
-    config.module.rules.push(
-      {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10000,
-          publicPath: '/_next',
-          name: '[name].[hash].[ext]',
-          esModule: false,
+    config.module.rules.push({
+      test: /\.(jpe?g|png|svg|gif|ico|webp|jp2)$/,
+      // Next.js already handles url() in css/sass/scss files
+      issuer: /\.\w+(?<!(s?c|sa)ss)$/i,
+      exclude: config.exclude,
+      use: [
+        {
+          loader: 'url-loader',
+          options: {
+            limit: config.inlineImageLimit,
+            publicPath: `${config.assetPrefix}/_next/static/media/`,
+            outputPath: `${isServer ? '../' : ''}static/media/`,
+            name: '[name].[hash].[ext]',
+            esModule: config.esModule || false,
+          },
         },
-      }
-      // use: [
-      //   {
-      //     loader: 'url-loader',
-      //     options: {
-      //       limit: config.inlineImageLimit,
-      //       // publicPath: `${config.assetPrefix}/_next/static/media/`,
-      //       // outputPath: `${isServer ? '../' : ''}static/media/`,
-      //       publicPath: '/_next',
-      //       name: '[name].[hash].[ext]',
-      //       esModule: config.esModule || false,
-      //     },
-      //   },
-      // ],
-    );
+      ],
+    });
 
     return config;
   },

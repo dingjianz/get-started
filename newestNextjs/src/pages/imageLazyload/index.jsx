@@ -1,11 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 
-import pic from '../../assets/images/pic2.jpg';
+import pic from '../../assets/images/pic.png';
 import styles from './index.module.scss';
-// const pic = require('../../assets/images/pic.png');
-
-console.log(pic);
 
 // const myLoader = ({ src, width, quality }) => {
 //   return `https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fattach.bbs.miui.com${src}?w=${width}&q=${quality || 75}`;
@@ -27,19 +24,21 @@ const ImageLazyload = () => (
       }}
       alt=""
     />
+    <Image src="/pic.png" width="180" height="180" quality="100" />
+    <br />
     <Image
       // loader={myLoader}
-      src="/pic.png"
-      width="180"
-      height="180"
+      src="https://img2.baidu.com/it/u=1704219071,3761829583&fm=26&fmt=auto&gp=0.jpg"
+      width="400"
+      height="400"
       quality="100"
     />
     <br />
     <Image
       // loader={myLoader}
-      src={pic}
-      width="180"
-      height="180"
+      src="https://img2.baidu.com/it/u=1704219071,3761829583&fm=26&fmt=auto&gp=0.jpg"
+      width="400"
+      height="400"
       quality="1"
     />
     <p>我是一段文字</p>
