@@ -24,6 +24,11 @@ function Home(props) {
             Redux
           </Link>
         </Button>
+        <Button className={styles.rbtn}>
+          <Link href="/imageLazyload" passHref>
+            image lazyLoad
+          </Link>
+        </Button>
       </div>
     </div>
   );
@@ -31,17 +36,17 @@ function Home(props) {
 
 // 此函数在构建时被调用
 export async function getStaticProps(context) {
-  const r = await fetch(
-    `http://test.1024.iflytek.com/developer/cms/page-data/process-new`
-  );
+  // const r = await fetch(
+  //   `http://test.1024.iflytek.com/developer/cms/page-data/process-new`
+  // );
   // 调用外部 API 获取博文列表
   // 通过返回 { props: { posts } } 对象，Blog 组件
   // 在构建时将接收到 `posts` 参数
-  const data = await r.json();
+  // const data = await r.json();
   // console.log('data:::', data);
   return {
     props: {
-      data,
+      data: {},
     },
   };
 }

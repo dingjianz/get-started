@@ -36,7 +36,7 @@ export async function getServerSideProps(context) {
   //   query: { id },
   // } = context;
   // const r = await fetch(
-  //   `http://localhost:10086/api/detail?name=${encodeURI(id)}`
+  //   `http://localhost:3001/api/detail?name=${encodeURI(id)}`
   // );
   // const data = await r.json();
   // console.log('data', data);
@@ -44,7 +44,10 @@ export async function getServerSideProps(context) {
   // 通过返回 { props: { posts } } 对象，Blog 组件
   // 在构建时将接收到 `posts` 参数
 
-  const r = await fetch(`${process.env.baseUrl}/api/v1/getdetail`);
+  // const r = await fetch(`${process.env.baseUrl}/api/v1/getdetail`);
+  const r = await fetch(
+    `http://rap2api.taobao.org/app/mock/242697/api/v1/getdetail`
+  );
   const { data } = await r.json();
   return {
     props: {

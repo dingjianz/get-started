@@ -30,11 +30,11 @@ app
     // Default catch-all handler to allow Next.js to handle all other routes
     server.all('*', (req, res) => handle(req, res));
 
-    server.listen(10086, (err) => {
+    server.listen(3010, (err) => {
       if (err) {
         throw err;
       }
-      console.log(`> Ready on 10086 [${env}]`);
+      console.log(`> Ready on 3010 [${env}]`);
     });
   })
   .catch((err) => {

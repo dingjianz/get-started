@@ -9,7 +9,7 @@
 ### `Next.js`项目配置及[`Eslint`配置](https://eslint.bootcss.com/docs/user-guide/getting-started)
 
 ```js
-  npx eslint --init
+  npx eslint --init 
 
 "off" or 0 - 关闭规则
 "warn" or 1 - 将规则视为一个警告（不会影响退出码）

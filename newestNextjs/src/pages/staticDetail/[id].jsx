@@ -35,7 +35,7 @@ const PageStaticDetail = () => {
 };
 
 /* 
-TODO: 如果是动态路由 [id].jsx，则必须使用getStaticPaths
+TODO: 如果是动态路由 [id].jsx，则最好使用getStaticPaths
   If a page has dynamic routes (documentation) and uses getStaticProps it needs to define a list of paths that have to be rendered to HTML at build time.
   If you export an async function called getStaticPaths from a page that uses dynamic routes, Next.js will statically pre-render all the paths specified by getStaticPaths. 
 */
@@ -43,7 +43,7 @@ TODO: 如果是动态路由 [id].jsx，则必须使用getStaticPaths
 // 此函数在构建时被调用
 // export async function getStaticPaths() {
 //   // 调用外部 API 获取博文列表
-//   const r = await fetch('http://localhost:10086/api/list');
+//   const r = await fetch('http://localhost:3001/api/list');
 //   const data = await r.json();
 
 //   // 据博文列表生成所有需要预渲染的路径 TODO: 必须得到所有的动态页面
@@ -64,7 +64,7 @@ TODO: 如果是动态路由 [id].jsx，则必须使用getStaticPaths
 //   params: { id },
 // } = context;
 // const r = await fetch(
-//   `http://localhost:10086/api/detail?name=${encodeURI(id)}`
+//   `http://localhost:3001/api/detail?name=${encodeURI(id)}`
 // );
 // const data = await r.json();
 // console.log('data', data)

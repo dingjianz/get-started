@@ -1,0 +1,8 @@
+@import "../../assets/css/mixin.scss";
+
+.img_wrap {
+  .img_container {
+    @include whSet(100px, 100px);
+    overflow: hidden;
+  }
+}

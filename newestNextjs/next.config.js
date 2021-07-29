@@ -29,6 +29,9 @@ module.exports = {
   env: {
     Title: process.env.title,
   },
+  images: {
+    domains: ['img2.baidu.com'],
+  },
   async rewrites() {
     return [
       // 默认使用定义在pages下的路由，否则将代理到 https://www.nextjs.cn/，需要注意的是pages下定义的路由有最高优先级。
@@ -37,8 +40,8 @@ module.exports = {
       //   destination: "http://www.baidu.com",
       // },
       {
-        source: '/:path*',
-        destination: '/:path*' + '?name=jianding9',
+        source: '/dashboard/:bid',
+        destination: '/dashboard/:bid' + '?ch=web',
       },
     ];
   },
@@ -52,24 +55,31 @@ module.exports = {
         formatter: eslintFriendlyFormatter,
       })
     );
-    config.module.rules.push({
-      test: /\.(jpe?g|png|svg|gif|ico|webp|jp2)$/,
-      // Next.js already handles url() in css/sass/scss files
-      issuer: /\.\w+(?<!(s?c|sa)ss)$/i,
-      exclude: config.exclude,
-      use: [
-        {
-          loader: 'url-loader',
-          options: {
-            limit: config.inlineImageLimit,
-            publicPath: `${config.assetPrefix}/_next/static/media/`,
-            outputPath: `${isServer ? '../' : ''}static/media/`,
-            name: '[name].[hash].[ext]',
-            esModule: config.esModule || false,
-          },
+    config.module.rules.push(
+      {
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          publicPath: '/_next',
+          name: '[name].[hash].[ext]',
+          esModule: false,
         },
-      ],
-    });
+      }
+      // use: [
+      //   {
+      //     loader: 'url-loader',
+      //     options: {
+      //       limit: config.inlineImageLimit,
+      //       // publicPath: `${config.assetPrefix}/_next/static/media/`,
+      //       // outputPath: `${isServer ? '../' : ''}static/media/`,
+      //       publicPath: '/_next',
+      //       name: '[name].[hash].[ext]',
+      //       esModule: config.esModule || false,
+      //     },
+      //   },
+      // ],
+    );
 
     return config;
   },

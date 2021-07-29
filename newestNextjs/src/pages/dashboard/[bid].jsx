@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import { SelfHeader, Button } from '@components';
 import { withRouter } from 'next/router';
 import { connect } from 'react-redux';
+import config from 'config';
 import Link from 'next/link';
 import fetch from 'node-fetch';
 import { fromJS, is } from 'immutable';
@@ -20,12 +21,12 @@ class DashBoard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: [],
+      // list: [],
     };
   }
 
   componentDidMount() {
-    this.getDataFn();
+    // this.getDataFn();
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -36,25 +37,25 @@ class DashBoard extends Component {
     return !is(propsIm, nextPropsIm) || !is(stateIm, nextStateIm);
   }
 
-  getDataFn = async () => {
-    try {
-      const { list } = await getDashboardList();
-      this.setState({ list });
-      const { setDashboardListAction } = this.props;
-      setDashboardListAction(list);
-    } catch (e) {
-      console.log('e', e);
-    }
-  };
+  // getDataFn = async () => {
+  //   try {
+  //     const { list } = await getDashboardList();
+  //     this.setState({ list });
+  //     const { setDashboardListAction } = this.props;
+  //     setDashboardListAction(list);
+  //   } catch (e) {
+  //     console.log('e', e);
+  //   }
+  // };
 
   render() {
     const { Title } = process.env;
-    const { list } = this.state;
+    // const { list } = this.state;
     const {
       router: {
         query: { bid },
       },
-      // list,
+      list,
       router,
     } = this.props;
 
@@ -101,17 +102,18 @@ class DashBoard extends Component {
   }
 }
 
-// export const getServerSideProps = async () => {
-//   const r = await fetch(`${process.env.baseUrl}/api/v1/dashboard`);
-//   const {
-//     data: { list = [] },
-//   } = await r.json();
-//   return {
-//     props: {
-//       list,
-//     },
-//   };
-// };
+export const getServerSideProps = async () => {
+  // const r = await fetch(`${process.env.baseUrl}/api/v1/dashboard`);
+  const r = await fetch(`${config.baseUrl}/api/v1/dashboard`);
+  const {
+    data: { list = [] },
+  } = await r.json();
+  return {
+    props: {
+      list,
+    },
+  };
+};
 
 export default connect(null, {
   setDashboardListAction,
