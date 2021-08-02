@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import Image from 'next/image';
 
@@ -16,15 +17,15 @@ import styles from './index.module.scss';
 
 const ImageLazyload = () => (
   <div className={styles.img_wrap}>
-    <img
+    {/* <img
       src={pic}
       style={{
         width: '100px',
         height: '100px',
       }}
       alt=""
-    />
-    <Image src="/pic.png" width="180" height="180" quality="100" />
+    /> */}
+    {/* <Image src="/pic.png" width="180" height="180" quality="100" /> */}
     <br />
     <Image
       // loader={myLoader}

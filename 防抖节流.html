@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">购买</button>
+  <script>
+    window.onload = function () {
+      // 防抖 非立即执行版 https://blog.csdn.net/zongmaomx/article/details/109196133
+      const debounce1 = (func, interval, ...argus) => {
+        let timer = null;
+        return function () {
+          const _this = this;
+          if (timer !== null) clearTimeout(timer);
+          timer = setTimeout(function () {
+            func.apply(_this, argus)
+          }, interval || 500)
+        }
+      };
+
+      // 防抖 立即执行版
+      const debounce2 = (func, interval, ...argus) => {
+        let timer = null;
+        return function () {
+          const _this = this;
+          if (timer !== null) clearTimeout(timer);
+          const appNow = !timer;
+          if (appNow) func.apply(_this, argus);
+          timer = setTimeout(function () {
+            timer = null;
+          }, interval || 500)
+        }
+      };
+
+      const pay = function (...argus) {
+        console.log('已购买');
+        console.log(this);
+        console.log('argus:::', argus)
+      }
+      const btn = document.getElementById('btn');
+      btn.addEventListener('click', debounce2(pay, 1000, 'jianding9', 'hello', 'wrold'));
+
+
+      // 节流方法1 非立即执行  https://blog.csdn.net/Polaris_tl/article/details/99300458
+      const throttle1 = function (func, interval, ...argus) {
+        let timer;
+        return function () {
+          const _this = this;
+          if (timer) return false;
+          timer = setTimeout(function () {
+            func.apply(_this, argus);
+            clearTimeout(timer);
+            timer = undefined;
+          }, interval || 500);
+        }
+      };
+
+      // 节流方法2 立即执行 
+      const throttle2 = function (func, interval, ...argus) {
+        let timer = null;
+        return function () {
+          const _this = this;
+          if (timer) return false;
+          const allNow = !timer;
+          if (allNow) func.apply(_this, argus);
+          timer = setTimeout(function () {
+            timer = null;
+          }, interval || 500);
+        }
+      };
+      // 节流方法3 立即执行
+      const throttle3 = function (func, interval = 500, ...argus) {
+        let prevTime = 0;
+        return function () {
+          const _this = this;
+          const currentTime = new Date();
+          if (currentTime - prevTime > interval) {
+            func.apply(_this, argus);
+            prevTime = currentTime;
+          }
+        }
+      }
+      const hanldeResizeFn = function (...argus) {
+        console.log('resize');
+        console.log(this);
+        console.log('argus:::', argus);
+        const r = parseInt(Math.random() * 255)
+        const g = parseInt(Math.random() * 255)
+        const b = parseInt(Math.random() * 255)
+        const body = document.getElementsByTagName('body')[0];
+        body.style.background = `rgb(${r},${g},${b})`;
+      }
+      window.addEventListener('resize', throttle2(hanldeResizeFn, 2000, 1, 2, 3, 4));
+    };
+  </script>
+</body>
+
+</html>
