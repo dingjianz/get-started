@@ -1,6 +1,6 @@
 import React, { Component, createRef } from 'react';
 import { Card, Row, Col } from 'antd';
-import echarts from 'echarts';
+import * as echarts from 'echarts';
 import ajax from '../../service';
 import './dashborad.scss';
 

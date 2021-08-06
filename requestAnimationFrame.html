@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>requestAnimationFrame-scrollIntoView</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body,
+    html {
+      background-color: pink;
+      width: 100vw;
+      height: 200vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    #btn1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    #btn2 {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
+
+    #btn3 {
+      position: absolute;
+      top: 100px;
+      left: 0;
+    }
+
+    .affix {
+      width: 100px;
+      height: 100px;
+      background-color: purple;
+      position: absolute;
+      left: 0;
+      top: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+  <button id="btn1">去往底部</button>
+  <button id="btn3">达到锚点</button>
+  <button id="btn2">返回顶部</button>
+
+  <div class="affix">锚点</div>
+  <script>
+    (() => {
+      const body = document.querySelectorAll('body')[0];
+      const btn1 = document.querySelectorAll('#btn1')[0];
+      const btn2 = document.querySelectorAll('#btn2')[0];
+      const btn3 = document.querySelectorAll('#btn3')[0];
+      const affix = document.querySelectorAll('.affix')[0];
+      const bWidth = body.offsetHeight;
+      console.log('bWidth:::', bWidth);
+      console.log('window.innerWidth', window.innerWidth)
+      console.log('document.body.clientWidth', document.body.clientWidth)
+      console.log('document.body.scrollHeight ', document.body.scrollHeight)
+
+      // 返回顶部
+      function test() {
+        const c = window.pageYOffset || window.document.documentElement.scrollTop;
+        if (c > 0) {
+          window.scrollTo(0, Math.floor(c - c / 8));
+          requestAnimationFrame(test)
+        }
+      };
+
+      function test2() {
+        window.scrollTo({
+          top: bWidth,
+          left: 0,
+          behavior: 'smooth'
+        });
+      }
+
+      btn1.onclick = () => {
+        test2();
+      }
+      btn2.onclick = () => {
+        test();
+      }
+      btn3.onclick = () => {
+        affix.scrollIntoView({ // https://developer.mozilla.org/zh-CN/docs/Web/API/Element/scrollIntoView
+          behavior: 'smooth',
+          block: 'end',
+          inline: 'center'
+        })
+      }
+    })();
+  </script>
+</body>
+
+</html>

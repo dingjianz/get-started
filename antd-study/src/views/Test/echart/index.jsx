@@ -7,7 +7,7 @@
 /* eslint-disable prefer-rest-params */
 /* eslint-disable no-irregular-whitespace */
 import React, { Component } from 'react';
-import echarts from 'echarts';
+import * as echarts from 'echarts';
 import 'echarts-liquidfill';
 
 import './index.scss';
@@ -42,6 +42,7 @@ class EchartDemo extends Component {
     this.initChart5();
     this.initChart6();
     this.initChart7();
+    this.initChart8();
   }
 
   backToBot = () => {
@@ -995,6 +996,87 @@ class EchartDemo extends Component {
     // setInterval(() => {}, 1000);
   };
 
+  initChart8 = () => {
+    const myChart = echarts.init(document.getElementById('main8'));
+    const option = {
+      grid: {
+        top: '8%',
+      },
+      xAxis: {
+        axisLabel: {
+          // rotate: 20,
+          interval: 0,
+          fontSize: 12,
+        },
+        axisTick: {
+          show: false,
+        },
+        data: [
+          '中国',
+          '美国',
+          '日本',
+          '澳大利亚',
+          '俄罗斯奥委会',
+          '英国',
+          '韩国',
+          '法国',
+          '荷兰',
+          '新西兰',
+        ],
+      },
+      yAxis: {
+        type: 'value',
+        // 修改刻度标签相关样式
+        axisLabel: {
+          // color: '#4fc08d',
+          fontSize: 12,
+        },
+        axisLine: {
+          show: true, // 是否显示坐标轴轴线。
+          // 如果想要设置单独的线条样式
+          lineStyle: {
+            // color: '#eee',
+            width: 2,
+          },
+        },
+        // 坐标轴在 grid 区域中的分隔线。 y轴分割线
+        splitLine: {
+          lineStyle: {
+            // color: 'red',
+          },
+        },
+      },
+      series: {
+        label: {
+          show: true,
+          position: 'top',
+        },
+        name: '金牌',
+        type: 'bar',
+        data: [29, 24, 22, 14, 11, 9, 5, 4, 4, 2, 1],
+        barMaxWidth: 26,
+        roundCap: true,
+        itemStyle: {
+          color({ dataIndex }) {
+            console.log('dataIndex', dataIndex);
+            if (dataIndex < 3) {
+              return new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                { offset: 1, color: 'rgba(67, 203, 36, .8)' },
+                { offset: 0.4, color: 'rgba(67, 203, 36, 1)' },
+                { offset: 0, color: 'rgba(255,0,0, .8)' },
+              ]);
+            }
+            return new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+              { offset: 0, color: 'rgba(67, 203, 36, .8)' },
+              { offset: 1, color: 'rgba(67, 203, 36, 1)' },
+            ]);
+          },
+        },
+      },
+    };
+    myChart.setOption(option);
+  };
+
   render() {
     return (
       // eslint-disable-next-line no-return-assign
@@ -1004,16 +1086,17 @@ class EchartDemo extends Component {
         <div className="chart" id="main3" />
         <div className="chart" id="main4" />
         <div className="change-data">
-          <a href="javascript:;" onClick={this.initChart5.bind(this, 2020)}>
+          <a href="#!" onClick={this.initChart5.bind(this, 2020)}>
             2020
           </a>
-          <a href="javascript:;" onClick={this.initChart5.bind(this, 2021)}>
+          <a href="#!" onClick={this.initChart5.bind(this, 2021)}>
             2021
           </a>
         </div>
         <div className="chart" id="main5" />
         <div className="chart" id="main6" />
         <div className="chart" id="main7" />
+        <div className="chart" id="main8" />
       </div>
     );
   }

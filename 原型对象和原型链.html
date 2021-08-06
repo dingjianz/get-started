@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>原型对象和原型链</title>
+</head>
+
+<body>
+  <script>
+    function Fn() {
+      this.job = 'dog'
+    }
+    // const f1 = new Fn()
+
+    // console.log(f1.__proto__.constructor === Fn)
+
+    // function Person() { };
+    // const p1 = new Person()
+
+    // console.log(p1.constructor)
+    // console.log(Person === Person.prototype.constructor) // true
+    // console.log(Person === p1.constructor) // true
+
+    // console.log(p1.prototype)
+    // console.log(Person)
+
+    // Shape - 父类(superclass)
+    // function Shape() {
+    //   this.x = 0;
+    //   this.y = 0;
+    // }
+
+    // // 父类的方法
+    // Shape.prototype.move = function (x, y) {
+    //   this.x += x;
+    //   this.y += y;
+    //   console.info('Shape moved.');
+    // };
+
+    // // Rectangle - 子类(subclass)
+    // function Rectangle() {
+    //   return Shape.call(this); // call super constructor.
+    // }
+    // var rect = new Rectangle();
+    // console.log(rect)
+
+    console.log(Fn.prototype.__proto__ === Object.prototype) // true
+    console.log(Fn.__proto__ === Function.prototype) // TODO: 重点 const Fn = new Function()
+
+  </script>
+</body>
+
+</html>
