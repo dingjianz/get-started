@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>手写promise</title>
+</head>
+
+<body>
+  <script>
+    class PromiseFn {
+      constructor(executor) {
+        // 状态 Promise存在三个状态（state）pending、fulfilled、rejected
+        this.state = "pending";
+        // 成功的值
+        this.value = undefined;
+        // 失败的原因
+        this.reason = undefined;
+        // 成功存放的数组
+        this.onResolvedCallbacks = [];
+        // 失败存放法数组
+        this.onRejectedCallbacks = [];
+        // 成功
+        const resolve = (val) => {
+          // state改变,resolve调用就会成功
+          if (this.state === 'pending') {
+            // resolve调用后，state转化为成功态
+            this.state = 'fulfilled';
+            // 储存成功的值
+            this.value = val;
+            // 一旦resolve执行，调用成功数组的函数
+            this.onResolvedCallbacks.forEach(fn => fn());
+          }
+        };
+        // 失败
+        const reject = (reason) => {
+          // state改变,reject调用就会失败
+          if (this.state === 'pending') {
+            // resolve调用后，state转化为失败态
+            this.state = 'rejected';
+            // 储存失败的原因
+            this.reason = reason;
+            // 一旦reject执行，调用失败数组的函数
+            this.onRejectedCallbacks.forEach(fn => fn());
+          }
+        };
+        // 如果executor执行报错，直接执行reject
+        try {
+          executor(resolve, reject);
+        } catch (e) {
+          reject(e);
+        }
+      }
+
+      then(onFulfilled, onRejected) {
+        // 状态为fulfilled，执行onFulfilled，传入成功的值
+        if (this.state === 'fulfilled') {
+          onFulfilled(this.value);
+        };
+        // 状态为rejected，执行onRejected，传入失败的原因
+        if (this.state === 'rejected') {
+          onRejected(this.reason);
+        };
+        // 当状态state为pending时
+        if (this.state === 'pending') {
+          // onFulfilled传入到成功数组
+          this.onResolvedCallbacks.push(() => {
+            onFulfilled(this.value);
+          })
+          // onRejected传入到失败数组
+          this.onRejectedCallbacks.push(() => {
+            onRejected(this.reason);
+          })
+        };
+      }
+    };
+
+    const p1 = new PromiseFn();
+    p1.then();
+  </script>
+</body>
+
+</html>
