@@ -19,6 +19,7 @@ module.exports = {
     "func-names": 0,
     "no-underscore-dangle": 0,
     "no-unused-vars": [2, { args: "none" }],
+    "import/extensions": 0,
     "import/no-named-as-default": 0,
     "import/no-named-as-default-member": 0,
     "import/no-unresolved": 0,

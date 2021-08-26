@@ -44,7 +44,15 @@ const UseMemoDemo = () => {
       <button type="button" onClick={() => setCount(count + 1)}>
         add count
       </button>
-      <button type="button" onClick={() => setNum(num + 1)}>
+      <button
+        type="button"
+        onClick={() => {
+          setNum((preVal) => {
+            console.log('preVal:::', preVal);
+            return preVal + 1;
+          });
+        }}
+      >
         add num
       </button>
 

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>发布订阅模式、观察者模式</title>
+</head>
+<a href="https://juejin.cn/post/6844904018964119566" target="_ddfvdvblank">从一道面试题简单谈谈发布订阅和观察者模式
+</a>
+<img
+  src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/12/12/16ef7ff1cf3ce4a9~tplv-t2oaga2asx-zoom-crop-mark:1304:1304:1304:734.awebp"
+  alt="" width="300">
+<h4>发布订阅模式</h4>
+<img
+  src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/12/12/16ef7fe5614d6ea0~tplv-t2oaga2asx-watermark.awebp"
+  alt="">
+<h4>观察者模式</h4>
+<img
+  src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/12/12/16ef7fe567bdf007~tplv-t2oaga2asx-watermark.awebp"
+  alt="">
+
+<body>
+  <script>
+    // ======================= 发布订阅模式 ============================
+    class PubSub {
+      constructor() {
+        // 维护事件及订阅行为
+        this.events = {};
+      }
+
+      /**
+        * 注册事件订阅行为
+        * @param {String} type 事件类型
+        * @param {Function} cb 回调函数
+      */
+      subcribe(type, cb) {
+        if (!this.events[type]) this.events[type] = [];
+        this.events[type].push(cb);
+      }
+
+      /**
+       *  移除某个事件的一个订阅行为
+       * @param {String} type 事件类型
+       * @param {Function} cb 回调函数
+     */
+      unsunbcribe(type, cb) {
+        if (this.events[type]) {
+          const index = this.events[type].findIndex(item => item === cb);
+          if (index !== -1) this.events[type].splice(index, 1);
+        };
+      }
+
+      /**
+        * 移除某个事件的所有订阅行为
+        * @param {String} type 事件类型
+      */
+      unsubcribeAll(type) {
+        if (this.events[type]) delete this.events[type];
+      }
+
+      /**
+        * 发布某类型所有事件
+        * @param {String} type 事件类型
+        * @param  {...any} args 参数列表，把emit传递的参数赋给回调函数
+       */
+      publish(type, ...argus) {
+        if (!this.events[type]) return false;
+        const len = this.events[type].length;
+        for (let i = 0; i < len; i++) {
+          this.events[type][i](...argus);
+        }
+      }
+    }
+
+    const e = new PubSub();
+    const fn1 = (name, food) => console.log(`我是${name}，我喜欢吃${food}`);
+    const fn2 = (name, food) => console.log(`我是${name}，我喜欢吃${food}`);
+    // console.log(fn1=== fn2); // false
+    e.subcribe('click1', fn1); // ok！！！ 我已经订阅了！！
+    // e.unsubcribe('click1', fn2); // 函数引用必须是同一个引用,这样unsubcribe无效
+    // e.unsubcribe('click1', fn1); // 这才能起效
+    // e.unsubcribeAll('click1');
+    e.publish('click1', 'zhangsan', '西红柿'); // 我发布事件！
+    e.publish('click1', 'lisi', '宫保鸡丁'); // 我再次发布事件！
+    /*
+      PubSub的实例e就是一个事件调度中心，发布者和订阅者是松散耦合的，互不关心对方是否存在，他们关注的是事件本身。
+      发布者借用事件调度中心提供的publish方法发布事件，而订阅者则通过subcribe进行订阅。
+    */
+
+    // ======================= 观察者模式 ============================
+
+    // 观察者
+    class Observer {
+      /**
+     * 构造器
+     * @param {Function} cb 回调函数，收到目标对象通知时执行
+     */
+      constructor(cb) {
+        if (typeof cb === 'function') {
+          this.cb = cb;
+        } else {
+          throw new Error('Observer构造器必须传入函数类型！')
+        }
+      }
+      /**
+      * 被目标对象通知时执行
+      */
+      update() {
+        this.cb && this.cb();
+      }
+    }
+
+    // 目标对象
+    class Subject {
+      constructor() {
+        this.observerList = [];
+      }
+
+      /**
+       * 添加一个观察者
+       * @param {Observer} observer Observer实例
+      */
+      addObserver(oberver) {
+        this.observerList.push(oberver);
+      }
+
+      removeObserver(observer) {
+        this.observerList = this.observerList.filter(item => item !== observer);
+      }
+
+      /**
+        * 通知所有的观察者
+      */
+      notify() {
+        console.log('observerList::::', this.observerList);
+        this.observerList.forEach(observer => {
+          observer.update();
+        })
+      }
+    };
+
+    const oberverCallback = () => console.log('我被通知了!');
+    const subject = new Subject();
+    const ob1 = new Observer(oberverCallback);
+    const ob2 = new Observer(oberverCallback);
+    // const ob3 = new Observer(); // Uncaught Error: Observer构造器必须传入函数类型！
+    subject.addObserver(ob1);
+    subject.addObserver(ob2);
+    subject.removeObserver(ob1);
+    subject.notify();
+  </script>
+</body>
+
+</html>

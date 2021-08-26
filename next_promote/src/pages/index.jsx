@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import Head from 'next/head';
-import styles from '@/styles/Home.module.scss';
 import moment from 'moment';
+import styles from '@/styles/Home.module.scss';
 
 if (typeof window !== 'undefined') {
   import('./test').then((r) => {
