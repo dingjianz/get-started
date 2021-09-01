@@ -118,9 +118,9 @@ class CssIndex extends Component {
         </div>
 
         <div className="btn-wrap">
-          <span onClick={this.handleClick}>
+          <spdivan onClick={this.handleClick}>
             <em>点我</em>
-          </span>
+          </spdivan>
         </div>
 
         {/* css 第五部分 hover 图片变大变化 hover图片旋转360 */}
@@ -195,9 +195,9 @@ class CssIndex extends Component {
 
         <div className="tab-wrap">
           <ul className="nav-wrap">
-            {tabData.map((navIt, navIndex) => {
+            {tabData.map((navIt) => {
               return (
-                <li key={navIndex} className="tab-nav">
+                <li key={navIt.title} className="tab-nav">
                   {navIt.title}
                 </li>
               );

@@ -9,4 +9,4 @@ export default {
   LOGIN_FAILED: 'LOGIN_FAILED', // 登陆失败
 
   CHANGE_AVATAR: 'CHANGE_AVATAR', // 改变avatar
-}
+};

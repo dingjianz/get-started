@@ -143,7 +143,7 @@ class Frame extends Component {
               })}
             </Menu>
           </Sider>
-          <Layout style={{ padding: '16px' }} className="main-content">
+          <Layout style={{ padding: '16px', boxSizing: 'border-box' }} className="main-content">
             <Content
               style={{
                 margin: 0,

@@ -1,13 +1,36 @@
 /* eslint-disable */
 import React, { Component } from 'react';
-// eslint-disable-next-line import/no-unresolved
 import { throttle } from '@/utils';
 import './index.scss';
 
 class ImgLazyLoad extends Component {
+  state = {
+    arr: [
+      {
+        id: 0,
+        name: '张三',
+      },
+      {
+        id: 1,
+        name: '李四',
+      },
+      {
+        id: 2,
+        name: '王五',
+      },
+    ],
+  };
+  componentDidMount() {
+    // this.imgLazyLoadFn1();
+    this.imgLazyLoadFn2();
+
+    const d2 = React.createElement('div');
+    console.log(d2);
+  }
+
   // imgLazyLoadFn1 = () => {
   //   try {
-  //     const vwHeight = window.innerHeight;
+  //     const vwHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
   //     const $imgs = Array.from(document.querySelectorAll('.lazy-img'));
   //     window.addEventListener(
   //       'scroll',
@@ -18,7 +41,7 @@ class ImgLazyLoad extends Component {
   //             it.setAttribute('src', imgSrc);
   //           }
   //         });
-  //       }, 500)
+  //       }, 500), true
   //     );
   //   } catch (e) {
   //     console.log(e);
@@ -44,14 +67,29 @@ class ImgLazyLoad extends Component {
     });
   };
 
-  componentDidMount() {
-    // this.imgLazyLoadFn1();
-    this.imgLazyLoadFn2();
-  }
-
   render() {
+    const { arr } = this.state;
     return (
-      <div className="img-lazyload">
+      <div className="img-lazyload" id="img_lazyload">
+        {arr.map((item, index) => (
+          <li key={item.id}>
+            {item.name}
+            <input placeholder="请输入数字" />
+          </li>
+        ))}
+        <button
+          type="button"
+          onClick={() => {
+            const newArr = [...arr];
+            newArr.unshift({ id: 3, name: '赵六' });
+            this.setState({
+              arr: newArr,
+            });
+          }}
+        >
+          修改arr
+        </button>
+        <hr />
         <p>我是一段文字</p>
         <img
           className="lazy-img"
