@@ -14,6 +14,7 @@ class Person {
     console.log("hello" + this.name);
   }
 
+  // ----------------------------------------------
   // 定义类属性/静态属性
   static sex = "male";
   static readonly job: string = "coder";

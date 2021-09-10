@@ -20,6 +20,7 @@ class Person {
         console.log("nice");
     }
 }
+// ----------------------------------------------
 // 定义类属性/静态属性
 Person.sex = "male";
 Person.job = "coder";
