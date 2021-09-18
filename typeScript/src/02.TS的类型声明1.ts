@@ -7,3 +7,13 @@ a = 100;
 // a = '1000';  // 这里就会报错 a下面出现红色波浪线：不能将类型“string”分配给类型“number”。
 
 let b: string = "123";
+
+// let c: boolean = false;
+// let c = false; // 如果变量的声明和赋值是同时进行的，TS可以自动对变量进行类型检测，效果等同于上行代码。
+// c = 1223;
+
+const sum = (a: number = 666, b: number = 111) : number => {
+  return a + b;
+};
+
+console.log(sum(123, 456));
