@@ -46,7 +46,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new HTMLWebpackPlugin({
+    new HTMLWebpackPlugin({ // 生成html文件，并自动引入相关文件
       title: "这是自定义的title",
       template: "./src/index.html",
     }),

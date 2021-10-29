@@ -86,3 +86,15 @@ type myType = 1 | 2 | 3 | 4;
 let s: myType;
 let t: myType;
 // s = 5; // 不能将类型“5”分配给类型“myType”。
+
+// 描述一个对象的类型
+type objType = {
+  name: string,
+  age: number,
+  [propname: string]: any
+}
+
+const djObj: objType = {
+  name: 'jianding9',
+  age: 18
+}
