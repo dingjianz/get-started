@@ -43,10 +43,34 @@ module.exports = {
         ],
         exclude: /node_modules/,
       },
+      {
+        test: /\.scss$/,
+        use: [
+          "style-loader",
+          "css-loader",
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  [
+                    "postcss-preset-env",
+                    {
+                      browsers: "last 2 versions",
+                    },
+                  ],
+                ],
+              },
+            },
+          },
+          "sass-loader",
+        ],
+      },
     ],
   },
   plugins: [
-    new HTMLWebpackPlugin({ // 生成html文件，并自动引入相关文件
+    new HTMLWebpackPlugin({
+      // 生成html文件，并自动引入相关文件
       title: "这是自定义的title",
       template: "./src/index.html",
     }),
