@@ -3,12 +3,14 @@ const HTMLWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-  entry: "./src/index.ts",
+  entry: ["babel-polyfill", "./src/index.ts"],
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
     environment: {
+      // 告诉webpack不使用箭头函数
       arrowFunction: false,
+      const: false,
     },
   },
   module: {
@@ -28,7 +30,7 @@ module.exports = {
                     // 要兼容的目标浏览器
                     targets: {
                       chrome: "88",
-                      ie: "11",
+                      ie: "10",
                     },
                     // 指定coreJs的版本
                     corejs: "3",
