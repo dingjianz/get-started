@@ -12,7 +12,7 @@ class Food {
   element: HTMLElement;
   constructor() {
     // 获取页面中的food元素并将其赋值给element
-    this.element = document.getElementById("food");
+    this.element = document.getElementById("food")!;
   }
 
   // 定义一个获取食物X轴坐标的方法
@@ -36,7 +36,30 @@ class Food {
 }
 
 // 测试代码
-const food = new Food();
-console.log(food.X, food.Y);
-food.changePosition();
-console.log(food.X, food.Y);
+// const food = new Food();
+// console.log(food.X, food.Y);
+// food.changePosition();
+// console.log(food.X, food.Y);
+
+class ScorePanel {
+  // score和level用来记录分数和等级
+  score = 0;
+  level = 1;
+
+  // 分数和等级所在的元素，在构造函数中进行初始化
+  scoreEle: HTMLElement;
+  levelEle: HTMLElement;
+  constructor() {
+    this.scoreEle = document.getElementById('score')!;
+    this.levelEle = document.getElementById('level')!;
+  }
+
+  // 设置加分的方法 
+  addScore() {
+    this.scoreEle.innerHTML = ++this.score + '';
+  }
+}
+
+// 测试代码
+const scorePanel = new ScorePanel();
+scorePanel.addScore();
