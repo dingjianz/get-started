@@ -30,10 +30,12 @@ body {
 
     .snake {
       list-style: none;
-
+      
       &-item {
+        z-index: 2;
         width: 10px;
         height: 10px;
+        box-sizing: border-box;
         background-color: #000;
         border: 1px solid $bg-color;
         position: absolute;

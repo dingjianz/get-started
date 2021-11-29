@@ -1,0 +1,1 @@
+// static typing 静态类型

@@ -37,7 +37,8 @@
     "dev": "cross-env PORT=8009 react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "patch-package"
   },
   "eslintConfig": {
     "parser": "babel-eslint",
@@ -73,6 +74,7 @@
     ]
   },
   "devDependencies": {
+    "@alifd/next": "^1.24.18",
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.2",
     "eslint": "^6.6.0",
@@ -87,6 +89,7 @@
     "less": "^3.10.3",
     "less-loader": "^5.0.0",
     "node-sass": "^4.13.1",
+    "patch-package": "^6.4.7",
     "prettier": "^2.0.5",
     "sass-loader": "^8.0.2"
   },

@@ -1,65 +1,29 @@
 import "babel-polyfill";
-// import { hi } from "./m1";
+// import Food from "./snakeDemo/Food";
+// import ScorePanel from "./snakeDemo/ScorePanel";
+// import Snake from "./snakeDemo/Snake";
+
+import GameControl from "./snakeDemo/GameControl";
+
 import "./style/index.scss";
 
-// console.log(hi);
-// console.log(123);
+const gc = new GameControl();
+// setInterval(() => {
+//   console.log(gc.direction);
+// }, 1000);
 
-// 定义食物类Food
-
-class Food {
-  // 定义一个属性表示食物所对应的元素
-  element: HTMLElement;
-  constructor() {
-    // 获取页面中的food元素并将其赋值给element
-    this.element = document.getElementById("food")!;
-  }
-
-  // 定义一个获取食物X轴坐标的方法
-  get X() {
-    return this.element.offsetLeft;
-  }
-  // 定义一个获取食物Y轴坐标的方法
-  get Y() {
-    return this.element.offsetTop;
-  }
-
-  // 修改食物的位置
-  changePosition() {
-    // 生成一个随机的位置
-    // 蛇移动一次就是一格，一格大小就是10px，所以要求食物的位置坐标必须是整10
-    const randX = Math.round(Math.random() * 29) * 10;
-    const randY = Math.round(Math.random() * 29) * 10;
-    this.element.style.left = `${randX}px`;
-    this.element.style.top = `${randY}px`;
-  }
-}
-
-// 测试代码
+// 测试食物代码
 // const food = new Food();
 // console.log(food.X, food.Y);
 // food.changePosition();
 // console.log(food.X, food.Y);
 
-class ScorePanel {
-  // score和level用来记录分数和等级
-  score = 0;
-  level = 1;
+// 测试计分板代码
+// const scorePanel = new ScorePanel();
+// for (let i = 0; i < 200; i++) {
+//   scorePanel.addScore();
+// }
 
-  // 分数和等级所在的元素，在构造函数中进行初始化
-  scoreEle: HTMLElement;
-  levelEle: HTMLElement;
-  constructor() {
-    this.scoreEle = document.getElementById('score')!;
-    this.levelEle = document.getElementById('level')!;
-  }
-
-  // 设置加分的方法 
-  addScore() {
-    this.scoreEle.innerHTML = ++this.score + '';
-  }
-}
-
-// 测试代码
-const scorePanel = new ScorePanel();
-scorePanel.addScore();
+// 测试蛇代码
+// const snake = new Snake();
+// snake.addBody();
