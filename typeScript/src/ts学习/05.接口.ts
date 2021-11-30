@@ -6,6 +6,8 @@
  *     接口只定义对象的结构，而不考虑实际值
  */
 
+// 自： type和interface几乎一样，有个区别就是interface只能跟对象，定义对象的数据结构，而type可以定义任何类型数据结构
+
 type mytype = {
   name: string;
 };

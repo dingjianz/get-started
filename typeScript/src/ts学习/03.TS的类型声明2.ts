@@ -29,14 +29,15 @@ let h: string;
 // f的类型是any，但h的类型是string，当any的类型的变量作为参数传递给其他变量时，也会把对应变量的类型检测关闭掉。这也是不建议使用any的原因。
 h = f;
 // unkown类型的变量实际就是一个类型安全的any，不能直接赋值给其他变量
-// h = g; //不能将类型“unknown”直接分配给类型“string”。
+// h = g; // 不能将类型“unknown”直接分配给类型“string”。
 
 /* 
+类型断言
   语法：
     变量 as 类型
     <类型>变量
 */
-if (typeof g === "string") h = g; // 作个类型判断就可以将类型unknow的值赋值给变量了。
+if (typeof g === "string") h = g; // 做个类型判断就可以将类型unknow的值赋值给变量了。
 // h = g as number; // 不能将类型“number”分配给类型“string”。
 h = g as string;
 h = <string>g;

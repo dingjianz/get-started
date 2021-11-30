@@ -46,6 +46,8 @@ let m: string[];
 // let n: Array<any>;
 // let n: Array<object>;
 // let n: number[];
+// let n: (number | string)[]; // 包含数字和字符的数组
+// let n: Array<number | string>; // 包含数字和字符的数组
 // n = [1, '2'];
 
 /**
@@ -89,12 +91,12 @@ let t: myType;
 
 // 描述一个对象的类型
 type objType = {
-  name: string,
-  age: number,
-  [propname: string]: any
-}
+  name: string;
+  age: number;
+  [propname: string]: any;
+};
 
 const djObj: objType = {
-  name: 'jianding9',
-  age: 18
-}
+  name: "jianding9",
+  age: 18,
+};
