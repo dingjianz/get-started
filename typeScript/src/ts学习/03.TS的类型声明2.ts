@@ -2,7 +2,8 @@
 let d: 10;
 // d = 11; // 不能将类型“11”分配给类型“10”。
 
-let sex: "male" | "female"; // 可以使用 | 来连接多个类型(联合类型)
+// 联合类型
+let sex: "male" | "female"; // 可以使用 | 来连接多个类型
 sex = "male";
 sex = "female";
 // sex = 'nan'; // 不能将类型“"nan"”分配给类型“"male" | "female"”。

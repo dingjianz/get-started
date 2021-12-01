@@ -76,16 +76,18 @@ class Dog extends Animal {
     super(name, age);
     this.sex = sex;
   }
+
   run() {
     console.log(`${this.name}在跑！！！`);
   }
+
   sayHello() {
     // super.sayHello(); // 直接继承，super就表示当前类的父类
     console.log("汪汪汪！！");
   }
 
   eat() {
-    console.log('实现抽象类中的抽象方法')
+    console.log("实现抽象类中的抽象方法");
   }
 }
 

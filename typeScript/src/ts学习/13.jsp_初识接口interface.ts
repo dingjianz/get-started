@@ -60,11 +60,13 @@
     可多继承(extends)或者多实现 (implements )
    */
 
-  interface Teacher extends Girl { // 接口继承接口
+  interface Teacher extends Girl {
+    // 接口继承接口
     teach(): string;
   }
 
-  class XiaoJieJie implements Girl { // 类实现接口
+  class XiaoJieJie implements Girl {
+    // 类实现接口
     name = "刘英";
     age = 18;
     bust = 84;
@@ -74,7 +76,8 @@
     }
   }
 
-  interface NewGirlType extends XiaoJieJie { // 接口继承接口
+  interface NewGirlType extends XiaoJieJie {
+    // 接口继承接口
     color: string;
   }
 
@@ -89,7 +92,8 @@
     },
   };
 
-  class User implements NewGirlType { // 类实现接口
+  class User implements NewGirlType {
+    // 类实现接口
     color: string;
     name: string;
     age: number;
@@ -99,4 +103,14 @@
       return "hello world";
     }
   }
+
+  // 用接口定义函数的形状
+  interface mySearchFn {
+    (one: number, two: number): boolean;
+  }
+
+  const fn: mySearchFn = (one, two) => {
+    return one < two;
+  };
+  fn(1, 2);
 })();
