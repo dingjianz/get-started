@@ -39,4 +39,7 @@ namespace Home {
   type Shape = Circle | Rectandle;
   declare const s: Shape;
   s.area;
+  // s.width; // 类型“Shape”上不存在属性“width”。   类型“Circle”上不存在属性“width”。
+// 得到的是交集，然后同一属性会叠加
+
 }
