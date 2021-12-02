@@ -25,7 +25,8 @@
     "noEmit": false, // 执行编译，但是不生成编译后的文件。就是检查下代码规则，但是需要编译结果
     "noEmitOnError": true, // 当有错误的时候，不生成编译结果
     "sourceMap": false, // 是否生成打包后ts和js的位置关系映射文件 .mp
-    "noUnusedLocals": false // 没有使用的变量，打包时会提示报错
+    "noUnusedLocals": false, // 没有使用的变量，打包时会提示报错
+    "experimentalDecorators": true
   },
   "include": ["./src/**/*"], // 编译的包含文件 files作用和include一样
   "exclude": ["./src/hello/**"] // 不包含的文件

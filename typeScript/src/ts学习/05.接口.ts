@@ -8,19 +8,44 @@
 
 // 自： type和interface几乎一样，有个区别就是interface只能跟对象，定义对象的数据结构，而type可以定义任何类型数据结构
 
+// http://cbglearning.iflytek.cn/front/couinfo/638 22页
+
 type mytype = {
   name: string;
 };
 
+type mytype2 = mytype & {
+  age: number;
+}; // 取得是合集
+
+const p1: mytype2 = {
+  name: "路人甲",
+  age: 18,
+};
+
+// 1. 属性接口 对json进行约束
 interface myInterface {
   name: string;
 }
 
-// 可以多次叠加
+// 可以多次叠加同一个接口，但属性不能叠加
 interface myInterface {
   sex: string;
   sayHello(): void;
 }
+
+interface myInterface2 extends myInterface {
+  age: number;
+}
+
+const p3: myInterface2 = {
+  age: 18,
+  name: "张三",
+  sex: "male",
+  sayHello() {
+    console.log("hello world");
+  },
+};
 
 /**
  * 定义类时，可以使类去实现一个接口

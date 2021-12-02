@@ -95,3 +95,4 @@ const dog1 = new Dog("旺财", 3, "female");
 
 dog1.run();
 dog1.sayHello();
+

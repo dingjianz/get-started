@@ -1,4 +1,6 @@
-namespace Home {
+// 一个文件可以多个命名空间，也可以export外部引用
+export namespace Home {
+  // https://www.bilibili.com/video/BV1yt411e7xV?p=18
   class Header {
     constructor() {
       console.log("我是头部");
@@ -24,22 +26,19 @@ namespace Home {
       new Footer();
     }
   }
+  /**
+   * 在外层调用的时候： new Home.Page() 
+      Home.Header // undefined
+      Home.Content // undefined
+      Home.Footer // undefined
+   */
+}
 
-  interface Circle {
-    area: number;
-    radius?: number;
+export namespace Animal {
+  interface myInterface {
+    name: string;
+    age: number;
   }
 
-  interface Rectandle {
-    area: string;
-    width: number;
-    height: number;
-  }
-
-  type Shape = Circle | Rectandle;
-  declare const s: Shape;
-  s.area;
-  // s.width; // 类型“Shape”上不存在属性“width”。   类型“Circle”上不存在属性“width”。
-// 得到的是交集，然后同一属性会叠加
-
+  export class Cat implements
 }
