@@ -54,9 +54,10 @@
   // 所以既可以将 XiaoJieJie 当做一个类来用，也可以将 XiaoJieJie 当做一个类型来用
   /**
    * https://www.cnblogs.com/kunmomo/p/15272705.html
-    接口不能实现(implements)接口或者类，所以实现(implements )只能用于类身上,即类可以实现(implements )接口或类
-    接口可以继承(extends)接口或类
-    类不可以继承(extends)接口，类只能继承(extends)类
+   * 
+    1. 接口不能实现(implements)接口或者类: 所以实现(implements )只能用于类身上,即类可以实现(implements )接口或类
+    2. 接口可以继承(extends)接口或类
+    3. 类不可以继承(extends)接口，类只能继承(extends)类
     可多继承(extends)或者多实现 (implements )
    */
 
@@ -67,7 +68,7 @@
 
   class XiaoJieJie implements Girl {
     // 类实现接口
-    name = "刘英";
+    name: string = "刘英";
     age = 18;
     bust = 84;
     waistline = 46;
@@ -77,7 +78,7 @@
   }
 
   interface NewGirlType extends XiaoJieJie {
-    // 接口继承接口
+    // 接口继承类
     color: string;
   }
 

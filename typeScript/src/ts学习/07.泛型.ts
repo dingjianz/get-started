@@ -1,5 +1,6 @@
 (() => {
   /**
+   * http://ts.xcatliu.com/advanced/generics.html
   function fn(a: any): any {
       return a;
     }

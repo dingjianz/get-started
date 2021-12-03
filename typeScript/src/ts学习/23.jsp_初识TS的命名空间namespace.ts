@@ -34,11 +34,16 @@ export namespace Home {
    */
 }
 
-export namespace Animal {
-  interface myInterface {
+export namespace B {
+  interface Animal {
     name: string;
-    age: number;
+    eat(): void;
   }
 
-  export class Cat implements
+  export class Dog implements Animal {
+    constructor(public name: string) {}
+    eat() {
+      console.log(`${this.name}在觅食`);
+    }
+  }
 }

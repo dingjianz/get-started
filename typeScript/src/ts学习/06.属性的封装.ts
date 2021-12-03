@@ -66,7 +66,8 @@
   per.age = 33;
   console.log(per.age);
 
-  class Person_2 extends Person { // 子类
+  class Person_2 extends Person {
+    // 子类
     printSex() {
       console.log(this._sex);
     }

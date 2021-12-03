@@ -1,4 +1,5 @@
 (() => {
+  // http://ts.xcatliu.com/advanced/class.html#%E6%8A%BD%E8%B1%A1%E7%B1%BB
   // 抽象类: 一般用来定义标准。
   /**
    * 以 abstract 开头的是抽象类
@@ -14,6 +15,9 @@
     // 继承抽象类，若有抽象方法则必须手动具体实现
     skill() {
       console.log("大爷，我是服务员，请喝水！");
+    }
+    eat() {
+      console.log("我是自己的waiter方法");
     }
   }
 
