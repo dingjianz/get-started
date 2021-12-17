@@ -8,7 +8,7 @@
 
 // 自： type和interface几乎一样，有个区别就是interface只能跟对象，定义对象的数据结构，而type可以定义任何类型数据结构
 
-// http://cbglearning.iflytek.cn/front/couinfo/638 22页
+// https://www.jianshu.com/p/a0fa95b68ddf
 
 type mytype = {
   name: string;

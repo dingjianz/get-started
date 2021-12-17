@@ -6,8 +6,9 @@ interface Props {
 
 const TitleCom: React.FC<Props> = ({ title }) => {
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = function (
-    e
+    e: React.ChangeEvent
   ) {
+    // type React.ChangeEventHandler<T = Element> = (event: React.ChangeEvent<T>) => void
     console.log(e);
     console.log("handleChange");
   };

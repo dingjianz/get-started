@@ -4,10 +4,14 @@
   function fn(a: any): any {
       return a;
     }
-
-  在定义函数或类的时候，如果遇到类型不明确就可以使用泛型
  */
 
+  // 也可以定义基本类型
+  type Pair<T> = T;
+  const num: Pair<number> = 1;
+  console.log(num);
+
+  // 在定义函数或类的时候，如果遇到类型不明确就可以使用泛型
   function fn<T>(a: T): T {
     return a;
   }

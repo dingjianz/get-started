@@ -100,3 +100,45 @@ const djObj: objType = {
   name: "jianding9",
   age: 18,
 };
+
+// type React.ChangeEventHandler<T = Element> = (event: React.ChangeEvent<T>) => void
+
+/* 
+  如果是 type（类型别名）或 interface（接口）的联合类型，新声明的对象可以包含几个类型的所有属性，但只能访问它们共有的属性，比如下面只能访问 obj.name
+*/
+interface Foo {
+  name: string;
+  age: number;
+}
+
+interface Bar {
+  name: string;
+  onChange: () => void;
+}
+
+const obj: Foo | Bar = {
+  name: "12",
+  age: 12,
+  onChange: () => {
+    console.log(123);
+  },
+};
+
+// console.log(obj.name) // OK
+// console.log(obj.age) // 报错
+// obj.onChange() // 报错
+
+/* 
+  & 是交叉类型，修改下上面的 obj 为交叉类型，obj 的属性必须同时满足 Foo 和 Bar，一般用于合并两个类型
+*/
+const obj2: Foo & Bar = {
+  name: "12",
+  age: 12,
+  onChange: () => {
+    console.log(123);
+  },
+};
+
+console.log(obj2.name); // OK
+console.log(obj2.age); // OK
+obj2.onChange(); // OK
