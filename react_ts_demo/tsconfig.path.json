@@ -6,7 +6,9 @@
       "api/*": ["src/api/*"],
       "assets/*": ["src/assets/*"],
       "utils/*": ["src/utils/*"],
-      "@types/*": ["src/@types/*"]
+      "@types/*": ["src/@types/*"],
+      "pages/*": ["src/pages/*"],
+      "router/*": ["src/router/*"],
     }
   }
 }

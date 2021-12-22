@@ -1,5 +1,3 @@
-import { promises } from "dns";
-
 // https://blog.csdn.net/wu_xianqiang/article/details/103483616
 interface HttpType<T> {
   (url: string, value: T): Promise<T>;
