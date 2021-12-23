@@ -1,3 +1,5 @@
+import { createContext } from "react";
+
 const themes = {
   light: {
     foreground: "#000000",
@@ -9,4 +11,4 @@ const themes = {
   },
 };
 
-export default themes;
+export default createContext(themes.dark);

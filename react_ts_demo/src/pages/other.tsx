@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
-
+/*  eslint-disable */
+import React, { useEffect, useState } from "react";
 import Title from "components/Tile";
 import Lee from "components/Lee";
+import ThemeContext from "api/theme";
 
 import { getUserInfo } from "api/userApi";
 
 import avatar from "assets/images/avtar.jpg";
 
 function App() {
+  const [count, setCount] = useState<number | null>(1);
   const obj: Jianding.CommonObj = {
     name: "jianding9",
     age: 18,
@@ -44,6 +46,12 @@ function App() {
         }}
       />
       <img src={avatar} alt="" width="100" />
+      <ThemeContext.Consumer>
+        {(value) => {
+          console.log("context--consumer:::", value);
+          return <div>{value.background}</div>;
+        }}
+      </ThemeContext.Consumer>
     </div>
   );
 }
