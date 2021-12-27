@@ -23,6 +23,25 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
   <title>精通typescript</title>
+  <script>
+    (function (doc, win) {
+      var docEl = doc.documentElement,
+        resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+        recalc = function () {
+          var clientWidth = docEl.clientWidth;
+          if (!clientWidth) return;
+          var ua = navigator.userAgent
+          if (!/(iPhone|iPad|iPod|iOS)/i.test(ua) && !/(Android)/i.test(ua)) {
+            docEl.style.fontSize = 16 + 'px';
+          } else {
+            docEl.style.fontSize = 16 * (clientWidth / 375) + 'px'; // 针对于设计稿375
+          }
+        };
+      if (!doc.addEventListener) return;
+      win.addEventListener(resizeEvt, recalc, false);
+      doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window)
+  </script>
 </head>
 
 <body>

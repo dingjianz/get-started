@@ -31,6 +31,7 @@ interface myInterface {
 // 可以多次叠加同一个接口，但属性不能叠加
 interface myInterface {
   sex: string;
+  // sayHello: () => void;
   sayHello(): void;
 }
 

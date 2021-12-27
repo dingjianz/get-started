@@ -1,5 +1,9 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-const { override, addWebpackAlias } = require("customize-cra");
+const {
+  override,
+  addWebpackAlias,
+  addPostcssPlugins,
+} = require("customize-cra");
 
 const path = require("path");
 
@@ -12,5 +16,14 @@ module.exports = override(
     utils: path.resolve(__dirname, "src/utils"),
     pages: path.resolve(__dirname, "src/pages"),
     router: path.resolve(__dirname, "src/router"),
-  })
+  }),
+  addPostcssPlugins([
+    require("postcss-pxtorem")({
+      rootValue: 16, // 换算的基数
+      unitPrecision: 5,
+      propWhiteList: [], // 哪些需要进行px转rem
+      minPixelValue: 2, // 最小转换，如低于 4px的不会进行转成rem
+      selectorBlackList: ["am-"], // 排除哪些开头的如 .weui-button 等等
+    }),
+  ])
 );

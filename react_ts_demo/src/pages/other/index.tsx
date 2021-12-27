@@ -2,11 +2,14 @@
 import React, { useEffect, useState } from "react";
 import Title from "components/Tile";
 import Lee from "components/Lee";
+import Event from "components/Event";
 import ThemeContext from "api/theme";
 
 import { getUserInfo } from "api/userApi";
 
 import avatar from "assets/images/avtar.jpg";
+
+import "./other.scss";
 
 function App() {
   const [count, setCount] = useState<number | null>(1);
@@ -30,6 +33,13 @@ function App() {
 
   useEffect(() => {
     getUserInfo("jianding9", 127);
+    try {
+      throw new Error("报错了");
+    } catch (e) {
+      console.log("e:::", e);
+    } finally {
+      console.log("finally--------");
+    }
   }, []);
 
   return (
@@ -45,7 +55,8 @@ function App() {
           },
         }}
       />
-      <img src={avatar} alt="" width="100" />
+      <Event title="event title" />
+      <img src={avatar} alt="" />
       <ThemeContext.Consumer>
         {(value) => {
           console.log("context--consumer:::", value);
