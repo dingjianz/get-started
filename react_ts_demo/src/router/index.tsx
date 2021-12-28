@@ -1,4 +1,4 @@
-import React, { FC, lazy, Suspense } from "react";
+import { FC, lazy, Suspense } from "react";
 import {
   Routes,
   BrowserRouter as Router,
@@ -12,6 +12,7 @@ const ContextDemo = lazy(() => import("pages/context"));
 const UserDemo = lazy(() => import("pages/profile/user"));
 const MeDemo = lazy(() => import("pages/profile/me"));
 const HeDemo = lazy(() => import("pages/profile/he"));
+const TodoList = lazy(() => import("pages/todoList"));
 const NotFoundDemo = lazy(() => import("pages/notFound"));
 
 const RouteConfig: FC<RouteProps> = () => {
@@ -19,7 +20,8 @@ const RouteConfig: FC<RouteProps> = () => {
     <Suspense fallback={<div>Loading...</div>}>
       <Router>
         <Routes>
-          <Route path="/" caseSensitive element={<OtherDemo />} />
+          <Route path="/" caseSensitive element={<TodoList />} />
+          <Route path="/other" caseSensitive element={<OtherDemo />} />
           <Route path="/context" element={<ContextDemo />} />
           <Route path="/user" element={<UserDemo />}>
             <Route path="me" element={<MeDemo />} />

@@ -9,7 +9,7 @@ import { getUserInfo } from "api/userApi";
 
 import avatar from "assets/images/avtar.jpg";
 
-import "./other.scss";
+import "./index.scss";
 
 function App() {
   const [count, setCount] = useState<number | null>(1);
@@ -43,7 +43,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="rc-page">
       <Title title="我是头部" />
       <Lee
         name="Lee_name"

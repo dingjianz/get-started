@@ -1,11 +1,11 @@
-import React, { FC } from "react";
+import React, { FC, ReactElement } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 interface Props {
   [propName: string]: any;
 }
 
-const HeDemo: FC<Props> = (props) => {
+const HeDemo: FC<Props> = (props): ReactElement => {
   const navigate = useNavigate();
   return (
     <div>
