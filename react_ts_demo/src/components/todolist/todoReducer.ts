@@ -1,9 +1,6 @@
 import { ITodoType } from "enum/todoList";
 
-export default function todoReducer(
-  state: ITodoList.IState,
-  action: ITodoList.IAction
-): ITodoList.IState {
+const todoReducer = (state: ITodoList.IState, action: ITodoList.IAction) => {
   const { type, payload } = action;
   switch (type) {
     case ITodoType.ADD_TODOITEM:
@@ -30,4 +27,6 @@ export default function todoReducer(
     default:
       return state;
   }
-}
+};
+
+export default todoReducer;
