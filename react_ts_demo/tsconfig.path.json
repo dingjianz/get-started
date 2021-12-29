@@ -9,6 +9,7 @@
       "@types/*": ["src/@types/*"],
       "pages/*": ["src/pages/*"],
       "router/*": ["src/router/*"],
+      "enum/*": ["src/enum/*"],
     }
   }
 }

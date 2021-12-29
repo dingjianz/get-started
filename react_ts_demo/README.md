@@ -61,3 +61,8 @@ pm2 start server.js
 pm2 stop id // pm2 stop 0
 
 ```
+
+### types 设置
+
+> tsconfig.json 里面设置 typeRoots 属性，@types 下面的文件定义的接口不需要引用，可以直接使用
+> tsconfig.path.json 定义 alias，不能在 tsconfig.json 直接写，会被直接覆盖删除掉

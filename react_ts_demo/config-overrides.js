@@ -17,6 +17,7 @@ module.exports = override(
     utils: path.resolve(__dirname, "src/utils"),
     pages: path.resolve(__dirname, "src/pages"),
     router: path.resolve(__dirname, "src/router"),
+    enum: path.resolve(__dirname, "src/enum"),
   }),
   fixBabelImports("import", {
     libraryName: "antd-mobile",

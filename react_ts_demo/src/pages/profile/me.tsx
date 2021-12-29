@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, MouseEventHandler } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 
 interface Props {
@@ -7,12 +7,17 @@ interface Props {
 
 const MeDemo: FC<Props> = (props) => {
   const navigate = useNavigate();
+
+  const handleClick: MouseEventHandler<HTMLButtonElement> = () => {
+    navigate("/user/he");
+  };
+
   return (
     <div>
       me demo
       <hr />
       <NavLink to="../he">点我去 he</NavLink>
-      <button onClick={() => navigate("/user/he")}>go he</button>
+      <button onClick={handleClick}>go he</button>
     </div>
   );
 };

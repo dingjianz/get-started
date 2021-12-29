@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from "react";
+import React, { FC, ReactElement, memo } from "react";
 import styles from "./index.module.scss";
 
 interface IProps {}
@@ -11,4 +11,4 @@ const TodoItem: FC<IProps> = (): ReactElement => {
   );
 };
 
-export default TodoItem;
+export default memo(TodoItem);
