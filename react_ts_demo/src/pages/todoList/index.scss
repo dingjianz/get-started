@@ -1,0 +1,21 @@
+.todo-list {
+  width: 100%;
+  height: 100% !important;
+}
+  /* 竖屏 */
+  @media screen and (orientation:portrait) {
+
+    /* 这里写竖屏样式 */
+    .todo-list {
+      background-color: #282c34;
+    }
+  }
+
+  /* 横屏 */
+  @media screen and (orientation:landscape) {
+
+    /* 这里写横屏样式 */
+    .todo-list {
+      background-color: #ececec;
+    }
+  }

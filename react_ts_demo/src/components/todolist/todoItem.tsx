@@ -1,12 +1,33 @@
 import React, { FC, ReactElement, memo } from "react";
 import styles from "./index.module.scss";
 
-interface IProps {}
+interface IProps {
+  todoItem: ITodoList.ITodo;
+  handleToggleTodoItem(id: number): void;
+  removeTodoItem: (id: number) => void;
+}
 
-const TodoItem: FC<IProps> = (): ReactElement => {
+const TodoItem: FC<IProps> = ({
+  todoItem,
+  handleToggleTodoItem,
+  removeTodoItem,
+}): ReactElement => {
+  const { id, content, isCompleted } = todoItem;
   return (
     <div className={styles.todo_item}>
-      <span>todo-item</span>
+      <input
+        type="checkbox"
+        checked={isCompleted}
+        onChange={() => handleToggleTodoItem(id)}
+      />
+      <span
+        style={{
+          textDecoration: isCompleted ? "line-through" : "none",
+        }}
+      >
+        {content}
+      </span>
+      <button onClick={removeTodoItem.bind(this, id)}>删除</button>
     </div>
   );
 };

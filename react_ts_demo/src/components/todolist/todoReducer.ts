@@ -3,6 +3,11 @@ import { ITodoType } from "enum/todoList";
 const todoReducer = (state: ITodoList.IState, action: ITodoList.IAction) => {
   const { type, payload } = action;
   switch (type) {
+    case ITodoType.SET_TODOLIST:
+      return {
+        ...state,
+        todoList: payload as ITodoList.ITodo[],
+      };
     case ITodoType.ADD_TODOITEM:
       return {
         ...state,
@@ -11,15 +16,13 @@ const todoReducer = (state: ITodoList.IState, action: ITodoList.IAction) => {
     case ITodoType.REMOVE_TODOITEM:
       return {
         ...state,
-        todoList: state.todoList.filter(
-          (item) => item.id !== (payload as ITodoList.ITodo).id
-        ),
+        todoList: state.todoList.filter((item) => item.id !== payload),
       };
     case ITodoType.TODDLE_TODOITEM:
       return {
         ...state,
         todoList: state.todoList.map((todoItem) => {
-          return (payload as ITodoList.ITodo).id === todoItem.id
+          return todoItem.id === payload
             ? { ...todoItem, isCompleted: !todoItem.isCompleted }
             : todoItem;
         }),

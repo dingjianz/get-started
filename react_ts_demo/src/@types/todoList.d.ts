@@ -11,12 +11,13 @@ declare namespace ITodoList {
 
   interface IAction {
     type: ITodoType;
-    payload: ITodo | boolean;
+    payload: ITodo | ITodo[] | number;
   }
 
   enum ITodoType {
     ADD_TODOITEM = "ADD_TODOITEM",
     REMOVE_TODOITEM = "REMOVE_TODOITEM",
     TODDLE_TODOITEM = "TODDLE_TODOITEM",
+    SET_TODOLIST = "SET_TODOLIST",
   }
 }

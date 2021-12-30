@@ -4,10 +4,13 @@ import React, {
   ReactElement,
   useCallback,
   // useState,
+  useEffect,
   useReducer,
 } from "react";
 import { TodoInput, TodoItem, todoReducer } from "components/todolist";
 import { ITodoType } from "enum/todoList";
+
+import "./index.scss";
 
 const initialState: ITodoList.IState = {
   todoList: [],
@@ -26,6 +29,32 @@ const TodoList: FC = (): ReactElement => {
     });
   }, []);
 
+  const removeTodoItem = useCallback((id: number): void => {
+    dispatch({
+      type: ITodoType.REMOVE_TODOITEM,
+      payload: id,
+    });
+  }, []);
+
+  const handleToggleTodoItem = useCallback((id: number): void => {
+    dispatch({
+      type: ITodoType.TODDLE_TODOITEM,
+      payload: id,
+    });
+  }, []);
+
+  useEffect(() => {
+    const list = JSON.parse(localStorage.getItem("todoList") || "[]");
+    dispatch({
+      type: ITodoType.SET_TODOLIST,
+      payload: list,
+    });
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("todoList", JSON.stringify(state.todoList));
+  }, [state.todoList]);
+
   return (
     <div className="todo-list">
       <TodoInput
@@ -34,7 +63,18 @@ const TodoList: FC = (): ReactElement => {
           todoList: state.todoList,
         }}
       />
-      <TodoItem />
+      <div className="todo-list">
+        {state.todoList.map((todoItem: ITodoList.ITodo, index: number) => (
+          <TodoItem
+            {...{
+              key: index,
+              todoItem,
+              handleToggleTodoItem,
+              removeTodoItem,
+            }}
+          />
+        ))}
+      </div>
     </div>
   );
 };
