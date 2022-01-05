@@ -27,11 +27,14 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
     "extends": [
       "react-app",
-      "react-app/jest"
-
+      "react-app/jest",
+      "airbnb",
+      "plugin:react/jsx-runtime"
     ],
+    "plugins": ["@typescript-eslint/eslint-plugin"],
     "rules": {
       "prettier/prettier": "off",
       "func-names": 0,
@@ -66,18 +69,34 @@
         }
       ],
       "no-console": 0,
-      "import/extensions": 0
+      "import/extensions": 0,
+      "react/jsx-filename-extension": [
+        "error",
+        {
+          "extensions": [
+            ".js",
+            ".jsx",
+            ".ts",
+            ".tsx"
+          ]
+        }
+      ]
     },
-    "overrides": [{
-      "files": [
-        "**/*.ts?(x)"
-      ],
-      "rules": {
-        "@typescript-eslint/no-unused-vars": [
-          "error"
-        ]
+    "overrides": [
+      {
+        "files": [
+          "**/*.ts?(x)"
+        ],
+        "rules": {
+          "@typescript-eslint/no-unused-vars": [
+            "error"
+          ],
+          "react/function-component-definition": [
+            0
+          ]
+        }
       }
-    }]
+    ]
   },
   "browserslist": {
     "production": [
@@ -95,8 +114,16 @@
     "@types/react": "^17.0.38",
     "@types/react-dom": "^17.0.11",
     "@types/react-router-dom": "^5.3.2",
+    "@typescript-eslint/eslint-plugin": "^5.8.1",
+    "@typescript-eslint/parser": "^5.9.0",
     "babel-plugin-import": "^1.13.3",
     "customize-cra": "^1.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-airbnb": "^0.0.1-security",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "node-sass": "^7.0.0",
     "postcss-loader": "^6.2.1",
     "postcss-pxtorem": "^5.1.1",

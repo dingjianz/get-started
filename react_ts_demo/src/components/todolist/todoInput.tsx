@@ -1,11 +1,11 @@
-import React, {
+import {
   FC,
   MouseEventHandler,
   ReactElement,
   useRef,
   memo,
-} from "react";
-import { Toast } from "antd-mobile";
+} from 'react';
+import { Toast } from 'antd-mobile';
 
 interface IProps {
   addTodoItem(todoItem: ITodoList.ITodo): void;
@@ -20,20 +20,20 @@ const TodoInput: FC<IProps> = ({ addTodoItem, todoList }): ReactElement => {
     const val = (iptRef.current as HTMLInputElement).value;
     if (val?.length) {
       const isExist = todoList.find((item) => item?.content === val);
-      if (isExist) return Toast.info("该项已存在");
+      if (isExist) return Toast.info('该项已存在');
       addTodoItem({
         id: new Date().getTime(),
         content: val,
         isCompleted: false,
       });
-      iptRef.current!.value = "";
+      iptRef.current!.value = '';
     }
   };
 
   return (
     <div className="todo-input">
       <input placeholder="请输入待办项" type="text" ref={iptRef} />
-      <button onClick={handleClick}>确定</button>
+      <button type="button" onClick={handleClick}>确定</button>
     </div>
   );
 };

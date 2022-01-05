@@ -1,13 +1,20 @@
+/* eslint-disable */
 const {
   override,
   addWebpackAlias,
   addPostcssPlugins,
   fixBabelImports,
+  // addTslintLoader,
+  // enableEslintTypescript
 } = require("customize-cra");
 
 const path = require("path");
 
 module.exports = override(
+  // addTslintLoader({
+  //   enforce: "pre"
+  // }),
+  // enableEslintTypescript(),
   addWebpackAlias({
     components: path.resolve(__dirname, "src/components"),
     api: path.resolve(__dirname, "src/api"),
@@ -30,5 +37,5 @@ module.exports = override(
       minPixelValue: 2, // 最小转换，如低于 4px的不会进行转成rem
       // selectorBlackList: ["am-"], // 排除哪些开头的如 .weui-button 等等
     }),
-  ])
+  ]),
 );

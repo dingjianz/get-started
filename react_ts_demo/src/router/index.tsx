@@ -1,4 +1,4 @@
-import { FC, lazy, Suspense } from "react";
+import React, { FC, lazy, Suspense } from "react";
 import {
   Routes,
   BrowserRouter as Router,

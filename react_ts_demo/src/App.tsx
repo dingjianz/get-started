@@ -1,14 +1,14 @@
-import { useEffect } from "react";
-import RoutesConfig from "router/index";
+import { useEffect } from 'react';
+import RoutesConfig from 'router/index';
 
 function App() {
   useEffect(() => {
-    window.addEventListener("orientationchange", function () {
+    window.addEventListener('orientationchange', () => {
       // alert(window.orientation);
       console.log(window.orientation);
     });
     return () => {
-      window.removeEventListener("orientationchange", function () {
+      window.removeEventListener('orientationchange', () => {
         // alert(window.orientation);
         console.log(window.orientation);
       });
