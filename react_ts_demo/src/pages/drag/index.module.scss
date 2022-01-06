@@ -1,0 +1,36 @@
+.container {
+  @include whSet(100%, 100%);
+
+  .blank_cell_group {
+    @include flexLayout($dir: row);
+
+    .cell_item {
+      @include whSet(25%, 25vw);
+      padding: 4px;
+
+      .wrapper {
+        @include whSet(100%, 100%);
+        border: 1px solid #ddd;
+      }
+    }
+  }
+
+  .char_cell_group {
+    @include flexLayout($dir: row, $flw: wrap);
+    margin-top: 50px;
+
+    .cell_item {
+      @include whSet(25%, 25vw);
+      padding: 4px;
+
+      .wrapper {
+        @include whSet(100%, 100%);
+        line-height: 25vw;
+        text-align: center;
+        background-color: orange;
+        color: #fff;
+        font-size: 30px;
+      }
+    }
+  }
+}

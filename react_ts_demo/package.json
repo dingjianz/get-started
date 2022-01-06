@@ -109,7 +109,7 @@
           "consistent-return": 0,
           "no-non-null-assertion": 0,
           "react-hooks/rules-of-hooks": "error",
-          "react-hooks/exhaustive-deps": "warn" 
+          "react-hooks/exhaustive-deps": "warn"
         }
       }
     ]
@@ -146,6 +146,7 @@
     "postcss-pxtorem": "^5.1.1",
     "react-app-rewired": "^2.1.8",
     "sass": "^1.44.0",
-    "sass-loader": "10.1.1"
+    "sass-loader": "10.1.1",
+    "sass-resources-loader": "^2.2.4"
   }
 }

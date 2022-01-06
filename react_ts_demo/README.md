@@ -66,3 +66,22 @@ pm2 stop id // pm2 stop 0
 
 > tsconfig.json 里面设置 typeRoots 属性，@types 下面的文件定义的接口不需要引用，可以直接使用
 > tsconfig.path.json 定义 alias，不能在 tsconfig.json 直接写，会被直接覆盖删除掉
+
+### [通过 sass-resources-loader 全局注册 Sass 变量](https://www.jianshu.com/p/7256faa8da55)
+
+```js
+const { override, adjustStyleLoaders } = require("customize-cra");
+module.exports = override(
+  // ...其他配置...
+  adjustStyleLoaders((rule) => {
+    if (rule.test.toString().includes("scss")) {
+      rule.use.push({
+        loader: require.resolve("sass-resources-loader"),
+        options: {
+          resources: "./src/assets/scss/output.scss", //这里是你自己放公共scss变量的路径
+        },
+      });
+    }
+  })
+);
+```
