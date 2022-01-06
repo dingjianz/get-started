@@ -1,4 +1,4 @@
-import { ITodoType } from "enum/todoList";
+import { ITodoType } from 'enum/todoList';
 
 const todoReducer = (state: ITodoList.IState, action: ITodoList.IAction) => {
   const { type, payload } = action;
@@ -21,11 +21,9 @@ const todoReducer = (state: ITodoList.IState, action: ITodoList.IAction) => {
     case ITodoType.TODDLE_TODOITEM:
       return {
         ...state,
-        todoList: state.todoList.map((todoItem) => {
-          return todoItem.id === payload
-            ? { ...todoItem, isCompleted: !todoItem.isCompleted }
-            : todoItem;
-        }),
+        todoList: state.todoList.map((todoItem) => (todoItem.id === payload
+          ? { ...todoItem, isCompleted: !todoItem.isCompleted }
+          : todoItem)),
       };
     default:
       return state;

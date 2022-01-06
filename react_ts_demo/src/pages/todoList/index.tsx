@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {
+import {
   FC,
   ReactElement,
   useCallback,
   // useState,
   useEffect,
   useReducer,
-} from "react";
-import { TodoInput, TodoItem, todoReducer } from "components/todolist";
-import { ITodoType } from "enum/todoList";
+} from 'react';
+import { TodoInput, TodoItem, todoReducer } from 'components/todolist';
+import { ITodoType } from 'enum/todoList';
 
-import "./index.scss";
+import './index.scss';
 
 const initialState: ITodoList.IState = {
   todoList: [],
@@ -44,7 +44,7 @@ const TodoList: FC = (): ReactElement => {
   }, []);
 
   useEffect(() => {
-    const list = JSON.parse(localStorage.getItem("todoList") || "[]");
+    const list = JSON.parse(localStorage.getItem('todoList') || '[]');
     dispatch({
       type: ITodoType.SET_TODOLIST,
       payload: list,
@@ -52,7 +52,7 @@ const TodoList: FC = (): ReactElement => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("todoList", JSON.stringify(state.todoList));
+    localStorage.setItem('todoList', JSON.stringify(state.todoList));
   }, [state.todoList]);
 
   return (

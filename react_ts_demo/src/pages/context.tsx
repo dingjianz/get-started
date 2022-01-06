@@ -1,6 +1,5 @@
-/* eslint-disable */
-import React, { Component } from "react";
-import ThemeContext from "api/theme";
+import React, { Component } from 'react';
+import ThemeContext from 'api/theme';
 
 /**
  * @param name 姓名
@@ -12,10 +11,10 @@ interface IState {
   [propName: string]: any;
 }
 
-const dj: IState = {
-  name: "12",
-  age: 12,
-};
+// const dj: IState = {
+//   name: '12',
+//   age: 12,
+// };
 
 interface IProps {
   [propName: string]: any;
@@ -23,8 +22,9 @@ interface IProps {
 
 class ContextDemo extends Component<IProps, IState> {
   componentDidMount() {
-    console.log("class-contextType:::", this.context);
+    console.log('class-contextType:::', this.context);
   }
+
   render(): React.ReactNode {
     return <div>ContextDemo</div>;
   }

@@ -28,13 +28,27 @@
   },
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 2021,
+      "sourceType": "module",
+      "project": "./tsconfig.json",
+      "ecmaFeatures": {
+        "jsx": true,
+        "typescript": true,
+        "tsx": true
+      }
+    },
     "extends": [
-      "react-app",
-      "react-app/jest",
+      "plugin:prettier/recommended",
       "airbnb",
+      "airbnb-typescript",
+      "plugin:@typescript-eslint/recommended",
+      "airbnb/hooks",
       "plugin:react/jsx-runtime"
     ],
-    "plugins": ["@typescript-eslint/eslint-plugin"],
+    "plugins": [
+      "@typescript-eslint/eslint-plugin"
+    ],
     "rules": {
       "prettier/prettier": "off",
       "func-names": 0,
@@ -89,11 +103,13 @@
         ],
         "rules": {
           "@typescript-eslint/no-unused-vars": [
-            "error"
+            2
           ],
           "react/function-component-definition": [
             0
-          ]
+          ],
+          "consistent-return": [0],
+          "no-non-null-assertion": 0
         }
       }
     ]
@@ -118,6 +134,7 @@
     "@typescript-eslint/parser": "^5.9.0",
     "babel-plugin-import": "^1.13.3",
     "customize-cra": "^1.0.0",
+    "eslint-config-airbnb-typescript": "^16.1.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-airbnb": "^0.0.1-security",
     "eslint-plugin-jsx-a11y": "^6.5.1",

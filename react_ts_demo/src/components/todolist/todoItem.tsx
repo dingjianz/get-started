@@ -1,5 +1,5 @@
-import React, { FC, ReactElement, memo } from "react";
-import styles from "./index.module.scss";
+import { FC, ReactElement, memo } from 'react';
+import styles from './index.module.scss';
 
 interface IProps {
   todoItem: ITodoList.ITodo;
@@ -22,12 +22,12 @@ const TodoItem: FC<IProps> = ({
       />
       <span
         style={{
-          textDecoration: isCompleted ? "line-through" : "none",
+          textDecoration: isCompleted ? 'line-through' : 'none',
         }}
       >
         {content}
       </span>
-      <button onClick={removeTodoItem.bind(this, id)}>删除</button>
+      <button type="button" onClick={removeTodoItem.bind(this, id)}>删除</button>
     </div>
   );
 };

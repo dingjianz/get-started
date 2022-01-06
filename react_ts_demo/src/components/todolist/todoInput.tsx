@@ -1,9 +1,5 @@
 import {
-  FC,
-  MouseEventHandler,
-  ReactElement,
-  useRef,
-  memo,
+  FC, MouseEventHandler, ReactElement, useRef, memo,
 } from 'react';
 import { Toast } from 'antd-mobile';
 
@@ -26,14 +22,17 @@ const TodoInput: FC<IProps> = ({ addTodoItem, todoList }): ReactElement => {
         content: val,
         isCompleted: false,
       });
-      iptRef.current!.value = '';
+      // iptRef.current!.value = '';
+      (iptRef.current as HTMLInputElement).value = '';
     }
   };
 
   return (
     <div className="todo-input">
       <input placeholder="请输入待办项" type="text" ref={iptRef} />
-      <button type="button" onClick={handleClick}>确定</button>
+      <button type="button" onClick={handleClick}>
+        确定
+      </button>
     </div>
   );
 };
