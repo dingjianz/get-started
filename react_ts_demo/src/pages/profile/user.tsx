@@ -5,7 +5,7 @@ interface Props {
   [propName: string]: any;
 }
 
-const UserDemo: FC<Props> = (props) => (
+const UserDemo: FC<Props> = () => (
   <div>
     user demo
     <hr />

@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import { Component } from 'react';
 
 interface User {
   readonly name: string;
-  sex: "male" | "female";
+  sex: 'male' | 'female';
   say(): void;
 }
 
@@ -26,6 +26,7 @@ export default class Lee extends Component<IProps, Istate> {
   // }
 
   state: Istate = {
+    // eslint-disable-next-line react/no-unused-state
     count: 0,
   };
 
@@ -36,12 +37,26 @@ export default class Lee extends Component<IProps, Istate> {
     return (
       <div>
         <h2>Lee</h2>
-        <div>name: {name}</div>
-        <div>age: {age}</div>
+        <div>
+          name:
+          {' '}
+          {name}
+        </div>
+        <div>
+          age:
+          {' '}
+          {age}
+        </div>
         {user?.name && (
           <>
-            <div>userName:{user.name}</div>
-            <div>userSex:{user.sex}</div>
+            <div>
+              userName:
+              {user.name}
+            </div>
+            <div>
+              userSex:
+              {user.sex}
+            </div>
           </>
         )}
       </div>

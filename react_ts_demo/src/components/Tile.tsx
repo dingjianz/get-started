@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface Props {
   title: string;
@@ -6,11 +6,11 @@ interface Props {
 
 const TitleCom: React.FC<Props> = ({ title }) => {
   const handleChange: React.ChangeEventHandler<HTMLInputElement> = function (
-    e: React.ChangeEvent
+    e: React.ChangeEvent,
   ) {
     // type React.ChangeEventHandler<T = Element> = (event: React.ChangeEvent<T>) => void
     console.log(e);
-    console.log("handleChange");
+    console.log('handleChange');
   };
 
   return (

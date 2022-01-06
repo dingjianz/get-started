@@ -28,6 +28,9 @@
     ]
   },
   "include": [
-    "src"
+    "src",
+    "./ecosystem.config.js",
+    "./server.js",
+    "./config-overrides.js"
   ]
 }

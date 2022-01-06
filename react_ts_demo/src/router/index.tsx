@@ -1,38 +1,36 @@
-import React, { FC, lazy, Suspense } from "react";
+import { FC, lazy, Suspense } from 'react';
 import {
   Routes,
   BrowserRouter as Router,
   Route,
   RouteProps,
   Navigate,
-} from "react-router-dom";
+} from 'react-router-dom';
 
-const OtherDemo = lazy(() => import("pages/other"));
-const ContextDemo = lazy(() => import("pages/context"));
-const UserDemo = lazy(() => import("pages/profile/user"));
-const MeDemo = lazy(() => import("pages/profile/me"));
-const HeDemo = lazy(() => import("pages/profile/he"));
-const TodoList = lazy(() => import("pages/todoList"));
-const NotFoundDemo = lazy(() => import("pages/notFound"));
+const OtherDemo = lazy(() => import('pages/other'));
+const ContextDemo = lazy(() => import('pages/context'));
+const UserDemo = lazy(() => import('pages/profile/user'));
+const MeDemo = lazy(() => import('pages/profile/me'));
+const HeDemo = lazy(() => import('pages/profile/he'));
+const TodoList = lazy(() => import('pages/todoList'));
+const NotFoundDemo = lazy(() => import('pages/notFound'));
 
-const RouteConfig: FC<RouteProps> = () => {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Router>
-        <Routes>
-          <Route path="/" caseSensitive element={<TodoList />} />
-          <Route path="/other" caseSensitive element={<OtherDemo />} />
-          <Route path="/context" element={<ContextDemo />} />
-          <Route path="/user" element={<UserDemo />}>
-            <Route path="me" element={<MeDemo />} />
-            <Route path="he" element={<HeDemo />} />
-          </Route>
-          <Route path="/404" element={<NotFoundDemo />} />
-          <Route path="*" element={<Navigate replace to="/404" />} />
-        </Routes>
-      </Router>
-    </Suspense>
-  );
-};
+const RouteConfig: FC<RouteProps> = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <Router>
+      <Routes>
+        <Route path="/" caseSensitive element={<TodoList />} />
+        <Route path="/other" caseSensitive element={<OtherDemo />} />
+        <Route path="/context" element={<ContextDemo />} />
+        <Route path="/user" element={<UserDemo />}>
+          <Route path="me" element={<MeDemo />} />
+          <Route path="he" element={<HeDemo />} />
+        </Route>
+        <Route path="/404" element={<NotFoundDemo />} />
+        <Route path="*" element={<Navigate replace to="/404" />} />
+      </Routes>
+    </Router>
+  </Suspense>
+);
 
 export default RouteConfig;

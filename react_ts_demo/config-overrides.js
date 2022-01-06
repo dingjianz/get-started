@@ -6,9 +6,9 @@ const {
   fixBabelImports,
   // addTslintLoader,
   // enableEslintTypescript
-} = require("customize-cra");
+} = require('customize-cra');
 
-const path = require("path");
+const path = require('path');
 
 module.exports = override(
   // addTslintLoader({
@@ -16,21 +16,21 @@ module.exports = override(
   // }),
   // enableEslintTypescript(),
   addWebpackAlias({
-    components: path.resolve(__dirname, "src/components"),
-    api: path.resolve(__dirname, "src/api"),
-    "@types": path.resolve(__dirname, "src/@types"),
-    assets: path.resolve(__dirname, "src/assets"),
-    utils: path.resolve(__dirname, "src/utils"),
-    pages: path.resolve(__dirname, "src/pages"),
-    router: path.resolve(__dirname, "src/router"),
-    enum: path.resolve(__dirname, "src/enum"),
+    components: path.resolve(__dirname, 'src/components'),
+    api: path.resolve(__dirname, 'src/api'),
+    '@types': path.resolve(__dirname, 'src/@types'),
+    assets: path.resolve(__dirname, 'src/assets'),
+    utils: path.resolve(__dirname, 'src/utils'),
+    pages: path.resolve(__dirname, 'src/pages'),
+    router: path.resolve(__dirname, 'src/router'),
+    enum: path.resolve(__dirname, 'src/enum'),
   }),
-  fixBabelImports("import", {
-    libraryName: "antd-mobile",
-    style: "css",
+  fixBabelImports('import', {
+    libraryName: 'antd-mobile',
+    style: 'css',
   }),
   addPostcssPlugins([
-    require("postcss-pxtorem")({
+    require('postcss-pxtorem')({
       rootValue: 16, // 换算的基数
       unitPrecision: 5,
       propWhiteList: [], // 哪些需要进行px转rem

@@ -1,6 +1,3 @@
-
-
-
 declare namespace Jianding {
   interface CommonObj {
     name: string;

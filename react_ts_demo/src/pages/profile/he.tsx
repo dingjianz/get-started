@@ -5,7 +5,7 @@ interface Props {
   [propName: string]: any;
 }
 
-const HeDemo: FC<Props> = (props): ReactElement => {
+const HeDemo: FC<Props> = (): ReactElement => {
   const navigate = useNavigate();
   return (
     <div>

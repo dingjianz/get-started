@@ -5,7 +5,7 @@ interface Props {
   [propName: string]: any;
 }
 
-const MeDemo: FC<Props> = (props) => {
+const MeDemo: FC<Props> = () => {
   const navigate = useNavigate();
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = () => {

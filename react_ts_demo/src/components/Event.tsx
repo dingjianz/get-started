@@ -1,5 +1,5 @@
-import React, { Component, createRef } from "react";
-import { Space, Button } from "antd";
+import React, { Component, createRef } from 'react';
+import { Space, Button } from 'antd';
 
 /**
  * @param title 标题
@@ -14,6 +14,7 @@ interface IState {
 
 export default class Event extends Component<IProps, IState> {
   private inputRef: React.RefObject<HTMLDivElement>;
+
   constructor(props: IProps) {
     super(props);
     this.inputRef = createRef();

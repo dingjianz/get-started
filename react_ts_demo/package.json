@@ -12,6 +12,7 @@
     "@types/react-dom": "^17.0.11",
     "antd": "4.17.2",
     "antd-mobile": "^2.3.4",
+    "express": "^4.17.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router": "^6.2.1",
@@ -47,7 +48,8 @@
       "plugin:react/jsx-runtime"
     ],
     "plugins": [
-      "@typescript-eslint/eslint-plugin"
+      "@typescript-eslint/eslint-plugin",
+      "react-hooks"
     ],
     "rules": {
       "prettier/prettier": "off",
@@ -102,14 +104,12 @@
           "**/*.ts?(x)"
         ],
         "rules": {
-          "@typescript-eslint/no-unused-vars": [
-            2
-          ],
-          "react/function-component-definition": [
-            0
-          ],
-          "consistent-return": [0],
-          "no-non-null-assertion": 0
+          "@typescript-eslint/no-unused-vars": 2,
+          "react/function-component-definition": 0,
+          "consistent-return": 0,
+          "no-non-null-assertion": 0,
+          "react-hooks/rules-of-hooks": "error",
+          "react-hooks/exhaustive-deps": "warn" 
         }
       }
     ]
