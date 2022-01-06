@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { FC, ReactElement, useEffect } from 'react';
 import RoutesConfig from 'router/index';
 
-function App() {
+const App: FC = (): ReactElement => {
   useEffect(() => {
     window.addEventListener('orientationchange', () => {
       // alert(window.orientation);
@@ -15,6 +15,6 @@ function App() {
     };
   }, []);
   return <RoutesConfig />;
-}
+};
 
 export default App;

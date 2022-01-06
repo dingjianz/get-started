@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, ReactElement } from 'react';
 
 interface User {
   readonly name: string;
@@ -30,7 +30,7 @@ export default class Lee extends Component<IProps, Istate> {
     count: 0,
   };
 
-  render() {
+  render(): ReactElement {
     const { name, age, user } = this.props;
     user?.say();
 

@@ -2,7 +2,7 @@ import { FC, MouseEventHandler } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 
 interface Props {
-  [propName: string]: any;
+  [propName: string]: unknown;
 }
 
 const MeDemo: FC<Props> = () => {

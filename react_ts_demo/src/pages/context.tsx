@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component, ReactElement } from 'react';
 import ThemeContext from 'api/theme';
 
 /**
@@ -8,7 +8,7 @@ import ThemeContext from 'api/theme';
 interface IState {
   name: string;
   age: number;
-  [propName: string]: any;
+  [propName: string]: unknown;
 }
 
 // const dj: IState = {
@@ -17,15 +17,15 @@ interface IState {
 // };
 
 interface IProps {
-  [propName: string]: any;
+  [propName: string]: unknown;
 }
 
 class ContextDemo extends Component<IProps, IState> {
-  componentDidMount() {
+  componentDidMount(): void {
     console.log('class-contextType:::', this.context);
   }
 
-  render(): React.ReactNode {
+  render(): ReactElement {
     return <div>ContextDemo</div>;
   }
 }

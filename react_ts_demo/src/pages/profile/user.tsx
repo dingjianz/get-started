@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
 interface Props {
-  [propName: string]: any;
+  [propName: string]: unknown;
 }
 
 const UserDemo: FC<Props> = () => (

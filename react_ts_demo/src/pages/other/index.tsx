@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, FC } from 'react';
 import Title from 'components/Tile';
 import Lee from 'components/Lee';
 import Event from 'components/Event';
@@ -10,7 +10,7 @@ import avatar from 'assets/images/avtar.jpg';
 
 import './index.scss';
 
-function App() {
+const App: FC = () => {
   // const [count, setCount] = useState<number | null>(1);
   // const obj: Jianding.CommonObj = {
   //   name: 'jianding9',
@@ -64,6 +64,6 @@ function App() {
       </ThemeContext.Consumer>
     </div>
   );
-}
+};
 
 export default App;

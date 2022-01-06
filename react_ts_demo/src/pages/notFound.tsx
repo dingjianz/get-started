@@ -2,7 +2,7 @@ import { FC, useContext } from 'react';
 import ThemeContext from 'api/theme';
 
 interface Props {
-  [propName: string]: any;
+  [propName: string]: unknown;
 }
 
 const NotFoundDemo: FC<Props> = () => {

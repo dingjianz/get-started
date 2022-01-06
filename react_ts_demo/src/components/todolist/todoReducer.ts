@@ -1,6 +1,6 @@
 import { ITodoType } from 'enum/todoList';
 
-const todoReducer = (state: ITodoList.IState, action: ITodoList.IAction) => {
+const todoReducer = (state: ITodoList.IState, action: ITodoList.IAction): ITodoList.IState => {
   const { type, payload } = action;
   switch (type) {
     case ITodoType.SET_TODOLIST:

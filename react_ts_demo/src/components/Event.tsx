@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import React, { Component, createRef, ReactElement } from 'react';
 import { Space, Button } from 'antd';
 
 /**
@@ -9,7 +9,7 @@ interface IProps {
 }
 
 interface IState {
-  [propName: string]: any;
+  [propName: string]: unknown;
 }
 
 export default class Event extends Component<IProps, IState> {
@@ -20,7 +20,7 @@ export default class Event extends Component<IProps, IState> {
     this.inputRef = createRef();
   }
 
-  render() {
+  render(): ReactElement {
     return (
       <div ref={this.inputRef}>
         <Space>

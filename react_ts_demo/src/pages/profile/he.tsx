@@ -2,7 +2,7 @@ import { FC, ReactElement } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
 interface Props {
-  [propName: string]: any;
+  [propName: string]: unknown;
 }
 
 const HeDemo: FC<Props> = (): ReactElement => {
