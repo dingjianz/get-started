@@ -1,5 +1,6 @@
 .container {
   @include whSet(100%, 100%);
+  user-select: none;
 
   .blank_cell_group {
     @include flexLayout($dir: row);
@@ -25,8 +26,7 @@
 
       .wrapper {
         @include whSet(100%, 100%);
-        line-height: 25vw;
-        text-align: center;
+        @include flexLayout();
         background-color: orange;
         color: #fff;
         font-size: 30px;
