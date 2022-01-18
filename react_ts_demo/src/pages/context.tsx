@@ -1,4 +1,4 @@
-import { Component, ReactElement } from 'react';
+import { Component, CSSProperties, ReactElement } from 'react';
 import ThemeContext from 'api/theme';
 
 /**
@@ -20,13 +20,18 @@ interface IProps {
   [propName: string]: unknown;
 }
 
+const divStyles: CSSProperties = {
+  color: 'red',
+  background: 'yellow',
+};
+
 class ContextDemo extends Component<IProps, IState> {
   componentDidMount(): void {
     console.log('class-contextType:::', this.context);
   }
 
   render(): ReactElement {
-    return <div>ContextDemo</div>;
+    return <div style={divStyles}>ContextDemo</div>;
   }
 }
 

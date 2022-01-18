@@ -4,12 +4,10 @@ import RoutesConfig from 'router/index';
 const App: FC = (): ReactElement => {
   useEffect(() => {
     window.addEventListener('orientationchange', () => {
-      // alert(window.orientation);
       console.log(window.orientation);
     });
     return () => {
       window.removeEventListener('orientationchange', () => {
-        // alert(window.orientation);
         console.log(window.orientation);
       });
     };
