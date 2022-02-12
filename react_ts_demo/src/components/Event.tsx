@@ -1,4 +1,9 @@
-import React, { Component, createRef, ReactElement } from 'react';
+import React, {
+  Component,
+  createRef,
+  KeyboardEvent,
+  ReactElement,
+} from 'react';
 import { Space, Button } from 'antd';
 
 /**
@@ -20,11 +25,22 @@ export default class Event extends Component<IProps, IState> {
     this.inputRef = createRef();
   }
 
+  componentDidMount() {
+    document.addEventListener('click', (e: MouseEvent) => {
+      console.log(e.target);
+    });
+  }
+
+  handleKeyDown = (event: KeyboardEvent<HTMLInputElement>): void => {
+    console.log(event);
+  };
+
   render(): ReactElement {
     return (
       <div ref={this.inputRef}>
         <Space>
           <Button type="primary">点击</Button>
+          <input type="text" onKeyDown={(e) => this.handleKeyDown(e)} />
         </Space>
       </div>
     );

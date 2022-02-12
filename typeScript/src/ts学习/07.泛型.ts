@@ -29,7 +29,7 @@
   fn2(10, "hello world");
   fn2<number, string>(10, "hello world"); // 建议手动加上泛型，降低出错的机率
 
-  // T extends Inter 表示泛型T必须时Inter的实现类（或者说子类）
+  // T extends Inter 表示泛型T必须是Inter的实现类（或者说子类）
   interface Inter {
     length: number;
   }
