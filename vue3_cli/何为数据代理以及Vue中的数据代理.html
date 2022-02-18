@@ -11,13 +11,14 @@
 
 <body>
   <div id="root">
-    <h1 :id="null" :[atrributeName]="obj[atrributeName]">{{ name }}</h1>
     <h1 v-once>{{ name }}</h1>
     <h1>{{ _data.address }}</h1>
     <h1>{{ demo() }}</h1>
     <h1>{{ fullname }}</h1>
     <h1>{{ cFullName }}</h1>
     <button @click="name = '丁健'">点击</button>
+    <hr>
+    <span>obj.b:::{{ obj.b }}</span>
   </div>
   <script>
     /***
@@ -49,7 +50,8 @@
       name: 'jianding9',
       address: '中国硅谷',
       obj: {
-        a: 99
+        a: 99,
+        b: undefined
       }
     }
 

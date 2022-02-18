@@ -1,5 +1,6 @@
 import { FC, ReactElement, useEffect } from 'react';
 import RoutesConfig from 'router/index';
+import 'babel-polyfill';
 
 const App: FC = (): ReactElement => {
   useEffect(() => {
