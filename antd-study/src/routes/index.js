@@ -17,6 +17,7 @@ import {
   EchartDemo,
   UseRefDemo,
   ImgLazyLoad,
+  Draggable,
 } from '../views';
 
 export const mainRouter = [
@@ -148,6 +149,14 @@ export const adminRouter = [
         iconName: 'setting',
         roles: ['001', '002', '003'],
         component: ImgLazyLoad,
+      },
+      {
+        pathname: '/admin/test/draggable',
+        title: 'draggable',
+        isNav: true,
+        iconName: 'setting',
+        roles: ['001', '002', '003'],
+        component: Draggable,
       },
     ],
   },

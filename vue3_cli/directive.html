@@ -12,12 +12,13 @@
 <body>
   <div id="root">
     <p>count: {{ count }}</p>
-    <button @click="count+=1">add count</button>
+    <button @click="count += 1">add count</button>
     <div>
       <span v-big="count"></span>
       <input type="text" v-fbind:value="count">
     </div>
   </div>
+
   <script>
     const vm = new Vue({
       el: '#root',

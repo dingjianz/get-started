@@ -84,6 +84,11 @@ const ImgLazyLoad = Loadable({
   loading: Loading,
 });
 
+const Draggable = Loadable({
+  loader: () => import('./Test/draggable'),
+  loading: Loading,
+});
+
 export {
   Login,
   Dashboard,
@@ -103,6 +108,7 @@ export {
   EchartDemo,
   UseRefDemo,
   ImgLazyLoad,
+  Draggable,
 };
 
 // export { default as Login } from './Login'
