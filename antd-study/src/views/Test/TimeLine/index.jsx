@@ -9,7 +9,7 @@ const TimeLine = () => {
         <h2 className="text">背景</h2>
       </div>
       <blockquote>
-        <p>⚠️本文为掘金社区首发签约文章，未获授权禁止转载</p>
+        <span>本文为掘金社区首发签约文章，未获授权禁止转载</span>
       </blockquote>
       <ul>
         <li>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body,
+    html {
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+
+    .mask {
+      width: 100vw;
+      height: 100vh;
+      /* background: url(https://portal.volccdn.com/obj/volcfe/bee_prod/biz_950/tos_9c5ad52039c309bac4bb38643b56c326.jpg) center center no-repeat; */
+      /* background-size: cover; */
+      overflow: hidden;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .wrap {
+      width: 100%;
+      height: 200px;
+      background-color: skyblue;
+    }
+
+    .jj {
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: orange;
+    }
+
+    .title {
+      text-align: center;
+      transition: all 1s;
+      transform: translate3d(0, 0, 0);
+      opacity: 1;
+    }
+
+    .dj {
+      transform: translate3d(0, -100px, 0);
+      opacity: 0;
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="mask">
+    <img src="https://portal.volccdn.com/obj/volcfe/bee_prod/biz_950/tos_9c5ad52039c309bac4bb38643b56c326.jpg" alt="">
+  </div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="jj">
+    <div class="title">
+      <h3>提供多元场景互联</h3>
+      <h1>全面成熟的解决方案
+      </h1>
+    </div>
+  </div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="jj">
+    <div class="title">
+      <h3>提供多元场景互联</h3>
+      <h1>全面成熟的解决方案
+      </h1>
+    </div>
+  </div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <div class="wrap"></div>
+  <script>
+    const throttle = (fn, interval) => {
+      const _self = fn;
+      let timer;
+      let firstTime = true;
+      return function () {
+        const args = arguments;
+        const __me = this;
+        if (firstTime) {
+          _self.apply(__me, args);
+          return (firstTime = false);
+        }
+        if (timer) {
+          return false;
+        }
+        timer = setTimeout(function () {
+          clearTimeout(timer);
+          timer = null;
+          _self.apply(__me, args);
+        }, interval || 500);
+      };
+    };
+
+    window.onload = () => {
+      const vwHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+      const wraps = document.querySelectorAll('.title');
+      window.addEventListener(
+        'scroll',
+        // throttle(() => {
+        //   if (wrap.getBoundingClientRect().top < vwHeight) {
+        //     wrap.classList.add('dj');
+        //   }
+        // }, 500)
+        () => {
+          wraps.forEach(wrap => {
+            if (wrap.getBoundingClientRect().top < vwHeight) {
+              wrap.classList.add('dj');
+            } else {
+              wrap.classList.remove('dj');
+            }
+          })
+        }, true
+      );
+    }
+  </script>
+</body>
+
+</html>

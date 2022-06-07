@@ -127,16 +127,7 @@ class DraggableExp extends Component {
             <DraggableBox left={initialLeftBoxWidth - 5} background={dragBoxBackground} />
           </Draggable>
         </LeftContent>
-        <RightContent leftBoxWidth={leftBoxWidth}>
-          <h3>这里是内容块</h3>
-          <div className="box-wrap">
-            {list.map((box, index) => (
-              <Draggable key={index}>
-                <div className="box">{box}</div>
-              </Draggable>
-            ))}
-          </div>
-        </RightContent>
+        <RightContent leftBoxWidth={leftBoxWidth} />
       </Container>
     );
   }

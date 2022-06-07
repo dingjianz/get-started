@@ -33,7 +33,7 @@ class Notice extends Component {
             >标记为全部已读</Button>}
         >
         <List
-        itemLayout="horizontal"
+        itemLayout="horjizontal"
         dataSource={this.props.list}
         pagination={{
           onChange: page => {

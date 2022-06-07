@@ -11,8 +11,7 @@
 <body>
   <script>
     // https://juejin.cn/post/6983904373508145189
-    const arr = [
-      {
+    const arr = [{
         id: 2,
         name: '部门2',
         pid: 1
@@ -33,14 +32,19 @@
         pid: 3
       },
       {
-        id: 6,
-        name: '部门5',
-        pid: 5
-      },
-      {
         id: 5,
         name: '部门5',
         pid: 4
+      },
+      {
+        id: 6,
+        name: '部门6',
+        pid: 5
+      },
+      {
+        id: 7,
+        name: '部门7',
+        pid: 2
       },
     ];
 
@@ -72,8 +76,8 @@
       }
     })
 
-    console.log('pidArr', pidArr);
-    console.log('bpArr', bpArr);
+    // console.log('pidArr', pidArr);
+    // console.log('bpArr', bpArr);
 
     /************************************************************* */
     // 看不懂的就一个一个走一遍，很简单的
@@ -81,7 +85,10 @@
       const result = []; // 就是把itemMap里面的数据，汇集成一个映射关系
       const itemMap = {}; // 每个数据都依次平等的放在这里
       arr.forEach(item => {
-        const { id, pid } = item;
+        const {
+          id,
+          pid
+        } = item;
         if (!itemMap[id]) {
           itemMap[id] = {
             children: []
@@ -108,7 +115,8 @@
 
       return result;
     }
-    console.log('arrayToTree:::::', JSON.stringify(arrayToTree(arr)));
+    // console.log('arrayToTree:::::', JSON.stringify(arrayToTree(arr)));
+    console.log(arrayToTree(arr))
   </script>
 </body>
 

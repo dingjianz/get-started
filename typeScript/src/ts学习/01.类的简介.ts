@@ -96,3 +96,23 @@ const dog1 = new Dog("旺财", 3, "female");
 dog1.run();
 dog1.sayHello();
 
+interface Address {
+  street: string;
+  pin: number;
+}
+
+interface Addresses {
+  home: Address;
+  office: Address;
+}
+
+const dj: Addresses = {
+  home: {
+    street: "1",
+    pin: 2,
+  },
+  office: {
+    street: "1",
+    pin: 2,
+  },
+};
