@@ -89,6 +89,11 @@ const Draggable = Loadable({
   loading: Loading,
 });
 
+const ChangeTheme = Loadable({
+  loader: () => import('./Test/changeTheme'),
+  loading: Loading,
+});
+
 export {
   Login,
   Dashboard,
@@ -109,6 +114,7 @@ export {
   UseRefDemo,
   ImgLazyLoad,
   Draggable,
+  ChangeTheme,
 };
 
 // export { default as Login } from './Login'

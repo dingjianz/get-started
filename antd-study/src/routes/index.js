@@ -18,6 +18,7 @@ import {
   UseRefDemo,
   ImgLazyLoad,
   Draggable,
+  ChangeTheme,
 } from '../views';
 
 export const mainRouter = [
@@ -157,6 +158,14 @@ export const adminRouter = [
         iconName: 'setting',
         roles: ['001', '002', '003'],
         component: Draggable,
+      },
+      {
+        pathname: '/admin/test/changeTheme',
+        title: 'changeTheme',
+        isNav: true,
+        iconName: 'setting',
+        roles: ['001', '002', '003'],
+        component: ChangeTheme,
       },
     ],
   },

@@ -1,0 +1,13 @@
+.base-theme {
+  --primary-color: red;
+  
+  &.dark-theme {
+    --primary-color: #000000;
+  }
+  &.light-theme {
+    --primary-color: pink;
+  }
+  h1 {
+    color: var(--primary-color);
+  }
+}

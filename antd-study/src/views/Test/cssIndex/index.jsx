@@ -118,9 +118,9 @@ class CssIndex extends Component {
         </div>
 
         <div className="btn-wrap">
-          <spdivan onClick={this.handleClick}>
+          <div onClick={this.handleClick}>
             <em>点我</em>
-          </spdivan>
+          </div>
         </div>
 
         {/* css 第五部分 hover 图片变大变化 hover图片旋转360 */}

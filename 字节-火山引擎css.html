@@ -50,14 +50,25 @@
     .title {
       text-align: center;
       transition: all 1s;
-      transform: translate3d(0, 0, 0);
-      opacity: 1;
     }
 
     .dj {
-      transform: translate3d(0, -100px, 0);
-      opacity: 0;
-      color: red;
+      animation: zoomIn 2s;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes zoomIn {
+      0% {
+        transform: translate3d(0, 0, 0);
+        opacity: 0;
+        color: red;
+
+      }
+
+      100% {
+        transform: translate3d(0, -100px, 0);
+        opacity: 1;
+      }
     }
   </style>
 </head>
@@ -150,17 +161,12 @@
       const wraps = document.querySelectorAll('.title');
       window.addEventListener(
         'scroll',
-        // throttle(() => {
-        //   if (wrap.getBoundingClientRect().top < vwHeight) {
-        //     wrap.classList.add('dj');
-        //   }
-        // }, 500)
         () => {
           wraps.forEach(wrap => {
-            if (wrap.getBoundingClientRect().top < vwHeight) {
+            const classList = [...wrap.classList]
+            console.log(classList)
+            if (wrap.getBoundingClientRect().top < vwHeight && !classList.includes('dj')) {
               wrap.classList.add('dj');
-            } else {
-              wrap.classList.remove('dj');
             }
           })
         }, true
