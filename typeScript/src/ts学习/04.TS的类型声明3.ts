@@ -124,6 +124,7 @@ const obj: Foo | Bar = {
   },
 };
 
+
 // console.log(obj.name) // OK
 // console.log(obj.age) // 报错
 // obj.onChange() // 报错
