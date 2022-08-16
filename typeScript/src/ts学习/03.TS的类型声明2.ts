@@ -38,7 +38,9 @@ h = f;
     变量 as 类型
     <类型>变量
 */
-if (typeof g === "string") h = g; // 做个类型判断就可以将类型unknow的值赋值给变量了。
+if (typeof g === "string") {
+  h = g; // 做个类型判断就可以将类型unknow的值赋值给变量了。
+}
 // h = g as number; // 不能将类型“number”分配给类型“string”。
 h = g as string;
 h = <string>g;

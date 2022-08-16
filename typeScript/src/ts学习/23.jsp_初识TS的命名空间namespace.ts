@@ -47,3 +47,16 @@ export namespace B {
     }
   }
 }
+
+// as const  https://www.jianshu.com/p/2f2bc4fb92c8
+type Switch = 'On' | 'Off'
+let onSwitch = 'On' 
+onSwitch = 'ddd'
+
+type Person = {
+  id: number;
+  name: string;
+  age: number;
+};
+
+interface P extends Person {}; 
