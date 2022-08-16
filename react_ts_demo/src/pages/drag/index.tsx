@@ -84,7 +84,7 @@ const DragDemo: FC = (): ReactElement => {
 
   const init = (): void => {
     let arr: string[] = [];
-    idioms.forEach((item: string) => {
+    idioms?.forEach((item: string) => {
       arr = arr.concat(item.split(''));
     });
     setCharCollection(charRadomSort(arr));

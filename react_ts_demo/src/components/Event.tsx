@@ -10,6 +10,7 @@ import { Space, Button } from 'antd';
  * @param title 标题
  */
 interface IProps {
+  // eslint-disable-next-line react/no-unused-prop-types
   title: string;
 }
 
@@ -25,7 +26,7 @@ export default class Event extends Component<IProps, IState> {
     this.inputRef = createRef();
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     document.addEventListener('click', (e: MouseEvent) => {
       console.log(e.target);
     });

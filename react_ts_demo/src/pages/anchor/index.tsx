@@ -1,7 +1,8 @@
+import { FC } from 'react';
 import { Anchor, Link } from 'components/anchor';
 import './index.scss';
 
-const AnchorDemo = () => (
+const AnchorDemo: FC = () => (
   <div>
     <Anchor>
       <Link href="#a" title="跳转到a" />
