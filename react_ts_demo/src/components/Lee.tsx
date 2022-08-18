@@ -6,18 +6,18 @@ interface User {
   say(): void;
 }
 
-interface IProps {
+export interface IProps {
   name: string;
   age?: number;
-  auth?: boolean;
   user?: User;
-}
+  auth?: boolean;
+};
 
 interface Istate {
   count: number;
 }
 
-export default class Lee extends Component<IProps, Istate> {
+class Lee extends Component<IProps, Istate> {
   // constructor(props: IProps) {
   //   super(props);
   //   this.state = {
@@ -39,12 +39,10 @@ export default class Lee extends Component<IProps, Istate> {
         <h2>Lee</h2>
         <div>
           name:
-          {' '}
           {name}
         </div>
         <div>
           age:
-          {' '}
           {age}
         </div>
         {user?.name && (
@@ -63,3 +61,6 @@ export default class Lee extends Component<IProps, Istate> {
     );
   }
 }
+
+
+export default Lee

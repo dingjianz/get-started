@@ -14,7 +14,7 @@
   // 需求： 若我需要join函数中的两个形参的类型必须保持一致，若为string，则都为string
   // join("jspang", 123); 这种就不行
 
-  function add<JSPang>(one: JSPang, two: JSPang) {
+  function add<JSPang>(one: JSPang, two: JSPang): string {
     return `${one}${two}`;
   }
 
