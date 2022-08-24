@@ -28,15 +28,17 @@
   const arr: (number | string)[] = [1, 2, 3, "4"]; // 包含数字和字符的数组
   const arr2: Array<number | string> = [1, 2, 3, "4"]; // 包含数字和字符的数组
 
-  // type alias 类型别名
-  // type Lady = { name: string; age: number； propName: string]: any; };
-  // 用class interface都可以
-  class Lady {
+  // -------------type alias 类型别名-----------
+  type FavorateName = string | number // 这种情况，interface无法替代type
+  type Lady = { name: string; age: number; propName: string}; // Lady就成为一个新类型，这种类型interface可以替代type
+
+  // 用class interface 也可以设置 类型别名
+  class Lady2 {
     name: string;
     age: number;
     [propName: string]: any;
   }
-  const xiaoJieJies: Lady[] = [
+  const xiaoJieJies: Lady2[] = [
     { name: "刘英", age: 18 },
     { name: "徐晓文", age: 38 },
     { name: "倪妮", age: 27, sex: "male" },

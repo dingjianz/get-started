@@ -1,25 +1,28 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-import { incrementAmount, decrementAmount } from '../../store/actions/cartAction'
-import { testAction } from '../../store/actions/testAction'
+import {
+  incrementAmount,
+  decrementAmount,
+} from "../../store/actions/cartAction";
+import { testAction } from "../../store/actions/testAction";
 
 export default class CartLtist extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      cartList:[]
-    }
+      cartList: [],
+    };
   }
 
   getState = () => {
     this.setState({
-      cartList: this.props.store.getState().cartReducer
-    })
-  }
+      cartList: this.props.store.getState().cartReducer,
+    });
+  };
 
-  componentDidMount () {
-    this.getState()
-    this.props.store.subscribe(this.getState)
+  componentDidMount() {
+    this.getState();
+    this.props.store.subscribe(this.getState);
   }
 
   // static getDerivedStateFromProps(props, state) {
@@ -27,7 +30,7 @@ export default class CartLtist extends Component {
   //     cartList: props.store.getState().cartReducer
   //   }
   // }
-  
+
   render() {
     const { cartList } = this.state;
     const { store } = this.props;
@@ -44,28 +47,36 @@ export default class CartLtist extends Component {
             </tr>
           </thead>
           <tbody>
-            {
-              cartList.map((item,index) => {
-                return (
-                  <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{item.title}</td>
-                    <td>{item.price}</td>
-                    <td>
-                      <button onClick={() => store.dispatch(decrementAmount(item.id))}>-</button>
-                      <span>{item.amount}</span>
-                      <button onClick={() => store.dispatch(incrementAmount(item.id))}>+</button>
-                    </td>
-                    <td></td>
-                  </tr>
-                )
-              })
-            }
+            {cartList.map((item, index) => {
+              return (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{item.title}</td>
+                  <td>{item.price}</td>
+                  <td>
+                    <button
+                      onClick={() => store.dispatch(decrementAmount(item.id))}
+                    >
+                      -
+                    </button>
+                    <span>{item.amount}</span>
+                    <button
+                      onClick={() => store.dispatch(incrementAmount(item.id))}
+                    >
+                      +
+                    </button>
+                  </td>
+                  <td></td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
-        <button onClick={() => store.dispatch(testAction('我是修改以后的值'))} >点击发送reducer</button>
+        <button onClick={() => store.dispatch(testAction("我是修改以后的值"))}>
+          点击发送reducer
+        </button>
         <h1>{store.getState().testReducer.value}</h1>
       </>
-    )
+    );
   }
 }
