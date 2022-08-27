@@ -76,11 +76,12 @@ p = {
 // console.log(p.gender === Gender.Male ? "男" : "女");
 
 // & 表示同时 | 表示或
-let q: { name: string } | { age: number };
-// q = { name: "123" };
-// q = { age: 13 };
 let r: { name: string } & { age: number };
 r = { name: "jianding9", age: 19 };
+
+let q: { name: string } | { age: number };
+q = { name: "123" };
+q = { age: 13 };
 
 // 类型的别名
 // type myType = string; // 取string没意义，但是可以取咱们自定义的

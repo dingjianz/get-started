@@ -6,7 +6,7 @@
   type Bar = Record<keyof Foo, string>;
 
   type Person = {
-    id: number;
+    id?: number;
     name: string;
     age: number;
   };
@@ -205,4 +205,13 @@
     return value;
   };
   fn4<number>("123");
+
+  type ICreatePersonParams = {
+    id: number;
+    text: string;
+    isComplete: boolean;
+  };
+  type ISelf<T, K extends T> = {
+    [as]
+  }
 })();
