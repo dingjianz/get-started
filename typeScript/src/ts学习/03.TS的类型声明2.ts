@@ -50,5 +50,5 @@ function fn(): void {}
 
 // never 表示永远不会返回结果
 function fn2(): never {
-  throw new Error('报错啦！');
+  throw new Error("报错啦！");
 }

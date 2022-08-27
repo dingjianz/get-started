@@ -96,4 +96,10 @@
   // loggingIdentity(7); // 类型“number”的参数不能赋给类型“Lengthwise”的参数。ts(2345)
 
 
+  // 箭头函数泛型的用法 --- 实践
+  const useArray =  <T>(value: T[]): T[] => {
+    let array = [...value]
+    return array
+  }
+
 })();
