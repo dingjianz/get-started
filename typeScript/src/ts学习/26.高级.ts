@@ -184,13 +184,25 @@
     radius: number;
   }
 
-  type T1 = Exclude<keyof Circle, 'kind'> // 'radius'
+  type T1 = Exclude<keyof Circle, "kind">; // 'radius'
 
-  type Circle2 = Omit<Circle, 'kind'>
-  type T2 = Partial<Circle2>
+  type Circle2 = Omit<Circle, "kind">;
+  type T2 = Partial<Circle2>;
   /* 
     type T2 = {
       radius?: number | undefined;
     }
   */
+
+  // https://blog.csdn.net/weixin_45389051/article/details/118250554 ts中箭头函数使用泛型
+  function fn3<T>(value: T): T {
+    return value;
+  }
+
+  fn3<number>("123");
+
+  const fn4 = <T>(value: T): T => {
+    return value;
+  };
+  fn4<number>("123");
 })();

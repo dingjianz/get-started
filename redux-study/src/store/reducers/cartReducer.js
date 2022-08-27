@@ -1,33 +1,36 @@
-import actionType from '../actions/actionType'
-const initState = [{
-  id:1,
-  title:'Apple',
-  price:8888.66,
-  amount: 10
-}, {
-  id:2,
-  title:'Orange',
-  price:4444.56,
-  amount: 14
-}]
+import actionType from "../actions/actionType";
+const initState = [
+  {
+    id: 1,
+    title: "Apple",
+    price: 8888.66,
+    amount: 10,
+  },
+  {
+    id: 2,
+    title: "Orange",
+    price: 4444.56,
+    amount: 14,
+  },
+];
 
 export default (state = initState, action) => {
   switch (action.type) {
     case actionType.CART_AMOUNT_INCREMENT:
-      return state.map(item => {
+      return state.map((item) => {
         if (item.id === action.payload.id) {
-          item.amount +=1
+          item.amount += 1;
         }
-        return item
-      })
+        return item;
+      });
     case actionType.CART_AMOUNT_DECREMENT:
-      return state.map(item => {
+      return state.map((item) => {
         if (item.id === action.payload.id) {
-          item.amount -=1
+          item.amount -= 1;
         }
-        return item
-      })
+        return item;
+      });
     default:
-      return state
+      return state;
   }
-}
+};
