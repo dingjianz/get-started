@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>defineProperty</title>
+</head>
+
+<body>
+  <script>
+    const person = {
+      name: '张三',
+      sex: 'male',
+      // age: 18 // 这么些默认可枚举、可删除、可重写
+    }
+吧
+    Object.defineProperty(person, 'age', {
+      value: 18,
+      enumerable: true, // 控制属性是否可枚举，默认false
+      writable: true, // 控制属性是否可被修改，默认false
+      // configurable: true, // 控制属性是否可以被删除，默认值是false
+    })
+
+    // for (let key in person) {
+    //   console.log(key); // 打印可枚举的key
+    // }
+
+
+    /* 
+      需求： obj中age的值随着number的值改变而改变,且可设置obj.age。
+      https://www.bilibili.com/video/BV1Zy4y1K7SH?p=11
+    */
+
+    let number = 18;
+    const obj = {
+      name: '李四',
+      // age: number,
+    }
+
+    Object.defineProperties(obj, {
+      age: {
+        // value: number, // get和value只能用一个
+        // 当读取obj的age属性时,get函数(getter)就会被调用,且返回值就是函数return的值.
+        get() {
+          console.log('age被调用了');
+          return number;
+        },
+        // 修改/设置obj的age属性时,set函数(setter)就会被调用
+        set(value) {
+          console.log('有人修改了age属性');
+          number = value;
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
