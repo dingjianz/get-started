@@ -185,7 +185,6 @@
   }
 
   type T1 = Exclude<keyof Circle, "kind">; // 'radius'
-
   type Circle2 = Omit<Circle, "kind">;
   type T2 = Partial<Circle2>;
   /* 
@@ -211,7 +210,42 @@
     text: string;
     isComplete: boolean;
   };
-  type ISelf<T, K extends T> = {
-    [as]
+  type ISelf<T, K extends T> = {};
+
+  type Ja = "kind";
+  type Jb = "Kind" | "Radius";
+  type Jc = Ja extends Jb ? never : boolean;
+
+  const MyArray222 = [
+    { name: "Alice", age: 15 },
+    { name: "Bob", age: 23 },
+    { name: "Eve", age: "23" },
+  ];
+
+  type Person44 = typeof MyArray222[number]; // 这里的number 代表所有的索引
+
+  type Age21 = typeof MyArray222[number]["age"]; // number | string
+})();
+
+(() => {
+  type Point = { x: number; y: number };
+  type P = keyof Point;
+
+  /* 
+  https://blog.csdn.net/qq_34998786/article/details/120300361
+    extends关键字在TS编程中出现的频率挺高的，而且不同场景下代表的含义不一样，特此总结一下：
+      表示继承/拓展的含义
+      表示约束的含义
+      表示分配的含义
+
+
+  学习TypeScript 之 Pick与泛型约束
+    https://blog.csdn.net/qq_28992047/article/details/106879772
+    这是找到的唯一一处跟我的问题比较吻合的答案了，至此我们直到了在泛型中使用extends并不是用来继承的，而是用来约束类型的。所以这个K extends keyof T，应该是说key被约束在T的key中，不能超出这个范围，否则会报错的。
+  */
+
+  function loggingIdentity<T extends { length: number }>(arg: T): T {
+    console.log(arg.length); // Error: T doesn't have .length
+    return arg;
   }
 })();

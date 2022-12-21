@@ -24,3 +24,11 @@
     margin-bottom: 30px;
   }
 }
+
+.my-ul {
+  li {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}

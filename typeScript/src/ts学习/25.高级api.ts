@@ -1,6 +1,7 @@
-// https://blog.csdn.net/wu_xianqiang/article/details/115425818
+(() => {
+  // https://blog.csdn.net/wu_xianqiang/article/details/115425818
 
-/* 
+  /* 
   内置类型：
     Exclude<T, U> -- 从T中剔除可以赋值给U的类型。
     Extract<T, U> -- 提取T中可以赋值给U的类型。
@@ -9,12 +10,23 @@
     InstanceType<T> -- 获取构造函数类型的实例类型。
 */
 
+  // TS进阶之keyof
+  // https://blog.csdn.net/lcl130/article/details/125214788
 
-// TS进阶之keyof
-// https://blog.csdn.net/lcl130/article/details/125214788
+  interface Dj {
+    [key: string]: string;
+  }
 
-interface Dj {
-  [key: string]: string
-}
+  // Omit https://blog.csdn.net/z591102/article/details/124944229
 
-// Omit https://blog.csdn.net/z591102/article/details/124944229
+  // https://juejin.cn/post/7058868160706904078#heading-9
+  interface IHi {
+    name: string;
+    age: number;
+  }
+  type ReadOnly<T> = {
+    readonly [K in keyof T]: T[K];
+  };
+
+  type IhiReadonly = ReadOnly<IHi>;
+})();

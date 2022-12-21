@@ -61,7 +61,7 @@ const DraggableBox = styled.div`
   z-index: 1000;
 `;
 
-const Li = styled.li`
+const li = styled.li`
   white-space: nowrap;
 `;
 
@@ -108,11 +108,11 @@ class DraggableExp extends Component {
       <Container>
         <LeftContent width={leftBoxWidth}>
           <h3 style={{ paddingLeft: 20 }}>目录</h3>
-          <ul>
-            <Li>目录1</Li>
-            <Li>目录2</Li>
-            <Li>目录3</Li>
-            <Li>这是个非常长非常长非常长的目录</Li>
+          <ul className='my-ul'>
+            <li>目录1</li>
+            <li>目录2</li>
+            <li>目录3</li>
+            <li>这是个非常长非常长非常长的目录</li>
           </ul>
           <Draggable
             axis="x"
