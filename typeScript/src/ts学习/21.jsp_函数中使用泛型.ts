@@ -95,11 +95,11 @@
   // 此时如果调用 loggingIdentity 的时候，传入的 arg 不包含 length，那么在编译阶段就会报错了：
   // loggingIdentity(7); // 类型“number”的参数不能赋给类型“Lengthwise”的参数。ts(2345)
 
-
   // 箭头函数泛型的用法 --- 实践
-  const useArray =  <T>(value: T[]): T[] => {
-    let array = [...value]
-    return array
-  }
+  const useArray = <T>(value: T[]): T[] => {
+    let array = [...value];
+    return array;
+  };
 
+  const r1 = useArray<string>(["1", "2346"]);
 })();
