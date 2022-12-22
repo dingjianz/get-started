@@ -22,6 +22,7 @@
     // 准备一个vm实例
     const vm = {}
     vm._data = data = obs;
+    console.log(Object.create)
 
     function Observer(obj) {
       // 汇总对象中所有的属性，形成一个数组

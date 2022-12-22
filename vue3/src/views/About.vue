@@ -1,26 +1,43 @@
 <template>
-  <div class="about">
-    <h1>{{ msg }}</h1>
-    <child-component :message="msg" @dj="getDj" />
-    <!-- <child-component2 :message2="msg" @dj2="getDj" /> -->
-  </div>
+  <h1>一个人的信息</h1>
+  <h2>姓名：{{ name }}</h2>
+  <h2>年龄：{{ age }}</h2>
+  <h3>job种类：{{ job.type }}</h3>
+  <h4>工资：{{ job.salary }}</h4>
+  <button @click="changeInfo">修改信息</button>
 </template>
 
 <script>
-import ChildComponent from '@/components/ChildComponent.vue'
-
+import { isObject } from '@vue/shared'
+import { ref, reactive } from 'vue'
 export default {
   name: 'About',
-  components: { ChildComponent },
-  data () {
-    return {
-      msg: '你好世界'
+  setup () {
+    const name = ref('jianding9')
+    const age = ref(28)
+    // const job = ref({
+    //   type: '前端开发工程师',
+    //   salary: '30k'
+    // })
+
+    const job = reactive({
+      type: '前端开发工程师',
+      salary: '30k'
+    })
+
+    function changeInfo () {
+      name.value = 'Lisi'
+      age.value = 18
+      // job.value.type = 'UI设计师'
+      // job.value.salary = '60k'
+      job.type = 'UI设计师'
+      job.salary = '60k'
     }
-  },
-  methods: {
-    getDj (val) {
-      console.log(val)
-      this.msg = val
+    return {
+      name,
+      age,
+      job,
+      changeInfo
     }
   }
 }

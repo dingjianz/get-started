@@ -104,9 +104,9 @@
         'obj.a'(newVal, oldVal) { // 简写
           console.log('我被触发了watch---obj.a');
           console.log({
-              newVal,
-              oldVal
-            });
+            newVal,
+            oldVal
+          });
         },
         obj: {
           immediate: true, // 默认false 进入页面是否立即触发
@@ -125,8 +125,8 @@
     // console.log(vm._data === data); // true 
 
     /* 
-    1. 上行代码可以证明vm中的_data属性就是我们在vm中定义的data
-    2. 利用Object.defineProperty将vm中定义的data代理到vm中
+      1. 上行代码可以证明vm中的_data属性就是我们在vm中定义的data
+      2. 利用Object.defineProperty将vm中定义的data代理到vm中
         eg: vm--> data.name --> vm._data.name --> vm.name
     */
   </script>
