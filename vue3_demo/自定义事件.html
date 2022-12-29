@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>几种组件自定义事件</title>
+  <script src="./vue.min.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    {{msg}}
+    <!-- 第一种 -->
+    <!-- 通过父组件给子组件传递函数类型的props实现：子给父传递数据 -->
+    <!-- HTML形式会报错，vue-cli环境可以 -->
+    <School :editmsg="editMsg"></School>
+
+    <!-- 第二种 -->
+    <!-- 通过父组件给子组件绑定一个自定义事件实现：子给父传递数据 -->
+    <!-- <Student @changemsg="editMsg"></Student> -->
+    <!-- 这种其实也是第二种，但是不需要传递数据给子组件，子组件内部触发的方法一样 -->
+    <Student ref="student"></Student>
+  </div>
+
+  <script>
+    // 全局注册组件
+    Vue.component('School', {
+      name: 'School',
+      props: {
+        editMsg: Function
+      },
+      data() {
+        return {
+          name: '讯飞大学',
+          address: '望江西路666号'
+        }
+      },
+      template: `
+        <div class="school">
+          <h4>校名：{{ name }}</h4>
+          <h4>地址：{{ address }}</h4>
+          <button @click="editmsg('school-name', 1, 2, 3)">改变app-msg</button>
+        </div>
+      `
+    });
+
+    // 组件内部注册组件
+    const Student = {
+      name: 'Student',
+      data() {
+        return {
+          name: '张三',
+          age: 18
+        }
+      },
+      methods: {
+        changeAppMsg() {
+          this.$emit('changemsg', 'student-name', 1, 2, 3)
+        }
+      },
+      template: `
+        <div class="student">
+          <h4>姓名：{{ name }}</h4>
+          <h4>年龄：{{ age }}</h4>
+          <button v-on:click="changeAppMsg">改变app-msg</button>
+        </div>
+      `
+    }
+
+    // 初始化Vm
+    const vm = new Vue({
+      el: '#root',
+      components: {
+        Student,
+      },
+      data: {
+        msg: 'App',
+      },
+      methods: {
+        editMsg(msg, ...params) {
+          console.log('msg:::', msg);
+          console.log('params:::', params);
+          this.msg = msg;
+        }
+      },
+      mounted() {
+        // 第二种 监听子组件 $emit 事件
+        this.$refs.student.$on('changemsg', this.editMsg)
+      },
+    })
+  </script>
+</body>
+
+</html>

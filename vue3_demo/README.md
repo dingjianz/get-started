@@ -1,6 +1,7 @@
-# vue3_cli
+# create-vue脚手架
 ``` 
-  node 14.17.3
+  node 16.10.0
+  npm init vue@3
 ```
 ## Project setup
 ```

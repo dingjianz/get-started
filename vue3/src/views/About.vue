@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import { isObject } from '@vue/shared'
 import { ref, reactive } from 'vue'
 export default {
   name: 'About',

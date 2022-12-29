@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>何为数据代理以及Vue中的数据代理</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.common.dev.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <h1 v-once>{{ name }}</h1>
+    <h1>{{ _data.address }}</h1>
+    <h1>{{ demo() }}</h1>
+    <h1>{{ fullname }}</h1>
+    <h1>{{ cFullName }}</h1>
+    <button @click="name = '丁健'">点击</button>
+    <hr>
+    <span>obj.b:::{{ obj.b }}</span>
+  </div>
+  <script>
+    /***
+     * 数据代理: obj2没有age属性,但是可以得到obj1.age值,
+     * 设置obj2.age, obj1.age的值也会发生变化.
+     * 
+     * 控制台可以打印obj2,观察它的可枚举的属性，并没有age属性
+     */
+    const obj1 = {
+      age: 13
+    };
+
+    const obj2 = {
+      name: 'jianding9'
+    }
+
+    Object.defineProperty(obj2, 'age', {
+      get() {
+        return obj1.age
+      },
+      set(value) {
+        obj1.age = value
+      }
+    })
+
+    // ================== Vue ===================
+
+    const data = {
+      name: 'jianding9',
+      address: '中国硅谷',
+      obj: {
+        a: 99,
+        b: undefined
+      }
+    }
+
+    const vm = new Vue({
+      el: '#root',
+      data,
+      methods: {
+        demo() {
+          return '1233';
+        }
+      },
+      computed: {
+        // 计算属性是基于它们的响应式依赖进行缓存的，依赖没有变化，getter只会调用一次（初次调用），计算属性会立即返回之前的计算结果，而不必再次执行函数。
+        // 若只考虑读取不考虑修改，可以简写成函数形式
+        fullname() {
+          const {
+            name,
+            address
+          } = this;
+          return name + '---' + address;
+        },
+        cFullName: {
+          // getter
+          get() {
+            console.log('触发cFullName的getter');
+            const {
+              name,
+              address
+            } = this;
+            return name + '+++' + address
+          },
+          // setter
+          set(val) {
+            console.log('触发cFullName的setter');
+            this.name = val
+          },
+        }
+      },
+      watch: {
+        fullname: { // 可以监听data属性、计算属性、router等
+          immediate: false, // 默认false 进入页面是否立即触发
+          handler(newVal, oldVal) {
+            console.log('我被触发了watch---fullname');
+            console.log({
+              newVal,
+              oldVal
+            });
+          }
+        },
+        'obj.a'(newVal, oldVal) { // 简写
+          console.log('我被触发了watch---obj.a');
+          console.log({
+            newVal,
+            oldVal
+          });
+        },
+        obj: {
+          immediate: true, // 默认false 进入页面是否立即触发
+          deep: true, // 默认false 修改vm.obj.a 则不会触发watch-obj
+          handler(newVal, oldVal) {
+            console.log('我被触发了watch---obj');
+            console.log({
+              newVal,
+              oldVal
+            });
+          }
+        }
+      }
+    });
+
+    // console.log(vm._data === data); // true 
+
+    /* 
+      1. 上行代码可以证明vm中的_data属性就是我们在vm中定义的data
+      2. 利用Object.defineProperty将vm中定义的data代理到vm中
+        eg: vm--> data.name --> vm._data.name --> vm.name
+    */
+  </script>
+</body>
+
+</html>
