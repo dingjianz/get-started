@@ -2,8 +2,8 @@
   <div :class="styles['todo-container']">
     <h1>todolist</h1>
     <div :class="styles['ipt-wrap']">
-      <el-input v-model="text" size="small" placeholder="请输入todoItem"></el-input>
-      <el-button type="primary" size="small" @click="addTodoList">添加</el-button>
+      <el-input v-model="text" size="small" clearable @keyup.enter="addTodoList" placeholder="请输入todoItem" />
+      <el-button type="primary" size="small" @click="addTodoList" >添加</el-button>
     </div>
     <ul :class="styles.ul">
       <li v-for="(item, index) in list" :key="item.id" :class="styles.red">
@@ -20,7 +20,7 @@
 import { ref, reactive } from 'vue';
 import { ElButton, ElMessage, ElCheckbox, ElTag, type CheckboxValueType } from 'element-plus';
 
-const list = reactive<ITodo.ITodoItem[]>([{ title: '看篮球', isFinished: false, id: 0, }]);
+const list = reactive<ITodo.ITodoItem[]>([{ title: 'work', isFinished: false, id: 0, }]);
 const text = ref('');
 
 function addTodoList (): void | boolean {
@@ -37,7 +37,6 @@ function addTodoList (): void | boolean {
 }
 
 function deleteTodoList (index: number) {
-  // removeFromArray<ITodo.ITodoItem>(list, index);
   list.splice(index, 1);
 }
 
