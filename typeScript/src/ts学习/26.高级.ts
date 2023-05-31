@@ -10,7 +10,7 @@
     name: string;
     age: number;
   };
-  type P = keyof Person; // type P = 'id' | 'name' | 'age'
+  type P = keyof Person; // 相当于 type P = 'id' | 'name' | 'age'
   const s: P = "id";
 
   type Mapish = { [k: string]: boolean };
@@ -45,6 +45,16 @@
     sex: "male",
   };
 
+  type p5 = Person & {
+    sex: string;
+  }
+  const obj2: p5 = {
+    id: 1,
+    name: "jianding9",
+    age: 28,
+    sex: "male",
+  };
+
   type ifTrue<T> = T extends Person ? p3 : p2; // 自定义ifTrue
   type t = ifTrue<p4>;
 
@@ -54,7 +64,7 @@
   };
 
   type IType = typeof item; // 实践：typeof 的用法返回某类数据的类型
-
+  
   type Predicate = (x: number) => boolean;
   type K = ReturnType<Predicate>; // type K = boolean
   // 实践： ReturnType 接收的是一个类型， typeof 接收的是一个值
@@ -161,7 +171,7 @@
   // https://www.typescriptlang.org/docs/handbook/2/mapped-types.html
   // Removes 'optional' attributes from a type's properties
   // -? 去除可选 每项都是必须项
-  type Concrete<Type> = {
+  type Concreate<Type> = {
     [Property in keyof Type]-?: Type[Property];
   };
 
@@ -171,7 +181,7 @@
     age?: number;
   };
 
-  type User2 = Concrete<MaybeUser>;
+  type User2 = Concreate<MaybeUser>;
   /* 
     type User2 = {
       id: string;

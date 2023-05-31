@@ -1,29 +1,68 @@
 <template>
-  <div :class="styles['todo-container']">
-    <h1>todolist</h1>
-    <div :class="styles['ipt-wrap']">
-      <el-input v-model="text" size="small" clearable @keyup.enter="addTodoList" placeholder="请输入todoItem" />
-      <el-button type="primary" size="small" @click="addTodoList" >添加</el-button>
+  <div>
+    <div ref="$dom">haha</div>
+    <button @click="getDom">点我</button>
+    <div :class="styles['todo-container']">
+      <h1>todolist</h1>
+      <div :class="styles['ipt-wrap']">
+        <el-input
+          v-model="text"
+          size="small"
+          clearable
+          @keyup.enter="addTodoList"
+          placeholder="请输入todoItem"
+        />
+        <el-button type="primary" size="small" @click="addTodoList">
+          添加
+        </el-button>
+      </div>
+      <ul :class="styles.ul">
+        <li v-for="(item, index) in list" :key="item.id" :class="styles.red">
+          <el-checkbox
+            v-model="item.isFinished"
+            @change="(val) => handleTodoItemChange(val, index)"
+          />
+          <el-tag :type="item.isFinished ? 'success' : 'info'">
+            {{ item.isFinished ? '完成' : '待做' }}
+          </el-tag>
+          <span :class="styles.text">{{ item?.title }}</span>
+          <el-button type="danger" size="small" @click="deleteTodoList(index)">
+            删除
+          </el-button>
+        </li>
+      </ul>
     </div>
-    <ul :class="styles.ul">
-      <li v-for="(item, index) in list" :key="item.id" :class="styles.red">
-        <el-checkbox v-model="item.isFinished" @change="(val) => handleTodoItemChange(val, index)" />
-        <el-tag :type="item.isFinished ? 'success' : 'info'">{{ item.isFinished ? "完成" : "待做" }}</el-tag>
-        <span :class="styles.text">{{ item?.title }}</span>
-        <el-button type="danger" size="small" @click="deleteTodoList(index)">删除</el-button>
-      </li>
-    </ul>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue';
-import { ElButton, ElMessage, ElCheckbox, ElTag, type CheckboxValueType } from 'element-plus';
+import { ref, reactive, watch } from 'vue';
+import {
+  ElButton,
+  ElMessage,
+  ElCheckbox,
+  ElTag,
+  type CheckboxValueType,
+} from 'element-plus';
 
-const list = reactive<ITodo.ITodoItem[]>([{ title: 'work', isFinished: false, id: 0, }]);
+const list = reactive<ITodo.ITodoItem[]>([
+  { title: 'work', isFinished: false, id: 0 },
+]);
 const text = ref('');
+const $dom = ref();
 
-function addTodoList (): void | boolean {
+const getDom = () => {
+  console.log(12134, $dom.value);
+};
+
+watch(
+  () => $dom.value,
+  () => {
+    console.log(1234);
+  }
+);
+
+function addTodoList(): void | boolean {
   if (!text.value.trim()) {
     ElMessage.warning('请输入待办事项');
     return false;
@@ -36,11 +75,11 @@ function addTodoList (): void | boolean {
   text.value = '';
 }
 
-function deleteTodoList (index: number) {
+function deleteTodoList(index: number) {
   list.splice(index, 1);
 }
 
-function handleTodoItemChange (val: CheckboxValueType, index: number) {
+function handleTodoItemChange(val: CheckboxValueType, index: number) {
   console.log(index, val);
   list[index].isFinished = val as boolean;
 }

@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-curly-newline */
 import React, { useContext } from 'react';
-import { MyContext } from '@/components/useReducer/HocComponent';
+import { MyContext } from './HocComponent';
 
 const Text2 = () => {
   const { state, dispatch } = useContext(MyContext);

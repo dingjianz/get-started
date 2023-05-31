@@ -49,7 +49,10 @@
 
     console.log(Fn.prototype.__proto__ === Object.prototype) // truejhb
     console.log(Fn.__proto__ === Function.prototype) // TODO: 重点 const Fn = new Function()
-
+    console.log(Fn.prototype.constructor === Fn);
+    ;((val) => {
+      console.log(val)
+    })(1);
   </script>
 </body>
 

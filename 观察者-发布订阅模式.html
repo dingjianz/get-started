@@ -134,7 +134,6 @@
         * 通知所有的观察者
       */
       notify() {
-        console.log('observerList::::', this.observerList);
         this.observerList.forEach(observer => {
           observer.update();
         })

@@ -85,7 +85,10 @@
         oLi[i].index = i;
         oLi[i].style.top = oLi[i].offsetTop + "px";
         oLi[i].style.left = oLi[i].offsetLeft + "px";
-        aPos.push({ "left": oLi[i].offsetLeft, "top": oLi[i].offsetTop })
+        aPos.push({
+          "left": oLi[i].offsetLeft,
+          "top": oLi[i].offsetTop
+        })
       }
 
       for (var i = 0; i < oLi.length; i += 1) {
@@ -98,7 +101,7 @@
       function drap(obj) {
 
         obj.onmousedown = function (e) {
-          ev.cancelBubble = true;//阻止事件冒泡，防止冲突
+          ev.cancelBubble = true; //阻止事件冒泡，防止冲突
           var oNear = null;
           var ev = e || window.event;
           var disX = ev.clientX - this.offsetLeft - oUl.offsetLeft;
@@ -214,6 +217,7 @@
           doMove(obj, pos, onEnd)
         }, 30)
       }
+
       function doMove(obj, pos, onEnd) {
         var iCurL = getStyle(obj, "left");
         var iCurT = getStyle(obj, "top");
@@ -224,8 +228,7 @@
         if (pos.left == iCurL && pos.top == iCurT) {
           clearInterval(obj.timer);
           onEnd && onEnd()
-        }
-        else {
+        } else {
           obj.style.left = iCurL + iSpeedL + "px";
           obj.style.top = iCurT + iSpeedT + "px";
         }

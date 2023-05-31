@@ -42,16 +42,16 @@ export default class Home extends Vue {}
 
 export default {
   name: 'Home',
-  data () {
+  data() {
     return {
       message: 'keep coding',
     };
   },
   methods: {
-    sayWellCome () {
+    sayWellCome() {
       console.log('welcome to iFiletek');
     },
-    test1 () {
+    test1() {
       console.log(this.message);
       console.log(this.name);
       console.log(this.age);
@@ -59,7 +59,7 @@ export default {
     },
   },
   // 此处只是测试一下setup 暂时不考虑响应式的问题。
-  setup () {
+  setup() {
     const name = 'jianding9';
     const age = 28;
     const sayHello = () => {

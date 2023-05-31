@@ -18,7 +18,7 @@ export default defineConfig({
     Components({
       resolvers: [ElementPlusResolver()],
     }),
-    ElementPlus()
+    ElementPlus(),
   ],
   resolve: {
     // https://cn.vitejs.dev/config/shared-options.html#resolve-extensions

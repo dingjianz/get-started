@@ -3,6 +3,7 @@ import Home from '@/views/Home.vue';
 import Test from '@/views/Test.vue';
 import Pinia from '@/views/Pinia.vue';
 import TodoList from '@/views/TodoList.vue';
+import MapBox from '@/views/MapBox.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
       path: '/todolist',
       name: 'TodoList',
       component: TodoList,
+    },
+    {
+      path: '/mapBox',
+      name: 'mapBox',
+      component: MapBox,
     }
   ],
 });

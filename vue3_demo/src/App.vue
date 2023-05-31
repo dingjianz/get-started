@@ -8,7 +8,8 @@ import { RouterLink, RouterView } from 'vue-router';
     <router-link to="/about">About</router-link>&emsp;|&emsp;
     <router-link to="/test">Test</router-link>&emsp;|&emsp;
     <router-link to="/pinia">Pinia</router-link>&emsp;|&emsp;
-    <router-link to="/todolist">TodoList</router-link>
+    <router-link to="/todolist">TodoList</router-link>&emsp;|&emsp;
+    <router-link to="/mapBox">mapBox</router-link>
   </div>
   <router-view v-slot="{ Component }">
     <Transition mode="out-in">
