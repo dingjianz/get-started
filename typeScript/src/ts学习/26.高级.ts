@@ -120,7 +120,7 @@
     { name: "Eve", age: 38 },
   ];
 
-  type Person4 = typeof MyArray[number]; // type Person = {name: string;age: number;}
+  type Person4 = typeof MyArray[number]; // type Person = { name: string; age: number; }
   const r4: Person4 = { name: "jianding9", age: 12 };
 
   type Age2 = typeof MyArray[number]["age"]; // type Age2 = string

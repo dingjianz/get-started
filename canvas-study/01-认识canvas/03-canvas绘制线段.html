@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03-canvas绘制直角三角形</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="c1" width="600" height="400"></canvas>
+  <script>
+    const c1 = document.getElementById('c1');
+    const ctx = c1.getContext('2d');
+    // CanvasRenderingContext2D.lineTo() 是 Canvas 2D API 使用直线连接子路径的终点到 x，y 坐标的方法（并不会真正地绘制）。
+    // 画直角三角形
+    ctx.beginPath();
+    ctx.moveTo(100, 100);
+    ctx.lineTo(300, 100);
+    ctx.lineTo(100, 300);
+    ctx.lineTo(100, 100);
+    ctx.stroke();
+    ctx.closePath();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02-canvas绘制圆弧和笑脸</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="c1" width="600" height="400"></canvas>
+  <script>
+    const c1 = document.getElementById('c1');
+    const ctx = c1.getContext('2d');
+
+    /**
+     * ctx.arc
+      圆弧中心（圆心）的 x 轴坐标。
+      y
+      圆弧中心（圆心）的 y 轴坐标。
+
+      radius
+      圆弧的半径。
+
+      startAngle
+      圆弧的起始点，x 轴方向开始计算，单位以弧度表示。
+
+      endAngle
+      圆弧的终点，单位以弧度表示。
+
+      anticlockwise 可选
+      可选的Boolean值，如果为 true，逆时针绘制圆弧，反之，顺时针绘制。 
+      */
+
+
+    // 画圆弧
+    // ctx.beginPath()
+    // ctx.arc(300, 200, 50, 0, 2 * Math.PI)
+    // ctx.stroke()
+    // ctx.fill()
+    // ctx.closePath()
+
+    // moveTo 是 Canvas 2D API 将一个新的子路径的起始点移动到 (x，y) 坐标的方法。
+    // 绘制一条不连续的路径
+
+    // 画笑脸
+    ctx.beginPath();
+    ctx.arc(300, 200, 100, 0, 2 * Math.PI); // 画圆圈
+    ctx.moveTo(350, 220)
+    ctx.arc(300, 220, 50, 0, Math.PI); // 画嘴巴
+    ctx.moveTo(260, 180)
+    ctx.arc(250, 180, 10, 0, 2 * Math.PI); // 画左眼
+    ctx.moveTo(360, 180)
+    ctx.arc(350, 180, 10, 0, 2 * Math.PI); // 画右眼
+    ctx.stroke();
+    ctx.closePath();
+  </script>
+</body>
+
+</html>

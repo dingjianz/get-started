@@ -23,4 +23,8 @@
     name: "jianding9",
     class: 7,
   };
+
+  const add =  1;
+  type IType = typeof add
+  const bdd: IType = 2
 })();
