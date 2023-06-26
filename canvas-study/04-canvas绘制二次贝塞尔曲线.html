@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04-canvas绘制二次贝塞尔曲线</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="c1" width="600" height="400"></canvas>
+  <script>
+    const c1 = document.getElementById('c1');
+    const ctx = c1.getContext('2d');
+    // quadraticCurveTo() 是 Canvas 2D API 新增二次贝塞尔曲线路径的方法。它需要 2 个点。第一个点是控制点，第二个点是终点。起始点是当前路径最新的点，当创建二次贝赛尔曲线之前，可以使用 moveTo() 方法进行改变。
+    /*
+      cpx
+      控制点的 x 轴坐标。
+      cpy
+      控制点的 y 轴坐标。
+      x
+      终点的 x 轴坐标。
+      y
+      终点的 y 轴坐标
+    */
+    ctx.beginPath();
+    ctx.moveTo(200, 300);
+    ctx.quadraticCurveTo(150, 300, 150, 200);
+    ctx.quadraticCurveTo(150, 100, 300, 100);
+    ctx.quadraticCurveTo(450, 100, 450, 200);
+    ctx.quadraticCurveTo(450, 300, 250, 300);
+    ctx.quadraticCurveTo(250, 350, 150, 350);
+    ctx.quadraticCurveTo(200, 350, 200, 300);
+    ctx.stroke()
+    ctx.closePath();
+
+    ctx.fillRect(200, 300, 5, 5)
+  </script>
+</body>
+
+</html>
