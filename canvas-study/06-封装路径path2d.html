@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>06-封装路径path2d</title>
+</head>
+
+<body>
+  <canvas id="c1" width="600" height="400"></canvas>
+  <script>
+    const c1 = document.getElementById('c1');
+    const ctx = c1.getContext('2d');
+
+    // 用来描述在 canvas 上绘图之前，设置图形和图片透明度的属性。数值的范围从 0.0（完全透明）到 1.0（完全不透明）。
+    ctx.globalAlpha = 0.5;
+
+    // 气泡框
+    const chatPath = new Path2D();
+    chatPath.moveTo(200, 300);
+    chatPath.quadraticCurveTo(150, 300, 150, 200);
+    chatPath.quadraticCurveTo(150, 100, 300, 100);
+    chatPath.quadraticCurveTo(450, 100, 450, 200);
+    chatPath.quadraticCurveTo(450, 300, 250, 300);
+    chatPath.quadraticCurveTo(250, 350, 150, 350);
+    chatPath.quadraticCurveTo(200, 350, 200, 300);
+    ctx.strokeStyle = 'purple'; // 线条颜色
+    ctx.lineWidth = 5; // 线条宽度
+    ctx.stroke(chatPath);
+    ctx.fillStyle = 'yellow'; // 填充颜色
+    ctx.fill(chatPath);
+
+    // 爱心
+    const headerPath = new Path2D();
+    headerPath.moveTo(300, 200);
+    headerPath.bezierCurveTo(350, 150, 400, 200, 300, 250);
+    headerPath.bezierCurveTo(200, 200, 250, 150, 300, 200);
+    ctx.strokeStyle = '#000000'
+
+    ctx.stroke(headerPath);
+    ctx.fillStyle = 'red';
+    ctx.fill(headerPath);
+  </script>
+
+</body>
+
+</html>

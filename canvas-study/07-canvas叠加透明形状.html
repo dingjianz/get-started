@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>07-canvas叠加透明形状</title>
+</head>
+
+<body>
+  <canvas id="c1" width="600" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById('c1');
+    const ctx = canvas.getContext('2d');
+
+    // Draw background
+    ctx.fillStyle = '#FD0';
+    ctx.fillRect(0, 0, 75, 75);
+    ctx.fillStyle = '#6C0';
+    ctx.fillRect(75, 0, 75, 75);
+    ctx.fillStyle = '#09F';
+    ctx.fillRect(0, 75, 75, 75);
+    ctx.fillStyle = '#F30';
+    ctx.fillRect(75, 75, 75, 75);
+    ctx.fillStyle = '#FFF';
+
+    // Set transparency value
+    ctx.globalAlpha = 0.2;
+
+    // Draw transparent circles
+    for (let i = 0; i < 7; i++) {
+      ctx.beginPath();
+      ctx.arc(75, 75, 10 + 10 * i, 0, Math.PI * 2, true);
+      ctx.fill();
+    }
+  </script>
+</body>
+
+</html>

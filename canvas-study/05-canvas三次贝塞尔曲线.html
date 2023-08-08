@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>05-canvas三次贝塞尔曲线</title>
+</head>
+
+<body>
+  <canvas id="c1" width="600" height="400"></canvas>
+  <script>
+    const c1 = document.getElementById('c1');
+    const ctx = c1.getContext('2d');
+    ctx.beginPath();
+    ctx.moveTo(300, 200);
+    // 2个控制点、1个终点
+    ctx.bezierCurveTo(350, 150, 400, 200, 300, 250)
+    ctx.bezierCurveTo(200, 200, 250, 150, 300, 200)
+    ctx.stroke();
+    ctx.closePath();
+  </script>
+</body>
+
+</html>

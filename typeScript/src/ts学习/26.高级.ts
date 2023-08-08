@@ -10,6 +10,7 @@
     name: string;
     age: number;
   };
+
   type P = keyof Person; // 相当于 type P = 'id' | 'name' | 'age'
   const s: P = "id";
 
@@ -18,6 +19,9 @@
   const s2: M = 12;
 
   type P1 = Person[keyof Person]; // number | string;  https://blog.csdn.net/lcl130/article/details/125214788
+
+  type MyPick<T, K extends keyof T> = { [P in K]: T[P] };
+  type P3 = MyPick<Person, "id" | "age">;
 
   type p2 = Partial<Person>; // https://www.jianshu.com/p/0543bd031166FG
   /* {
@@ -47,7 +51,7 @@
 
   type p5 = Person & {
     sex: string;
-  }
+  };
   const obj2: p5 = {
     id: 1,
     name: "jianding9",
@@ -64,7 +68,7 @@
   };
 
   type IType = typeof item; // 实践：typeof 的用法返回某类数据的类型
-  
+
   type Predicate = (x: number) => boolean;
   type K = ReturnType<Predicate>; // type K = boolean
   // 实践： ReturnType 接收的是一个类型， typeof 接收的是一个值
@@ -120,10 +124,10 @@
     { name: "Eve", age: 38 },
   ];
 
-  type Person4 = typeof MyArray[number]; // type Person = { name: string; age: number; }
+  type Person4 = (typeof MyArray)[number]; // type Person = { name: string; age: number; }
   const r4: Person4 = { name: "jianding9", age: 12 };
 
-  type Age2 = typeof MyArray[number]["age"]; // type Age2 = string
+  type Age2 = (typeof MyArray)[number]["age"]; // type Age2 = string
 
   // ===========================================
 
@@ -232,9 +236,9 @@
     { name: "Eve", age: "23" },
   ];
 
-  type Person44 = typeof MyArray222[number]; // 这里的number 代表所有的索引
+  type Person44 = (typeof MyArray222)[number]; // 这里的number 代表所有的索引
 
-  type Age21 = typeof MyArray222[number]["age"]; // number | string
+  type Age21 = (typeof MyArray222)[number]["age"]; // number | string
 })();
 
 (() => {
