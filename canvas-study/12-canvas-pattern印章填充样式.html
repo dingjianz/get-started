@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12-canvas-pattern印章填充样式</title>
+  <style>
+  </style>
+</head>
+
+<body>
+  <canvas id="c1" width="600" height="400"></canvas>
+  <script>
+    const canvas = document.getElementById('c1');
+    const ctx = canvas.getContext('2d');
+
+    // 3. 创建图案样式 pattern
+    const img = new Image();
+    img.src = "./images/flower.png";
+    img.onload = () => {
+      // Only use the image after it's loaded
+      const pattern = ctx.createPattern(img, "repeat");
+      ctx.fillStyle = pattern;
+      ctx.fillRect(0, 0, 600, 400);
+    };
+  </script>
+</body>
+
+</html>

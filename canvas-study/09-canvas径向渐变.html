@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>09-canvas径向渐变</title>
+</head>
+
+<body>
+  <canvas id="c1" width="600" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById('c1');
+    const ctx = canvas.getContext('2d');
+    let index = 0;
+
+    function render() {
+      /* 
+        x0
+        开始圆形的 x 轴坐标。
+        y0
+        开始圆形的 y 轴坐标。
+        r0
+        开始圆形的半径。
+        x1
+        结束圆形的 x 轴坐标。
+        y1
+        结束圆形的 y 轴坐标。
+        r1
+        结束圆形的半径。
+      */
+      const radialGradient = ctx.createRadialGradient(300, 200, 0, 300, 200, 200);
+      radialGradient.addColorStop(0, "red");
+      radialGradient.addColorStop(0.9, "#ffcccc");
+      radialGradient.addColorStop(1, "blue");
+      ctx.fillStyle = radialGradient;
+      ctx.fillRect(0, 0, 600, 400);
+    }
+    render();
+  </script>
+</body>
+
+</html>

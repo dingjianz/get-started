@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11-canvas圆锥渐变特效</title>
+  <style>
+  </style>
+</head>
+
+<body>
+  <canvas id="c1" width="600" height="400"></canvas>
+  <script>
+    const canvas = document.getElementById('c1');
+    const ctx = canvas.getContext('2d');
+
+    // 3. 圆锥渐变 createConicGradient(角度, 位置x, 位置y); 默认顺时针
+    // const coniGradient = ctx.createConicGradient(0, 300, 200)
+    const coniGradient = ctx.createConicGradient(Math.PI / 4, 300, 200)
+    coniGradient.addColorStop(0, 'red');
+    coniGradient.addColorStop(0.5, 'yellow');
+    coniGradient.addColorStop(1, 'blue');
+    ctx.fillStyle = coniGradient;
+    ctx.fillRect(0, 0, 600, 400);
+  </script>
+</body>
+
+</html>

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>08-canvas线性渐变和径向渐变</title>
+  <title>10-canvas径向渐变模拟3D球</title>
 </head>
 
 <body>
@@ -13,6 +13,13 @@
   <script>
     const canvas = document.getElementById('c1');
     const ctx = canvas.getContext('2d');
+    const radialGradient = ctx.createRadialGradient(250, 150, 10, 300, 200, 100);
+    radialGradient.addColorStop(0, "#ffcccc");
+    radialGradient.addColorStop(1, "red");
+    ctx.fillStyle = radialGradient;
+
+    ctx.arc(300, 200, 100, 0, Math.PI * 2);
+    ctx.fill();
   </script>
 </body>
 
