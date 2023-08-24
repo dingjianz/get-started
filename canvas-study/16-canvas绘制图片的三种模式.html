@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>16-canvas绘制图片的三种模式</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="c1" width="800" height="800"></canvas>
+  <script>
+    const canvas = document.getElementById('c1');
+    const ctx = canvas.getContext('2d');
+
+    // 获取图片
+    const img = new Image();
+    img.src = './images/flower.png'
+    img.onload = () => {
+      /* 
+        drawImage(image, dx, dy);
+        drawImage(image, dx, dy, dWidth, dHeight);
+        drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+      */
+      // 第三种方式绘制图片
+      ctx.drawImage(img, 50, 50, 100, 100, 0, 0, 800, 800);
+
+      // 第一种绘制图片的方式 参数1为图片对象，参数2、3为将图片渲染到画图的横纵坐标
+      // https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/drawImage
+      ctx.drawImage(img, 0, 0);
+
+      // 第二种方式绘制图片
+      ctx.drawImage(img, 200, 200, 100, 100);
+    }
+  </script>
+</body>
+
+</html>

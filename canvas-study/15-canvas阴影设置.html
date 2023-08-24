@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>15-canvas阴影设置</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    canvas {
+      box-shadow: 4px 6px 3px pink;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="c1" width="600" height="400"></canvas>
+  <script>
+    const canvas = document.getElementById('c1');
+    const ctx = canvas.getContext('2d');
+
+    ctx.shadowOffsetX = 10;
+    ctx.shadowOffsetY = 10;
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = 'green';
+
+    ctx.beginPath();
+    ctx.moveTo(10, 10);
+    ctx.lineTo(300, 300);
+    ctx.lineTo(300, 10);
+    ctx.lineTo(10, 10);
+    ctx.closePath();
+    ctx.stroke();
+  </script>
+</body>
+
+</html>
