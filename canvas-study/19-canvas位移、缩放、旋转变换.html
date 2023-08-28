@@ -22,12 +22,19 @@
       const ctx = canvas.getContext("2d");
 
       // 位移 移动的是坐标系
-      ctx.translate(100, 100);
-      ctx.fillRect(0, 0, 50, 50);
+      // ctx.translate(100, 100);
+      // ctx.fillRect(0, 0, 50, 50);
 
-      ctx.translate(100, 100);
-      ctx.fillRect(0, 0, 50, 50);
+      // ctx.translate(100, 100);
+      // ctx.fillRect(0, 0, 50, 50);
 
+      // 缩放
+      // ctx.scale(5, 0.5);
+      // ctx.fillRect(0, 0, 50, 50);
+
+      // 旋转
+      ctx.rotate(Math.PI / 6);
+      ctx.fillRect(100, 100, 50, 50);
     </script>
   </body>
 </html>
