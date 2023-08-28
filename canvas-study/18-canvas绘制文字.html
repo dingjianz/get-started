@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>18-canvas绘制文字</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      canvas {
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="c1" width="600" height="400"></canvas>
+    <script>
+      const canvas = document.getElementById("c1");
+      const ctx = canvas.getContext("2d");
+
+      ctx.arc(300, 200, 5, 0, 2 * Math.PI);
+      ctx.fillStyle = "#000000";
+      ctx.fill();
+
+      ctx.font = "bold 48px serif";
+
+      // "left" || "right" || "center" || "start" || "end";
+      // https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/textAlign
+      ctx.textAlign = "center";
+
+      // "top" || "hanging" || "middle" || "alphabetic" || "ideographic" || "bottom";
+      // https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/textBaseline
+      ctx.textBaseline = "middle";
+
+      ctx.direction = 'rtl';
+
+      // ctx.strokeStyle = "#ff0000";
+      // ctx.strokeText("Hello！", 300, 200);
+
+      // measureText() 方法返回一个关于被测量文本TextMetrics 对象包含的信息（例如它的宽度）
+      const _info = ctx.measureText('Hello！')
+      console.log(_info);
+
+      ctx.fillStyle = "#ff0000";
+      ctx.fillText("Hello！", 300, 200);
+    </script>
+  </body>
+</html>

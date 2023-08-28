@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>17-canvas绘制动态视频及添加水印</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button id="btn">播放/暂停</button>
+    <video width="400" src="https://1024-cdn.xfyun.cn/2022_1024%2Fcms%2F16665650657454919%2F%E5%89%8D%E6%AE%B5.mp4" controls></video>
+    <canvas id="c1" width="400" height="400"></canvas>
+    <script>
+      const canvas = document.getElementById("c1");
+      const ctx = canvas.getContext("2d");
+
+      // 获取设置视频对象
+      // const $video = document.createElement("video");
+      // $video.src = 'https://1024-cdn.xfyun.cn/2022_1024%2Fcms%2F16665650657454919%2F%E5%89%8D%E6%AE%B5.mp4';
+
+      const $video = document.querySelector("video");
+
+      const img = new Image();
+      img.src = './images/flower.png';
+
+      let _aniId = "";
+
+      // 获取按钮
+      const $btn = document.getElementById("btn");
+      $btn.onclick = function () {
+        if ($video.paused) {
+          $video.play();
+        } else {
+          $video.pause();
+          _aniId && cancelAnimationFrame(_aniId);
+        }
+        handleRender();
+      };
+
+      const handleRender = () => {
+        ctx.drawImage($video, 0, 0, 400, 400);
+        ctx.drawImage(img, 600, 600, 200, 200); // 添加logo
+        _aniId = requestAnimationFrame(handleRender);
+      };
+
+      $video.addEventListener(
+        "ended",
+        function () {
+          _aniId && cancelAnimationFrame(_aniId);
+        },
+        false
+      );
+
+    </script>
+  </body>
+</html>
