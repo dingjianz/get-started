@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>21-canvas-globalCompositeOperation合成图像</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      #ggk {
+        width: 600px;
+        height: 400px;
+        font-size: 30px;
+        font-weight: 900;
+        line-height: 400px;
+        overflow: hidden;
+        text-align: center;
+        user-select: none;
+      }
+      canvas {
+        border: 1px solid #ccc;
+        position: absolute;
+        left: 0;
+        top: 0;
+        user-select: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="ggk">谢谢惠顾</div>
+    <canvas id="c1" width="600" height="400">刮刮卡</canvas>
+    <script>
+      const canvas = document.getElementById("c1");
+      const ctx = canvas.getContext("2d");
+
+      // https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation
+
+      const img = new Image();
+      img.src = './images/ggk.jpg';
+      img.onload = () => {
+        const pattern = ctx.createPattern(img, 'repeat');
+        ctx.fillStyle = pattern;
+        ctx.fillRect(0, 0, 600, 400);
+      };
+
+      let isDraw = false;
+
+      canvas.onmousedown = () => {
+        isDraw = true;
+        ctx.beginPath();
+      };
+
+      canvas.onmouseup = () => {
+        isDraw = false;
+        ctx.closePath();
+      };
+
+      canvas.onmousemove = function (e) {
+        if (isDraw) {
+          const x = e.pageX;
+          const y = e.pageY;
+          ctx.globalCompositeOperation = "destination-out";
+          ctx.arc(x, y, 10, 0, 2 * Math.PI);
+          // ctx.fillStyle = '#ff0000';
+          ctx.fill();
+        }
+      };
+    </script>
+  </body>
+</html>

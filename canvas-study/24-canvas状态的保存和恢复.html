@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>24-canvas状态的保存和恢复</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      canvas {
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="c1" width="800" height="800"></canvas>
+    <script>
+      const canvas = document.getElementById("c1");
+      const ctx = canvas.getContext("2d");
+
+      ctx.fillStyle = "red";
+      ctx.fillRect(0, 0, 50, 50);
+      ctx.save();
+
+      ctx.fillStyle = "green";
+      ctx.fillRect(50, 50, 50, 50);
+      ctx.save();
+
+      ctx.fillStyle = "yellow";
+      ctx.fillRect(100, 100, 50, 50);
+    </script>
+  </body>
+</html>

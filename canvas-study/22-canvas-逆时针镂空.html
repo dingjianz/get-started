@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>22-canvas-逆时针镂空</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      canvas {
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="c1" width="600" height="400"></canvas>
+    <script>
+      const canvas = document.getElementById("c1");
+      const ctx = canvas.getContext("2d");
+
+      
+      ctx.moveTo(0, 0);
+      ctx.lineTo(600, 0);
+      ctx.lineTo(600, 400);
+      ctx.lineTo(0, 400);
+      
+      // 一定要逆时针
+      ctx.moveTo(10, 10);
+      ctx.lineTo(10, 200);
+      ctx.lineTo(200, 200);
+      ctx.lineTo(200, 10);
+
+      ctx.fillStyle = "rgba(0,0,0,0.2)";
+      ctx.fill();
+
+    </script>
+  </body>
+</html>

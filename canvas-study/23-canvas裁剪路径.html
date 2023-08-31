@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>23-canvas-裁剪路径</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      canvas {
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="c1" width="600" height="400"></canvas>
+    <script>
+      const canvas = document.getElementById("c1");
+      const ctx = canvas.getContext("2d");
+
+      const chatPath = new Path2D();
+      chatPath.moveTo(200, 300);
+      chatPath.quadraticCurveTo(150, 300, 150, 200);
+      chatPath.quadraticCurveTo(150, 100, 300, 100);
+      chatPath.quadraticCurveTo(450, 100, 450, 200);
+      chatPath.quadraticCurveTo(450, 300, 250, 300);
+      chatPath.quadraticCurveTo(250, 350, 150, 350);
+      chatPath.quadraticCurveTo(200, 350, 200, 300);
+      ctx.clip(chatPath);
+
+      const img = new Image();
+      img.src = "./images/fj.jpg";
+      img.onload = () => {
+        ctx.drawImage(img, 0, 0, 600, 400);
+        ctx.lineWidth = 20;
+        ctx.stroke(chatPath)
+      };
+
+      // const canvasPath = new Path2D();
+      // canvasPath.rect(0, 0, 600, 400);
+      // ctx.fill(canvasPath);
+    </script>
+  </body>
+</html>
