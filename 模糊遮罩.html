@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>模糊遮罩</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      ::selection {
+        background: pink;
+        color: purple;
+      }
+
+      .box {
+        width: 400px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .mask {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 80px;
+        background: linear-gradient(180deg, transparent, #fefefe);
+        pointer-events: none;
+        user-select: none;
+        backdrop-filter: blur(1px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <p>Slack: 我们干什么都用它，不管是团队沟通，还是分享最新的科技新闻，你还可以与我们的 ChatGPT 机器人聊天。
+        Google Workspace: 我们使用 Google Docs、Sheets、Slides、Drive、Mail 和 Calendar 进行协作。
+        GitHub: 一流的代码存储库和 CI/CD 运维。
+        Linear: 最棒的项目管理和任务跟踪平台。
+        Vercel: Web 应用程序的最佳部署平台。
+        Figma: 所有 UI/UX 相关设计工具中最好用的。
+        Notion: 用于文档和知识库的一站式工具。
+        Arc: 我们都爱的「互联网电脑」浏览器。</p>
+      <div class="mask"></div>
+    </div>
+  </body>
+</html>
