@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>27-canvas签名画板</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+      }
+      canvas {
+        border: 1px solid #ccc;
+      }
+
+      button.active {
+        color: #ffffff;
+        background-color: orangered;
+        border: 1px solid orangered;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="c1" width="600" height="400"></canvas>
+    <br />
+    <button id="boldBtn" type="button">粗线条</button>
+    <button id="thinBtn" type="button" class="active">细线条</button>
+    <button id="saveBtn" type="button">保存签名</button>
+    <input id="color" value="" type="color" name="" />
+    <button type="button" class="clearBtn">橡皮擦</button>
+    <button type="button" class="nullBtn">清空画布</button>
+    <script>
+      const canvas = document.getElementById("c1");
+      const ctx = canvas.getContext("2d");
+
+      ctx.save();
+      ctx.fillStyle = '#ffffffff';
+      ctx.fillRect(0, 0, 800, 600);
+      ctx.restore();
+
+      // 连接处圆润
+      ctx.lineJoin = "round";
+      // 开端和结束圆润
+      ctx.lineCap = "round";
+
+      // 设置画笔的粗细
+      const boldBtn = document.querySelector("#boldBtn");
+      boldBtn.onclick = function () {
+        ctx.globalCompositeOperation = "source-over";
+        ctx.lineWidth = 10;
+        boldBtn.classList.add("active");
+        thinBtn.classList.remove("active");
+        clearBtn.classList.remove("active");
+      };
+
+      const thinBtn = document.querySelector("#thinBtn");
+      thinBtn.onclick = function () {
+        ctx.globalCompositeOperation = "source-over";
+        ctx.lineWidth = 1;
+        thinBtn.classList.add("active");
+        boldBtn.classList.remove("active");
+        clearBtn.classList.remove("active");
+      };
+
+      // 设置绘画的颜色
+      const inputColor = document.querySelector("#color");
+      inputColor.onchange = function () {
+        ctx.strokeStyle = inputColor.value;
+      };
+
+      // 保存签名
+      const saveBtn = document.querySelector("#saveBtn");
+      saveBtn.onclick = function () {
+        const urlData = canvas.toDataURL();
+        const img = new Image();
+        img.src = urlData;
+        document.body.appendChild(img);
+
+        const downloadA = document.createElement("a");
+        downloadA.setAttribute("download", "酷炫签名");
+        downloadA.href = urlData;
+        downloadA.click();
+      };
+
+      // 设置橡皮擦
+      const clearBtn = document.querySelector(".clearBtn");
+      clearBtn.onclick = function () {
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.lineWidth = 30;
+        thinBtn.classList.remove("active");
+        boldBtn.classList.remove("active");
+        clearBtn.classList.add("active");
+      };
+
+      // 清空画布
+      const nullBtn = document.querySelector(".nullBtn");
+      nullBtn.onclick = function () {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      };
+
+      // 设置是否允许绘制的变量
+      let isDraw = false;
+
+      canvas.onmousedown = function (e) {
+        isDraw = true;
+        ctx.beginPath();
+        const x = e.pageX - canvas.offsetLeft;
+        const y = e.pageY - canvas.offsetTop;
+        ctx.moveTo(x, y);
+      };
+
+      canvas.onmouseleave = function (e) {
+        isDraw = false;
+        ctx.closePath();
+      };
+
+      canvas.onmouseup = function (e) {
+        isDraw = false;
+        ctx.closePath();
+      };
+
+      canvas.onmousemove = function (e) {
+        if (isDraw) {
+          const x = e.pageX - canvas.offsetLeft;
+          const y = e.pageY - canvas.offsetTop;
+          ctx.lineTo(x, y);
+          ctx.stroke();
+        }
+      };
+    </script>
+  </body>
+</html>

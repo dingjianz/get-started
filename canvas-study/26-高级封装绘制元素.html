@@ -16,7 +16,6 @@
   </head>
   <body>
     <canvas id="c1" width="600" height="400"></canvas>
-    <div class="box"></div>
     <script>
       const canvas = document.getElementById("c1");
       const ctx = canvas.getContext("2d");
@@ -25,11 +24,28 @@
         constructor(x, y) {
           this.x = x;
           this.y = y;
-          
+          this.isIn = false;
+          this.color = "blue";
+          this.eventMapList = {
+            hoverFnList: [],
+            leaveFnList: [],
+          };
+          canvas.onmousemove = (e) => {
+            const x = e.offsetX;
+            const y = e.offsetY;
+            this.isIn = ctx.isPointInPath(this.heartPath, x, y);
+            if (this.isIn) {
+              this.eventMapList.hoverFnList[0]();
+            } else {
+              this.eventMapList.leaveFnList[0]();
+            }
+          };
         }
-        setPosition(x, y) {
-          this.x = x;
-          this.y = y;
+        handleOnHover(fn) {
+          this.eventMapList.hoverFnList.push(fn);
+        }
+        handleOnleave(fn) {
+          this.eventMapList.leaveFnList.push(fn);
         }
         draw() {
           ctx.save();
@@ -37,18 +53,33 @@
           this.heartPath.moveTo(this.x, this.y);
           this.heartPath.bezierCurveTo(this.x + 50, this.y - 50, this.x + 100, this.y, this.x, this.y + 50);
           this.heartPath.bezierCurveTo(this.x - 100, this.y, this.x - 50, this.y - 50, this.x, this.y);
-          ctx.fillStyle = "#ff0000";
+          ctx.fillStyle = this.color;
           ctx.fill(this.heartPath);
           ctx.restore();
 
           // https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/isPointInPath
           // isPointInPath判断在当前路径中是否包含检测点的方法。
-          console.log(ctx.isPointInPath(this.heartPath, 100, 100));
+          // console.log(ctx.isPointInPath(this.heartPath, 100, 100));
         }
       }
 
       const heart = new Heart(100, 100);
-      heart.draw();
+
+      heart.handleOnHover(() => {
+        heart.color = "#ff0000";
+        render();
+      });
+
+      heart.handleOnleave(() => {
+        heart.color = "blue";
+        render();
+      });
+
+      function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        heart.draw();
+      }
+      render();
     </script>
   </body>
 </html>

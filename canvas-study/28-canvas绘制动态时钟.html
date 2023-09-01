@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>28-canvas绘制动态时钟</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+      }
+      div[contenteditable="true"] {
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="c1" width="600" height="400"></canvas>
+    <div class="box" contenteditable="true">
+      <div>asdcdsc</div>
+      <span>sxadc</span>
+    </div>
+    <script>
+      const canvas = document.getElementById("c1");
+      const ctx = canvas.getContext("2d");
+
+      // 存档，保存当前坐标位置和上下文对象的状态
+      ctx.save();
+      ctx.translate(400, 300);
+      ctx.beginPath();
+      ctx.moveTo(170, 0);
+      ctx.lineTo(190, 0);
+      ctx.stroke();
+      ctx.closePath();
+    </script>
+  </body>
+</html>
