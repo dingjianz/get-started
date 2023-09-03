@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>32-pixi.js资源管理</title>
+    <script src="./lib/pixi.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      canvas {
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // 创建应用
+      const app = new PIXI.Application({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        backgroundColor: 0x1099bb,
+        resolution: window.devicePixelRatio || 1,
+        antialias: true, // 抗锯齿
+      });
+
+      // 将应用画布添加到DOM中
+      document.body.appendChild(app.view);
+
+      // 添加资源
+      PIXI.Assets.add("flower", "./images/flower.png");
+      PIXI.Assets.add("thl", "./images/thl.png");
+      PIXI.Assets.add("fj", "./images/fj.jpg");
+
+      // 异步加载资源
+      const texturesPromise = PIXI.Assets.load(["flower", "thl", "fj"], (progress) => {
+        console.log("加载进度:::", progress);
+      });
+
+      // 加载完成后创建精灵
+      texturesPromise.then((texture) => {
+        // 创建一个容易
+        const container = new PIXI.Container();
+        // 创建一个精灵
+        const spriteFlower = PIXI.Sprite.from(texture.flower);
+        // 设置精灵的位置
+        spriteFlower.x = app.screen.width / 2;
+        spriteFlower.y = app.screen.height / 2;
+        spriteFlower.anchor.set(0.5); // 设置锚点在精灵的中心
+        // 设置精灵的缩放
+        spriteFlower.scale.set(0.5, 0.5);
+        // 设置精灵的透明度
+        spriteFlower.alpha = 0.5;
+        // 设置精灵混合模式
+        spriteFlower.blendMode = PIXI.BLEND_MODES.ADD;
+        // 设置精灵交互
+        spriteFlower.interactive = true;
+        // 设置精灵鼠标样式
+        spriteFlower.buttonMode = true;
+        spriteFlower.on("click", () => {
+          console.log("spriteFlower click");
+        });
+        // app.stage.addChild(spriteFlower);
+        container.addChild(spriteFlower);
+
+        const spriteThl = PIXI.Sprite.from(texture.thl);
+        // app.stage.addChild(spriteThl);
+        container.addChild(spriteThl);
+
+        const spriteFj = PIXI.Sprite.from(texture.fj);
+        spriteFj.scale.set(0.2, 0.2);
+        spriteFj.x = 300;
+        spriteFj.y = 200;
+
+        // app.stage.addChild(spriteFj);
+        container.addChild(spriteFj);
+
+        app.stage.addChild(container);
+      });
+    </script>
+  </body>
+</html>

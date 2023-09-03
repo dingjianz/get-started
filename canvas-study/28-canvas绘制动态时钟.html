@@ -10,29 +10,101 @@
         padding: 0;
         font-size: 14px;
       }
-      div[contenteditable="true"] {
-        outline: none;
+      canvas {
+        border: 1px solid #eeeeee;
       }
     </style>
   </head>
   <body>
     <canvas id="c1" width="600" height="400"></canvas>
-    <div class="box" contenteditable="true">
-      <div>asdcdsc</div>
-      <span>sxadc</span>
-    </div>
     <script>
       const canvas = document.getElementById("c1");
       const ctx = canvas.getContext("2d");
 
-      // 存档，保存当前坐标位置和上下文对象的状态
-      ctx.save();
-      ctx.translate(400, 300);
-      ctx.beginPath();
-      ctx.moveTo(170, 0);
-      ctx.lineTo(190, 0);
-      ctx.stroke();
-      ctx.closePath();
+      function render() {
+        ctx.clearRect(0, 0, 600, 400);
+        // 存档，保存当前坐标位置和上下文对象的状态
+        ctx.save();
+        ctx.translate(270, 200);
+        ctx.rotate(-Math.PI / 2);
+
+        // 画时线
+        ctx.save();
+        for (let i = 0; i < 12; i++) {
+          ctx.beginPath();
+          ctx.moveTo(170, 0);
+          ctx.lineTo(190, 0);
+          ctx.lineWidth = 8;
+          ctx.strokeStyle = "gray";
+          ctx.stroke();
+          ctx.closePath();
+          ctx.rotate((2 * Math.PI) / 12);
+        }
+        ctx.restore();
+
+        // 画分线
+        ctx.save();
+        for (let i = 0; i < 60; i++) {
+          ctx.beginPath();
+          ctx.moveTo(180, 0);
+          ctx.lineTo(190, 0);
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = "gray";
+          ctx.stroke();
+          ctx.closePath();
+          ctx.rotate((2 * Math.PI) / 60);
+        }
+        ctx.restore();
+
+        // 获取当前时间
+        const time = new Date();
+        let hour = time.getHours();
+        const min = time.getMinutes();
+        const second = time.getSeconds();
+        hour = hour > 12 ? hour - 12 : hour;
+
+        // 画秒针
+        ctx.save();
+        ctx.rotate(((2 * Math.PI) / 60) * second);
+        ctx.beginPath();
+        ctx.moveTo(-30, 0);
+        ctx.lineTo(190, 0);
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "red";
+        ctx.stroke();
+        ctx.closePath();
+        ctx.restore();
+
+        // 画分针
+        ctx.save();
+        ctx.rotate(((2 * Math.PI) / 3600) * (min * 60 + second));
+        ctx.beginPath();
+        ctx.moveTo(-20, 0);
+        ctx.lineTo(130, 0);
+        ctx.lineWidth = 4;
+        ctx.strokeStyle = "#888888";
+        ctx.stroke();
+        ctx.closePath();
+        ctx.restore();
+
+        // 画时针
+        ctx.save();
+        ctx.rotate(((2 * Math.PI) / 43200) * (hour * 60 * 60 + min * 60 + second));
+        ctx.beginPath();
+        ctx.moveTo(-15, 0);
+        ctx.lineTo(110, 0);
+        ctx.lineWidth = 8;
+        ctx.strokeStyle = "#333333";
+        ctx.stroke();
+        ctx.closePath();
+        ctx.restore();
+
+        // 再重置一次 回到最原始坐标
+        ctx.restore();
+        requestAnimationFrame(render);
+      }
+
+      render();
     </script>
   </body>
 </html>

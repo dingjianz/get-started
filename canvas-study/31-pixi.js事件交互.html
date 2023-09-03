@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>31-pixi.js事件交互</title>
+    <script src="./lib/pixi.js"></script>
+    <script src="./lib/gsap.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      canvas {
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // 创建应用
+      const app = new PIXI.Application({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        backgroundColor: 0x1099bb,
+        resolution: window.devicePixelRatio || 1,
+        antialias: true, // 抗锯齿
+      });
+
+      // 将应用画布添加到DOM中
+      document.body.appendChild(app.view);
+
+      // // 创建一个纹理
+      // const texture = PIXI.Texture.from("./images/flower.png");
+
+      // 创建一个精灵
+      const sprite = PIXI.Sprite.from("./images/flower.png");
+
+      sprite.anchor.set(0.5); // 设置锚点在精灵的中心
+
+      // 设置精灵的位置
+      sprite.x = app.screen.width / 2;
+      sprite.y = app.screen.height / 2;
+
+      // 设置精灵旋转45度
+      sprite.rotation = Math.PI / 4;
+
+      // 设置精灵的缩放
+      sprite.scale.set(0.5, 0.5);
+
+      // 设置精灵的透明度
+      sprite.alpha = 0.5;
+
+      app.stage.addChild(sprite);
+
+      // ticker实现动画
+      app.ticker.add((delta) => {
+        sprite.rotation += 0.01 * delta;
+      });
+
+      // 为精灵添加交互事件
+      sprite.interactive = true;
+      sprite.on("click", () => {
+        console.log("sprite click");
+      });
+
+      sprite.on("pointerenter", () => {
+        sprite.alpha = 1;
+      });
+
+      sprite.on("pointerout", () => {
+        sprite.alpha = 0.5;
+      });
+
+      // 绘制一个矩形
+      const rect = new PIXI.Graphics();
+      rect.beginFill(0xff0000);
+      rect.drawRect(0, 0, 100, 100);
+      rect.endFill();
+      rect.pivot.set(50, 50); // 设置transform 中心点
+      rect.x = 100;
+      rect.y = 100;
+      app.stage.addChild(rect);
+
+      // 给矩形添加交互事件
+      rect.interactive = true;
+      rect.on("click", () => {
+        console.log("rect click");
+      });
+
+      rect.on("pointerenter", () => {
+        // 创建旋转的过渡效果
+        gsap.to(rect, { rotation: Math.PI / 4, duration: 0.3, ease: "linear" });
+      });
+      rect.on("pointerout", () => {
+        gsap.to(rect, { rotation: 0, duration: 0.3, ease: "linear" });
+      });
+    </script>
+  </body>
+</html>

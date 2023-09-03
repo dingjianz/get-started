@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>32-pixi.js资源管理</title>
+    <script src="./lib/pixi.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      canvas {
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // 创建应用
+      const app = new PIXI.Application({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        backgroundColor: 0x1099bb,
+        resolution: window.devicePixelRatio || 1,
+        antialias: true, // 抗锯齿
+      });
+
+      // 将应用画布添加到DOM中
+      document.body.appendChild(app.view);
+
+      // 添加场景1的资源
+      PIXI.Assets.addBundle("scene1", {
+        flower: "./images/flower.png",
+        thl: "./images/thl.png",
+        fj: "./images/fj.jpg",
+      });
+
+      const assets = PIXI.Assets.loadBundle("scene1", (progress) => {
+        console.log("加载进度:::", progress);
+      });
+      // 加载完成后创建精灵
+      assets.then((texture) => {
+        // 创建一个容易
+        const container = new PIXI.Container();
+        // 创建一个精灵
+        const spiritFlower = PIXI.Sprite.from(texture.flower);
+        // 设置精灵的位置
+        spritetFlower.x = app.screen.width / 2;
+        spritetFlower.y = app.screen.height / 2;
+        spritetFlower.anchor.set(0.5); // 设置锚点在精灵的中心
+        // 设置精灵的缩放
+        spritetFlower.scale.set(0.5, 0.5);
+        // 设置精灵的透明度
+        spritetFlower.alpha = 0.5;
+        // 设置精灵混合模式
+        spritetFlower.blendMode = PIXI.BLEND_MODES.ADD;
+        // 设置精灵交互
+        spritetFlower.interactive = true;
+        // 设置精灵鼠标样式
+        spritetFlower.buttonMode = true;
+        spritetFlower.on("click", () => {
+          console.log("spiritFlower click");
+        });
+        // app.stage.addChild(spiritFlower);
+        container.addChild(spiritFlower);
+
+        const spiritThl = PIXI.Sprite.from(texture.thl);
+        // app.stage.addChild(spiritThl);
+        container.addChild(spiritThl);
+
+        const spiritFj = PIXI.Sprite.from(texture.fj);
+        spritetFj.scale.set(0.2, 0.2);
+        spritetFj.x = 300;
+        spritetFj.y = 200;
+
+        // app.stage.addChild(spiritFj);
+        container.addChild(spiritFj);
+
+        app.stage.addChild(container);
+      });
+    </script>
+  </body>
+</html>

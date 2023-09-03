@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>29-pixi.js</title>
+    <script src="./lib/pixi.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      canvas {
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // 创建应用
+      const app = new PIXI.Application({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        backgroundColor: 0x1099bb,
+        resolution: window.devicePixelRatio || 1,
+        antialias: true, // 抗锯齿
+      });
+
+      // 将应用画布添加到DOM中
+      document.body.appendChild(app.view);
+
+      // 创建一个矩形
+      const rectangle = new PIXI.Graphics();
+      rectangle.lineStyle(4, "#ff0000", 0.5); // 设置边框样式
+      rectangle.beginFill(0xff0000, 0.5); // 填充颜色
+      rectangle.drawRect(0, 0, 164, 64); // 绘制矩形
+      rectangle.scale.set(2, 2); // 图像的缩放
+      rectangle.position.set(50, 50); // 图像的位移
+      rectangle.pivot.set(82, 32); // 设置transform 中心点
+      rectangle.rotation = 0.5; // 图形的旋转
+      rectangle.endFill(); // 结束填充
+      app.stage.addChild(rectangle); // 将矩形添加到舞台
+
+      // 绘制圆形
+      const circle = new PIXI.Graphics();
+      circle.beginFill(0x66ccff, 0.9);
+      circle.drawCircle(300, 32, 32); // 圆心x, 圆心y, 半径
+      circle.endFill();
+      app.stage.addChild(circle); // 将圆形添加到舞台
+
+      // 绘制圆角矩形
+      const roundRectangle = new PIXI.Graphics();
+      roundRectangle.beginFill(0x66ccff, 0.9);
+      // 参数：x坐标，y坐标，宽度 高度 圆角
+      roundRectangle.drawRoundedRect(0, 200, 164, 64, 10);
+      roundRectangle.endFill();
+      app.stage.addChild(roundRectangle); // 将圆角矩形添加到舞台
+
+      // 绘制椭圆
+      const ellipse = new PIXI.Graphics();
+      ellipse.beginFill(0x66ccff);
+      // 椭圆心x， 椭圆心y，长轴 短轴
+      ellipse.drawEllipse(0, 0, 164, 62);
+      ellipse.position.set(550, 62);
+      ellipse.endFill();
+      app.stage.addChild(ellipse); // 将椭圆添加到舞台
+
+      // 绘制多边形
+      const polygon = new PIXI.Graphics();
+      polygon.beginFill(0x66ccff);
+      // 每两个元素是一个点的坐标，四个点组成多边形
+      polygon.drawPolygon([0, 0, 120, 0, 30, 100, 0, 100]);
+      polygon.position.set(200, 162);
+      polygon.endFill();
+      app.stage.addChild(polygon); // 将多边形添加到舞台
+
+      // 绘制圆弧
+      const arc = new PIXI.Graphics();
+      arc.beginFill(0x660000);
+      arc.arc(0, 0, 32, Math.PI / 3, Math.PI, false);
+      arc.position.set(400, 162);
+      arc.endFill();
+      app.stage.addChild(arc); // 将圆弧添加到舞台
+
+      // 绘制线段
+      const line = new PIXI.Graphics();
+      line.lineStyle(16, 0x660000);
+      line.moveTo(0, 0);
+      line.lineTo(100, 100);
+      line.lineTo(200, 0);
+      line.position.set(400, 162);
+      line.endFill();
+      app.stage.addChild(line); // 将线段添加到舞台
+    </script>
+  </body>
+</html>

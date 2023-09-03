@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>34-pixi文字与遮罩</title>
+    <script src="./lib/pixi.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      canvas {
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // 创建应用
+      const app = new PIXI.Application({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        backgroundColor: 0x1099bb,
+        resolution: window.devicePixelRatio || 1,
+        antialias: true, // 抗锯齿
+      });
+
+      // 将应用画布添加到DOM中
+      document.body.appendChild(app.view);
+
+      // 显示hello world文字
+      const text = new PIXI.Text("hello world", {
+        fontFamily: "Arial",
+        fontSize: 180,
+        fill: 0xff0000,
+        align: "center",
+      });
+
+      // 设置文字位置
+      text.x = app.screen.width / 2;
+      text.y = app.screen.height / 2;
+
+      // 设置文字锚点
+      text.anchor.set(0.5);
+      // app.stage.addChild(text);
+
+      // 创造一个圆形
+      const circle = new PIXI.Graphics();
+      circle.beginFill(0x0000ff);
+      circle.drawCircle(app.screen.width / 2, app.screen.height / 2, 100);
+      circle.endFill();
+
+      // 创建一个精灵
+      const spriteGgk = PIXI.Sprite.from("./images/ggk.jpg");
+
+      // 创建一个精灵
+      const sprite = PIXI.Sprite.from("./images/fj.jpg");
+      // 设置精灵位置
+      sprite.width = app.screen.width;
+      sprite.height = app.screen.height;
+      // 使用文字作为精灵的遮罩
+      // sprite.mask = text;
+      // 使用圆形作为精灵的遮罩
+      sprite.mask = circle;
+      // 使用另一个精灵作为精灵的遮罩
+      // sprite.mask = spriteGgk;
+
+      app.stage.addChild(sprite);
+    </script>
+  </body>
+</html>
