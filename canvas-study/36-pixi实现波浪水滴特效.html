@@ -12,20 +12,29 @@
         padding: 0;
       }
 
-      canvas {
+      html,
+      body {
         width: 100vw;
         height: 100vh;
+        overflow: hidden;
       }
+
+      /* canvas {
+        width: 100%;
+        height: 100%;
+      } */
     </style>
   </head>
   <body>
     <script>
+      PIXI.Filter.defaultResolution = window.devicePixelRatio || 1; // 设置你需要的分辨率值
+
       // 创建应用
       const app = new PIXI.Application({
         width: window.innerWidth,
         height: window.innerHeight,
         backgroundColor: 0x1099bb,
-        resolution: window.devicePixelRatio || 1,
+        // resolution: window.devicePixelRatio || 1, // 像素比例
         antialias: true, // 抗锯齿
       });
 
@@ -36,6 +45,11 @@
       const sprite = PIXI.Sprite.from("./images/car.webp");
       sprite.width = app.screen.width;
       sprite.height = app.screen.height;
+
+      // 创建容器
+      const container = new PIXI.Container();
+      container.addChild(sprite);
+      app.stage.addChild(container);
 
       // 添加文字
       const text = new PIXI.Text("Hello PixiJS!", {
@@ -52,23 +66,23 @@
       text.x = app.screen.width / 2;
       text.y = app.screen.height / 2;
       text.anchor.set(0.5);
+      container.addChild(text);
 
       // 添加置换滤镜
-      const spriteDisplacement = PIXI.Sprite.from("./images/displacement.png");
-      spriteDisplacement.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
-      const displacementFilter = new PIXI.DisplacementFilter(spriteDisplacement);
-
-      // 创建容器
-      const container = new PIXI.Container();
-      container.addChild(sprite);
-      container.addChild(text);
-      container.addChild(spriteDisplacement);
+      // const displacementSprite = PIXI.Sprite.from("./images/displacement.jpg");
+      const displacementSprite = PIXI.Sprite.from("https://s1.aigei.com/pvimg/img/png/de/de499f1dda9a4e9da1fa1815410b1617.png?imageMogr2/auto-orient/thumbnail/!237x237r/gravity/Center/crop/237x237/quality/85/&e=1735488000&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:iJpRumxLmQelW9sN_wrsdsD8yR4=");
+      // 调整置换精灵贴图的大小
+      displacementSprite.scale.set(7);
+      // 纹理平铺并且允许重复
+      displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+      const displacementFilter = new PIXI.DisplacementFilter(displacementSprite);
+      container.addChild(displacementSprite);
+      
       container.filters = [displacementFilter];
-      app.stage.addChild(container);
 
       app.ticker.add((delta) => {
-        spriteDisplacement.x++;
-        spriteDisplacement.y++;
+        displacementSprite.x += 1;
+        displacementSprite.y += 1;
       });
     </script>
   </body>
