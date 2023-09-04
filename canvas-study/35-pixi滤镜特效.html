@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>35-pixi滤镜特效</title>
+    <script src="./lib/pixi.js"></script>
+    <script src="./lib/pixi-filters.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      canvas {
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // 创建应用
+      const app = new PIXI.Application({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        backgroundColor: 0x1099bb,
+        resolution: window.devicePixelRatio || 1,
+        antialias: true, // 抗锯齿
+      });
+
+      // 将应用画布添加到DOM中
+      document.body.appendChild(app.view);
+
+      const sprite = PIXI.Sprite.from("./images/thl.png");
+      sprite.x = app.screen.width / 2;
+      sprite.y = app.screen.height / 2;
+
+      app.stage.addChild(sprite);
+
+      // 创建模糊滤镜
+      const blurFilter = new PIXI.filters.BlurFilter();
+
+      // 设置模糊半径
+      blurFilter.blur = 10;
+      blurFilter.strength = 0.5;
+      blurFilter.quality = 0.9;
+      blurFilter.iterations = 2;
+
+      sprite.filters = [blurFilter];
+
+      sprite.interactive = true;
+      sprite.on("pointerover", () => {
+        blurFilter.blur = 0;
+      });
+      sprite.on("pointerout", () => {
+        blurFilter.blur = 10;
+      });
+
+      const spriteFlower = PIXI.Sprite.from("./images/flower.png");
+      spriteFlower.x = 100;
+      spriteFlower.y = 100;
+      spriteFlower.scale.set(0.5);
+
+      app.stage.addChild(spriteFlower);
+
+      // 创建轮廓滤镜
+      const outlineFilter = new PIXI.filters.OutlineFilter(5, 0xff0000); // 5为轮廓宽度 0xFF0000为轮廓颜色
+
+      // 创建发光滤镜
+      const glowFilter = new PIXI.filters.GlowFilter({
+        distance: 10,
+        color: 0xffff00,
+        outerStrength: 11,
+        innerStrength: 0,
+        quality: 0.5,
+      });
+
+      // 创建凸起和凹陷效果的滤镜
+      const bulgePinchFilter = new PIXI.filters.BulgePinchFilter();
+      bulgePinchFilter.center.x = 0.5; // 设置凸起/凹陷中心点的X坐标
+      bulgePinchFilter.center.y = 0.5; // 设置凸起/凹陷中心点的Y坐标
+      bulgePinchFilter.radius = 30; // 设置凸起/凹陷的半径
+      bulgePinchFilter.strength = 1; // 设置凸起/凹陷的强度
+
+      spriteFlower.filters = [outlineFilter, glowFilter, bulgePinchFilter];
+    </script>
+  </body>
+</html>
