@@ -62,8 +62,14 @@
       const container = new PIXI.Container();
       container.addChild(sprite);
       container.addChild(text);
-
+      container.addChild(spriteDisplacement);
+      container.filters = [displacementFilter];
       app.stage.addChild(container);
+
+      app.ticker.add((delta) => {
+        spriteDisplacement.x++;
+        spriteDisplacement.y++;
+      });
     </script>
   </body>
 </html>
