@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>37-pixi开发恐龙跑酷游戏</title>
+    <script src="./lib/pixi.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      canvas {
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // 创建应用
+      const app = new PIXI.Application({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        backgroundColor: 0x1099bb,
+        resolution: window.devicePixelRatio || 1,
+        antialias: true, // 抗锯齿
+      });
+
+      // 将应用画布添加到DOM中
+      document.body.appendChild(app.view);
+
+      // 添加恐龙游戏的精灵纹理
+    </script>
+  </body>
+</html>

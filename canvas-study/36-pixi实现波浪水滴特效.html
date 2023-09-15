@@ -42,7 +42,7 @@
       document.body.appendChild(app.view);
 
       // 创建一个精灵
-      const sprite = PIXI.Sprite.from("./images/car.webp");
+      const sprite = PIXI.Sprite.from("./images/car.jpg");
       sprite.width = app.screen.width;
       sprite.height = app.screen.height;
 
@@ -69,20 +69,58 @@
       container.addChild(text);
 
       // 添加置换滤镜
-      // const displacementSprite = PIXI.Sprite.from("./images/displacement.jpg");
-      const displacementSprite = PIXI.Sprite.from("https://s1.aigei.com/pvimg/img/png/de/de499f1dda9a4e9da1fa1815410b1617.png?imageMogr2/auto-orient/thumbnail/!237x237r/gravity/Center/crop/237x237/quality/85/&e=1735488000&token=P7S2Xpzfz11vAkASLTkfHN7Fw-oOZBecqeJaxypL:iJpRumxLmQelW9sN_wrsdsD8yR4=");
+      const displacementSprite = PIXI.Sprite.from("./images/displacement.png");
       // 调整置换精灵贴图的大小
       displacementSprite.scale.set(7);
       // 纹理平铺并且允许重复
       displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
       const displacementFilter = new PIXI.DisplacementFilter(displacementSprite);
       container.addChild(displacementSprite);
-      
-      container.filters = [displacementFilter];
+
+      // 添加震波滤镜
+      const shockwaveFilter1 = new PIXI.filters.ShockwaveFilter([Math.random() * app.screen.width, Math.random() * app.screen.height], {
+        radius: 160, // 半径
+        wavelength: 65, // 波长
+        amplitude: 105, // 振幅
+        speed: 200, // 速度
+      });
+      const shockwaveFilter2 = new PIXI.filters.ShockwaveFilter([Math.random() * app.screen.width, Math.random() * app.screen.height], {
+        radius: 100, // 半径
+        wavelength: 50, // 波长
+        amplitude: 80, // 振幅
+        speed: 300, // 速度
+      });
+      const shockwaveFilter3 = new PIXI.filters.ShockwaveFilter([Math.random() * app.screen.width, Math.random() * app.screen.height], {
+        radius: 90, // 半径
+        wavelength: 50, // 波长
+        amplitude: 100, // 振幅
+        speed: 250, // 速度
+      });
+
+      container.filters = [displacementFilter, shockwaveFilter1, shockwaveFilter2, shockwaveFilter3];
 
       app.ticker.add((delta) => {
         displacementSprite.x += 1;
         displacementSprite.y += 1;
+        createWave(shockwaveFilter1, 2);
+        createWave(shockwaveFilter2, 1);
+        createWave(shockwaveFilter3, 2.5);
+      });
+
+      // 控制震波的方法
+      function createWave(waveFilter, resetTime) {
+        // 震波的时间变化
+        waveFilter.time += 0.01;
+        if (waveFilter.time > resetTime) {
+          waveFilter.time = 0;
+          waveFilter.center = [Math.random() * app.screen.width, Math.random() * app.screen.height];
+        }
+      }
+
+      // // 监听点击事件,产生震波
+      app.view.addEventListener("click", (e) => {
+        shockwaveFilter1.center = [e.clientX, e.clientY];
+        shockwaveFilter1.time = 0;
       });
     </script>
   </body>
