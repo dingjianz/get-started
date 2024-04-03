@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        width: 497px;
+        height: 40px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        border: 1px solid #e8e8f2;
+        box-shadow: 0px 0px 15px 0px rgba(177, 171, 215, 0.3);
+        padding: 10px 14px;
+        transition: all 0.25s ease-in-out;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      
+      .wrapper {
+        background-color: #ffffff;
+        position: absolute;
+        top: 1.5px;
+        right: 1.5px;
+        bottom: 1.5px;
+        left: 1.5px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        padding: 0 10px;
+        padding-left: 267px;
+        transition: all 0.25s ease-in-out;
+      }
+
+      ul li {
+        list-style: none;
+      }
+
+      ul {
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        column-gap: 18px;
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translate3d(0, -50%, 0);
+        opacity: 1;
+        transition: all 0.25s ease-in-out;
+      }
+
+      ul.fade {
+        opacity: 0;
+      }
+
+      li {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        background-color: #f1f1fe;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+      }
+
+      li:first-child {
+        width: 75px;
+        border-radius: 15px;
+      }
+
+      li:hover {
+        background-color: #7277f2;
+        color: #ffffff;
+      }
+
+      input {
+        width: 100%;
+        height: 26px;
+        border: 1px solid #e8e8f2;
+        padding: 0 4px;
+        border-radius: 4px;
+        margin-left: 18px;
+        transition: all 0.25s ease-in-out;
+      }
+
+      input:focus {
+        outline: none;
+        border: 1px solid #5762b9;
+      }
+
+      @keyframes rotate-mgzv6g {
+        0% {
+          transform: rotate(0deg);
+        }
+
+        to {
+          transform: rotate(1turn);
+        }
+      }
+
+      .box {
+        animation: rotate-mgzv6g 2s ease-in-out infinite;
+        aspect-ratio: 1 / 1;
+        background: conic-gradient(#5d51fe, #804dfa, #9f49f7, #af4adb, #be4cbe, #ce50a2, #e46593, #fe8080, #fe8080, #e46593, #ce50a2, #be4cbe, #af4adb, #9f49f7, #804dfa, #5d51fe);
+        content: "";
+        left: 50%;
+        margin-left: -50%;
+        margin-top: -50%;
+        position: absolute;
+        top: 50%;
+        width: 102%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box"></div>
+      <div class="wrapper">
+        <ul>
+          <li>AI插图</li>
+          <li>改</li>
+          <li>续</li>
+          <li>扩</li>
+          <li>简</li>
+        </ul>
+        <input type="text" placeholder="请输入你对AI的期望" />
+      </div>
+    </div>
+
+    <script>
+      const wrapper = document.querySelector(".wrapper");
+      const ipt = document.querySelector("input");
+      const ul = document.querySelector("ul");
+      const li = document.querySelector("li");
+      ipt.addEventListener("focus", () => {
+        wrapper.style.paddingLeft = "4px";
+        ul.classList.add("fade");
+        li.style.display = "none";
+      });
+      ipt.addEventListener("blur", () => {
+        wrapper.style.paddingLeft = "267px";
+        ul.classList.remove("fade");
+        li.style.display = "flex";
+      });
+    </script>
+  </body>
+</html>

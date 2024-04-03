@@ -70,7 +70,7 @@
   type IType = typeof item; // 实践：typeof 的用法返回某类数据的类型
 
   type Predicate = (x: number) => boolean;
-  type K = ReturnType<Predicate>; // type K = boolean
+  type K = ReturnType<Predicate>; // 相当于 type K = boolean
   // 实践： ReturnType 接收的是一个类型， typeof 接收的是一个值
 
   const fnk = (x): K => {

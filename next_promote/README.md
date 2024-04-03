@@ -1,5 +1,7 @@
 # Nextjs
 
+# node版本是 14.16.0
+
 ### `Next.js`项目配置及[`Eslint`配置](https://eslint.bootcss.com/docs/user-guide/getting-started)
 
 ```js
