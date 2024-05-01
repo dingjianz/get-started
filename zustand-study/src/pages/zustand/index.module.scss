@@ -1,0 +1,13 @@
+.container {
+  max-width: 1200px;
+  padding: 1rem;
+  margin: 0 auto;
+
+  >div {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    margin: 1rem 0;
+    gap: 1rem;
+  }
+}
