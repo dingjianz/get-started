@@ -1,0 +1,13 @@
+.water_fall {
+  .water_item {
+    box-sizing: border-box;
+    border-radius: 6px;
+    cursor: pointer;
+
+    >img {
+      max-width: 100%;
+      height: auto;
+      min-height: 200px;
+    }
+  }
+}
