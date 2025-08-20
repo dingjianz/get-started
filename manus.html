@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @keyframes ani {
+        0%,
+        70% {
+          transform: translateY(0);
+        }
+        35% {
+          transform: translateY(-5px);
+        }
+      }
+      .box {
+        width: max-content;
+        margin: 30px auto;
+        display: flex;
+        align-items: center;
+        column-gap: 0.25rem;
+        position: relative;
+        margin: 30px auto;
+      }
+      .box span {
+        display: inline-block;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: #858481;
+        animation: ani 1.5s infinite;
+      }
+      .box span:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .box span:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+
+      .wrapper {
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        background-size: 200% 100%;
+        background-image: linear-gradient(110deg, #34322d, 35%, #e5e5e5, 50%, #34322d, 75%, #34322d);
+        animation: shine 3s ease-in-out infinite;
+      }
+      @keyframes shine {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+
+      .link {
+        margin: 30px auto;
+        width: max-content;
+        padding: 3px 10px;
+        background-color: #37352f0a;
+        border: 1px solid #0000000a;
+        border-radius: 15px;
+        color: #5e5e5b;
+        font-size: 13px;
+        position: relative;
+      }
+
+      .link .flash {
+        opacity: 0.8;
+        transform: rotate(-75deg);
+        background: linear-gradient(176deg, hsla(0, 0%, 100%, 0) 5.88%, hsla(0, 0%, 100%, 0.6) 51.28%, hsla(0, 0%, 100%, 0) 94.95%);
+        width: 200px;
+        height: 60px;
+        z-index: 10;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        animation: flash 3s linear infinite;
+      }
+      @keyframes flash {
+        0% {
+          left: -100%;
+        }
+        100% {
+          left: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="wrapper">思考中</div>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="link">
+      <div class="flash"></div>
+      <span>正在浏览https://wwfwhales.org/resources/protecting-blue-corridors-report</span>
+    </div>
+  </body>
+</html>
